@@ -33,6 +33,15 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.permisosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.postulanteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buscarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevoPostulanteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.procesosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.crearProcesoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verProcesosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.newWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cascadeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,15 +52,8 @@
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.permisosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.postulanteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buscarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nuevoPostulanteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.procesosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.crearProcesoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verProcesosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cerrarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,6 +76,7 @@
             // fileMenu
             // 
             this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cerrarSesiónToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileMenu.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.fileMenu.Name = "fileMenu";
@@ -86,6 +89,71 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "&Salir";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolsStripMenuItem_Click);
+            // 
+            // usuarioToolStripMenuItem
+            // 
+            this.usuarioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.permisosToolStripMenuItem,
+            this.usuariosToolStripMenuItem,
+            this.rolToolStripMenuItem});
+            this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
+            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.usuarioToolStripMenuItem.Text = "&Usuario";
+            // 
+            // permisosToolStripMenuItem
+            // 
+            this.permisosToolStripMenuItem.Name = "permisosToolStripMenuItem";
+            this.permisosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.permisosToolStripMenuItem.Text = "Permisos";
+            // 
+            // usuariosToolStripMenuItem
+            // 
+            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.usuariosToolStripMenuItem.Text = "Usuarios";
+            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
+            // 
+            // postulanteToolStripMenuItem
+            // 
+            this.postulanteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.buscarToolStripMenuItem,
+            this.nuevoPostulanteToolStripMenuItem});
+            this.postulanteToolStripMenuItem.Name = "postulanteToolStripMenuItem";
+            this.postulanteToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
+            this.postulanteToolStripMenuItem.Text = "&Postulante";
+            // 
+            // buscarToolStripMenuItem
+            // 
+            this.buscarToolStripMenuItem.Name = "buscarToolStripMenuItem";
+            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.buscarToolStripMenuItem.Text = "Buscar Postulante";
+            // 
+            // nuevoPostulanteToolStripMenuItem
+            // 
+            this.nuevoPostulanteToolStripMenuItem.Name = "nuevoPostulanteToolStripMenuItem";
+            this.nuevoPostulanteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nuevoPostulanteToolStripMenuItem.Text = "Nuevo Postulante";
+            // 
+            // procesosToolStripMenuItem
+            // 
+            this.procesosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.crearProcesoToolStripMenuItem,
+            this.verProcesosToolStripMenuItem});
+            this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
+            this.procesosToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.procesosToolStripMenuItem.Text = "&Procesos";
+            // 
+            // crearProcesoToolStripMenuItem
+            // 
+            this.crearProcesoToolStripMenuItem.Name = "crearProcesoToolStripMenuItem";
+            this.crearProcesoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.crearProcesoToolStripMenuItem.Text = "Crear Proceso";
+            // 
+            // verProcesosToolStripMenuItem
+            // 
+            this.verProcesosToolStripMenuItem.Name = "verProcesosToolStripMenuItem";
+            this.verProcesosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.verProcesosToolStripMenuItem.Text = "Ver procesos";
             // 
             // windowsMenu
             // 
@@ -152,71 +220,20 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.aboutToolStripMenuItem.Text = "&Acerca de... ...";
             // 
-            // usuarioToolStripMenuItem
+            // rolToolStripMenuItem
             // 
-            this.usuarioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.permisosToolStripMenuItem,
-            this.usuariosToolStripMenuItem});
-            this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
-            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.usuarioToolStripMenuItem.Text = "&Usuario";
+            this.rolToolStripMenuItem.Name = "rolToolStripMenuItem";
+            this.rolToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rolToolStripMenuItem.Text = "Rol";
             // 
-            // permisosToolStripMenuItem
+            // cerrarSesiónToolStripMenuItem
             // 
-            this.permisosToolStripMenuItem.Name = "permisosToolStripMenuItem";
-            this.permisosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.permisosToolStripMenuItem.Text = "Permisos";
-            // 
-            // usuariosToolStripMenuItem
-            // 
-            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.usuariosToolStripMenuItem.Text = "Usuarios";
-            // 
-            // postulanteToolStripMenuItem
-            // 
-            this.postulanteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.buscarToolStripMenuItem,
-            this.nuevoPostulanteToolStripMenuItem});
-            this.postulanteToolStripMenuItem.Name = "postulanteToolStripMenuItem";
-            this.postulanteToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
-            this.postulanteToolStripMenuItem.Text = "&Postulante";
-            // 
-            // buscarToolStripMenuItem
-            // 
-            this.buscarToolStripMenuItem.Name = "buscarToolStripMenuItem";
-            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.buscarToolStripMenuItem.Text = "&Buscar";
-            // 
-            // nuevoPostulanteToolStripMenuItem
-            // 
-            this.nuevoPostulanteToolStripMenuItem.Name = "nuevoPostulanteToolStripMenuItem";
-            this.nuevoPostulanteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.nuevoPostulanteToolStripMenuItem.Text = "Nuevo Postulante";
-            // 
-            // procesosToolStripMenuItem
-            // 
-            this.procesosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.crearProcesoToolStripMenuItem,
-            this.verProcesosToolStripMenuItem});
-            this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
-            this.procesosToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
-            this.procesosToolStripMenuItem.Text = "&Procesos";
-            // 
-            // crearProcesoToolStripMenuItem
-            // 
-            this.crearProcesoToolStripMenuItem.Name = "crearProcesoToolStripMenuItem";
-            this.crearProcesoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.crearProcesoToolStripMenuItem.Text = "Crear Proceso";
-            // 
-            // verProcesosToolStripMenuItem
-            // 
-            this.verProcesosToolStripMenuItem.Name = "verProcesosToolStripMenuItem";
-            this.verProcesosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.verProcesosToolStripMenuItem.Text = "Ver procesos";
+            this.cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
+            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cerrarSesiónToolStripMenuItem.Text = "Cerrar Sesión";
             // 
             // FrmPrincipal
             // 
@@ -264,6 +281,8 @@
         private System.Windows.Forms.ToolStripMenuItem procesosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem crearProcesoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verProcesosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cerrarSesiónToolStripMenuItem;
     }
 }
 

@@ -12,15 +12,25 @@ namespace UPN_ESDAT_FINAL
 {
     public partial class FrmPrincipal : Form
     {
-        private int childFormNumber = 0;
-
         public FrmPrincipal()
         {
             InitializeComponent();
-        }     
+        }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
+            foreach (var item in menuStrip.Items)
+            {
+                if (item is ToolStripMenuItem)
+                {
+                    ToolStripMenuItem toolStrip = (ToolStripMenuItem)item;
+
+                    if (toolStrip.Text == "&Archivo")
+                    {
+                        toolStrip.Visible = false;
+                    }
+                }
+            }
             //MenuStrip strip = new MenuStrip();
 
             //ToolStripMenuItem fileItem = new ToolStripMenuItem("&Permisos");
@@ -113,5 +123,10 @@ namespace UPN_ESDAT_FINAL
             frmUsuario.Show();
         }
         #endregion
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
