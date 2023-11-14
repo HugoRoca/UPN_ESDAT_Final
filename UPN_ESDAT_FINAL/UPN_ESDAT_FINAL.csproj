@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogic\BLMenu.cs" />
-    <Compile Include="Common\CsvReader.cs" />
+    <Compile Include="BusinessLogic\BLRol.cs" />
     <Compile Include="Common\Utils.cs" />
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
@@ -68,8 +68,10 @@
       <DependentUpon>FrmUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\MenuModel.cs" />
+    <Compile Include="Model\RolModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\DataAccess.cs" />
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -90,6 +92,7 @@
     </Compile>
     <None Include="Data\Menu.csv" />
     <None Include="Data\Rol.csv" />
+    <None Include="Data\RolPermiso.csv" />
     <None Include="Data\Usuario.csv" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

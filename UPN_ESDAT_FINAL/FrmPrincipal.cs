@@ -19,62 +19,18 @@ namespace UPN_ESDAT_FINAL
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-            foreach (var item in menuStrip.Items)
-            {
-                if (item is ToolStripMenuItem)
-                {
-                    ToolStripMenuItem toolStrip = (ToolStripMenuItem)item;
-
-                    if (toolStrip.Text == "&Archivo")
-                    {
-                        toolStrip.Visible = false;
-                    }
-                }
-            }
-            //MenuStrip strip = new MenuStrip();
-
-            //ToolStripMenuItem fileItem = new ToolStripMenuItem("&Permisos");
-
-            //// Create an array of ToolStripMenuItems
-            //ToolStripMenuItem[] col = new ToolStripMenuItem[4];
-
-            //// Populate the list with menus named "Menu 1" through "Menu 4"
-            //for (int i = 0; i < 4; i++)
+            //foreach (var item in menuStrip.Items)
             //{
-            //    col[i] = new ToolStripMenuItem("Menu " + (i + 1));
-
-            //    // Make first item checked
-            //    if (i == 0)
+            //    if (item is ToolStripMenuItem)
             //    {
-            //        col[i].Checked = true;
-            //    }
+            //        ToolStripMenuItem toolStrip = (ToolStripMenuItem)item;
 
-            //    // Disable second item
-            //    if (i == 1)
-            //    {
-            //        col[i].Enabled = false;
-            //    }
-
-            //    // Set the image on the third item
-            //    if (i == 2)
-            //    {
-            //        col[i].Image = Image.FromFile("C:\\Users\\hugor\\Downloads\\log_upn.png");
+            //        if (toolStrip.Text == "&Archivo")
+            //        {
+            //            toolStrip.Visible = false;
+            //        }
             //    }
             //}
-
-            //var xxx = "CallFrmLogin_Click";
-            //// Create menu item containing icon and a collection
-            //ToolStripMenuItem collectionMenu = new ToolStripMenuItem("Collection", Image.FromFile("C:\\Users\\hugor\\Downloads\\login.png"), col);
-            //ToolStripMenuItem usuarioMenu = new ToolStripMenuItem("Usuarios", Image.FromFile("C:\\Users\\hugor\\Downloads\\login.png"), xxx);
-            //ToolStripMenuItem rolMenu = new ToolStripMenuItem("Roles");
-
-            //fileItem.DropDownItems.Add(collectionMenu);
-            //fileItem.DropDownItems.Add(usuarioMenu);
-            //fileItem.DropDownItems.Add(rolMenu);
-
-            //strip.Items.Add(fileItem);
-
-            //this.Controls.Add(strip);
         }
 
         private void FrmPrincipal_FormClosed(object sender, FormClosedEventArgs e)

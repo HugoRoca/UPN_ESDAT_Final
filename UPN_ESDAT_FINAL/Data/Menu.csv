@@ -1,4 +1,4 @@
-ID|MENU|FORMULARIO|PADRE
+Id|Descripcion|Formulario|Padre
 1|&Usuario||0
 2|Permisos|FrmPermiso|1
 3|Usuarios|FrmUsuario|1
