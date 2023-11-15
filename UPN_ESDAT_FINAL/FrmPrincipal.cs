@@ -30,6 +30,7 @@ namespace UPN_ESDAT_FINAL
                 if (item is ToolStripMenuItem)
                 {
                     ToolStripMenuItem toolStrip = (ToolStripMenuItem)item;
+
                     /*
                     foreach (var permiso in permisos)
                     {
