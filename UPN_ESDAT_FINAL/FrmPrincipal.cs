@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UPN_ESDAT_FINAL.BusinessLogic;
+using UPN_ESDAT_FINAL.Model;
 
 namespace UPN_ESDAT_FINAL
 {
@@ -19,18 +21,25 @@ namespace UPN_ESDAT_FINAL
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-            //foreach (var item in menuStrip.Items)
-            //{
-            //    if (item is ToolStripMenuItem)
-            //    {
-            //        ToolStripMenuItem toolStrip = (ToolStripMenuItem)item;
+            BLRol bLRol = new BLRol();
 
-            //        if (toolStrip.Text == "&Archivo")
-            //        {
-            //            toolStrip.Visible = false;
-            //        }
-            //    }
-            //}
+            List<RolPermisoModel> permisos = bLRol.ObtenerAccesoMenu("RECLUTA");
+
+            foreach (var item in menuStrip.Items)
+            {
+                if (item is ToolStripMenuItem)
+                {
+                    ToolStripMenuItem toolStrip = (ToolStripMenuItem)item;
+                    /*
+                    foreach (var permiso in permisos)
+                    {
+                        if (toolStrip.Text == permiso.IdMenu)
+                        {
+                            toolStrip.Visible = false;
+                        }
+                    }*/
+                }
+            }
         }
 
         private void FrmPrincipal_FormClosed(object sender, FormClosedEventArgs e)

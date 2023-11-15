@@ -10,15 +10,23 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
 {
     public class BLRol
     {
-        private readonly string nombreArchivo = "Rol";
+        private readonly string nombreArchivoRol = "Rol";
+        private readonly string nombreArchivoRolPermiso = "RolPermiso";
         private readonly DataAccess<RolModel> dataRol;
-        private readonly DataAccess<RolModel> dataRolPermiso;
+        private readonly DataAccess<RolPermisoModel> dataRolPermiso;
 
         public BLRol()
         {
-            dataRol = new DataAccess<RolModel>(nombreArchivo);
+            dataRol = new DataAccess<RolModel>(nombreArchivoRol);
+            dataRolPermiso = new DataAccess<RolPermisoModel>(nombreArchivoRolPermiso);
         }
 
-
+        public List<RolPermisoModel> ObtenerAccesoMenu(string rol)
+        {
+            List<RolModel> roles = dataRol.Leer();
+            int rolId = roles.FirstOrDefault(x => x.Descripcion.ToLower() == rol.ToLower()).Id;
+            
+            return dataRolPermiso.Leer().Where(x=> x.IdRol == rolId).ToList();
+        }
     }
 }

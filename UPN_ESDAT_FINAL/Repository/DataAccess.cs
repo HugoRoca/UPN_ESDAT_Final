@@ -7,11 +7,17 @@ namespace UPN_ESDAT_FINAL.Repository
 {
     public class DataAccess<T> where T : new()
     {
-        public string RutaArchivo { get; set; }
+        private string RutaArchivo { get; set; }
 
         public DataAccess(string nombreArchivo)
         {
-            this.RutaArchivo = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\Data\" + nombreArchivo + ".csv");
+            // Obtén la carpeta base de la aplicación
+            string carpetaBase = AppDomain.CurrentDomain.BaseDirectory;
+
+            // Combina la carpeta base con la ruta relativa al archivo
+            this.RutaArchivo =  carpetaBase + @"\Data\" + nombreArchivo + ".csv";
+
+            //this.RutaArchivo = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "\Data\" + nombreArchivo + ".csv");
         }
 
         // Agregar un nuevo elemento
@@ -111,7 +117,7 @@ namespace UPN_ESDAT_FINAL.Repository
         private T ConvertirCsvAObjeto(string linea)
         {
             // Divide la línea en valores utilizando la coma como delimitador
-            var valores = linea.Split('|');
+            var valores = linea.Split(',');
 
             // Crea una nueva instancia del tipo genérico T
             var entidad = new T();
