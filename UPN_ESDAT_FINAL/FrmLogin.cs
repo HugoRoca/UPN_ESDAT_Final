@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using UPN_ESDAT_FINAL.BusinessLogic;
+using UPN_ESDAT_FINAL.Model;
 
 namespace UPN_ESDAT_FINAL
 {
@@ -12,8 +14,7 @@ namespace UPN_ESDAT_FINAL
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            /*
-            BLUsuario usuario = new BLUsuario();
+            BLUsuario _usuario = new BLUsuario();
 
             if (string.IsNullOrEmpty(txtUsuario.Text) || string.IsNullOrEmpty(txtPassword.Text))
             {
@@ -21,15 +22,17 @@ namespace UPN_ESDAT_FINAL
                 return;
             }
 
-            if (!usuario.Login(txtUsuario.Text, txtPassword.Text))
+            UsuarioModel usuarioLogin = _usuario.ObtenerUsuario(txtUsuario.Text, txtPassword.Text);
+
+            if (!(usuarioLogin.Usuario.Equals(txtUsuario.Text)))
             {
                 MessageBox.Show("Acceso fallido", "Error", MessageBoxButtons.OK);
                 return;
             }
-            */
+
             this.Visible = false;
 
-            FrmPrincipal frmPrincipal = new FrmPrincipal();
+            FrmPrincipal frmPrincipal = new FrmPrincipal(usuarioLogin);
             frmPrincipal.Show();
         }
     }

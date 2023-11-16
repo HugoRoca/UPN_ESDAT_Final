@@ -49,6 +49,7 @@
     <Compile Include="BusinessLogic\BLMenu.cs" />
     <Compile Include="BusinessLogic\BLRol.cs" />
     <Compile Include="BusinessLogic\BLUsuario.cs" />
+    <Compile Include="Common\Constantes.cs" />
     <Compile Include="Common\Utils.cs" />
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>

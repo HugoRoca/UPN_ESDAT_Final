@@ -8,28 +8,35 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UPN_ESDAT_FINAL.BusinessLogic;
+using UPN_ESDAT_FINAL.Common;
 using UPN_ESDAT_FINAL.Model;
 
 namespace UPN_ESDAT_FINAL
 {
     public partial class FrmPrincipal : Form
     {
-        public FrmPrincipal()
+        private readonly UsuarioModel _usuarioModel;
+        public FrmPrincipal(UsuarioModel usuarioModel)
         {
             InitializeComponent();
+            this._usuarioModel = usuarioModel;
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
             BLRol bLRol = new BLRol();
 
-            List<RolPermisoModel> permisos = bLRol.ObtenerAccesoMenu("RECLUTA");
+            List<RolPermisoModel> permisos = bLRol.ObtenerAccesoMenu(_usuarioModel.Rol);
 
             foreach (var item in menuStrip.Items)
             {
                 if (item is ToolStripMenuItem)
                 {
                     ToolStripMenuItem toolStrip = (ToolStripMenuItem)item;
+
+                    if (Constantes.Menu.AlwaysAccess.Contains(toolStrip.Text)) toolStrip.Visible = true;
+
+                    toolStrip.Visible = false;
 
                     /*
                     foreach (var permiso in permisos)

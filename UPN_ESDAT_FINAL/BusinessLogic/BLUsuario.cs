@@ -18,13 +18,24 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
             dataUsuario = new DataAccess<UsuarioModel>(nombreArchivo);
         }
 
-        public bool Login(string usuario, string password)
+        public bool Login(string username, string password)
         {
             List<UsuarioModel> usuarios = dataUsuario.Leer();
 
             if (usuarios.Count == 0) return false;
 
-            return usuarios.Where(x => x.Usuario.ToLower() == usuario.ToLower() && x.Passoword.ToLower() == password.ToLower()).Any();
+            return usuarios.Where(x => x.Usuario.ToLower() == username.ToLower() && x.Passoword.ToLower() == password.ToLower()).Any();
+        }
+
+        public UsuarioModel ObtenerUsuario(string username, string password)
+        {
+            List<UsuarioModel> usuarios = dataUsuario.Leer();
+
+            if (usuarios.Count == 0) return new UsuarioModel();
+
+            List<UsuarioModel> retorno = usuarios.Where(x => x.Usuario.ToLower() == username.ToLower() && x.Passoword.ToLower() == password.ToLower()).ToList();
+
+            return retorno.FirstOrDefault();
         }
     }
 }
