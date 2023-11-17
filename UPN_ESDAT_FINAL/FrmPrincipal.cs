@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using UPN_ESDAT_FINAL.BusinessLogic;
 using UPN_ESDAT_FINAL.Common;
@@ -26,6 +20,8 @@ namespace UPN_ESDAT_FINAL
         {
             BLRol bLRol = new BLRol();
 
+            tsslState.Text = $"HOLA {_usuarioModel.Nombres} {_usuarioModel.Apellidos} | ROL: {_usuarioModel.Rol}";
+
             List<RolPermisoModel> permisos = bLRol.ObtenerAccesoMenu(_usuarioModel.Rol);
 
             foreach (var item in menuStrip.Items)
@@ -34,18 +30,17 @@ namespace UPN_ESDAT_FINAL
                 {
                     ToolStripMenuItem toolStrip = (ToolStripMenuItem)item;
 
-                    if (Constantes.Menu.AlwaysAccess.Contains(toolStrip.Text)) toolStrip.Visible = true;
-
                     toolStrip.Visible = false;
 
-                    /*
+                    if (Constantes.Menu.AlwaysAccess.Contains(toolStrip.Text)) toolStrip.Visible = true;
+
                     foreach (var permiso in permisos)
                     {
-                        if (toolStrip.Text == permiso.IdMenu)
+                        if (toolStrip.Text.ToLower() == permiso.DescripcionMenu.ToLower())
                         {
-                            toolStrip.Visible = false;
+                            toolStrip.Visible = true;
                         }
-                    }*/
+                    }
                 }
             }
         }
@@ -89,17 +84,20 @@ namespace UPN_ESDAT_FINAL
             this.Close();
         }
 
-        private void CallFrmLogin_Click(object sender, EventArgs e)
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmUsuario frmUsuario = new FrmUsuario();
             frmUsuario.MdiParent = this;
             frmUsuario.Show();
         }
-        #endregion
 
-        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        private void cerrarSesiónToolStripMenuItem_Click(object sender, EventArgs e)
+        {            
+            FrmLogin frmLogin = new FrmLogin();
+            frmLogin.Show();
 
+            this.Hide();
         }
+        #endregion
     }
 }

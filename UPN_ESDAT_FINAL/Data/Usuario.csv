@@ -1,3 +1,4 @@
-Id,Usuario,Password,Rol
-1,HROCA,123456,ADMIN
-2,PBELLIDO,123456,RECLUTA
+Id,Usuario,Password,Rol,Nombres,Apellidos
+1,ADMIN,1,ADMIN,Jhon,Doe Smith
+2,PBELLIDO,1,RECLUTA,Paola,Bellido Capcha
+3,HROCA,1,JEFE AREA,Hugo,Roca Espinoza

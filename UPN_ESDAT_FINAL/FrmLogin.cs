@@ -18,22 +18,33 @@ namespace UPN_ESDAT_FINAL
 
             if (string.IsNullOrEmpty(txtUsuario.Text) || string.IsNullOrEmpty(txtPassword.Text))
             {
-                MessageBox.Show("Debe ingresar datos!", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Debe ingresar datos!", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             UsuarioModel usuarioLogin = _usuario.ObtenerUsuario(txtUsuario.Text, txtPassword.Text);
 
-            if (!(usuarioLogin.Usuario.Equals(txtUsuario.Text)))
+            if (usuarioLogin == null || !(usuarioLogin.Usuario.Equals(txtUsuario.Text.ToUpper())))
             {
-                MessageBox.Show("Acceso fallido", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Usuario y/o contraseña inválida.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            this.Visible = false;
+            this.Hide();
 
             FrmPrincipal frmPrincipal = new FrmPrincipal(usuarioLogin);
+            frmPrincipal.Text = $".::. Principal - Bienvenido {usuarioLogin.Usuario}";
             frmPrincipal.Show();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void FrmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
