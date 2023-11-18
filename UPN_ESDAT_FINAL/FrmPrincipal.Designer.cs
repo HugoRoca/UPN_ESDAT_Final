@@ -88,14 +88,14 @@
             // cerrarSesiónToolStripMenuItem
             // 
             this.cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
-            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.cerrarSesiónToolStripMenuItem.Text = "Cerrar Sesión";
             this.cerrarSesiónToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesiónToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.exitToolStripMenuItem.Text = "&Salir";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolsStripMenuItem_Click);
             // 
@@ -115,6 +115,7 @@
             this.permisosToolStripMenuItem.Name = "permisosToolStripMenuItem";
             this.permisosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.permisosToolStripMenuItem.Text = "Permisos";
+            this.permisosToolStripMenuItem.Click += new System.EventHandler(this.permisosToolStripMenuItem_Click);
             // 
             // usuariosToolStripMenuItem
             // 
@@ -128,6 +129,7 @@
             this.rolToolStripMenuItem.Name = "rolToolStripMenuItem";
             this.rolToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.rolToolStripMenuItem.Text = "Rol";
+            this.rolToolStripMenuItem.Click += new System.EventHandler(this.rolToolStripMenuItem_Click);
             // 
             // postulanteToolStripMenuItem
             // 
@@ -142,14 +144,16 @@
             // buscarToolStripMenuItem
             // 
             this.buscarToolStripMenuItem.Name = "buscarToolStripMenuItem";
-            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.buscarToolStripMenuItem.Text = "Buscar Postulante";
+            this.buscarToolStripMenuItem.Click += new System.EventHandler(this.buscarToolStripMenuItem_Click);
             // 
             // nuevoPostulanteToolStripMenuItem
             // 
             this.nuevoPostulanteToolStripMenuItem.Name = "nuevoPostulanteToolStripMenuItem";
-            this.nuevoPostulanteToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.nuevoPostulanteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.nuevoPostulanteToolStripMenuItem.Text = "Nuevo Postulante";
+            this.nuevoPostulanteToolStripMenuItem.Click += new System.EventHandler(this.nuevoPostulanteToolStripMenuItem_Click);
             // 
             // procesosToolStripMenuItem
             // 
@@ -166,12 +170,14 @@
             this.crearProcesoToolStripMenuItem.Name = "crearProcesoToolStripMenuItem";
             this.crearProcesoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.crearProcesoToolStripMenuItem.Text = "Crear Proceso";
+            this.crearProcesoToolStripMenuItem.Click += new System.EventHandler(this.crearProcesoToolStripMenuItem_Click);
             // 
             // verProcesosToolStripMenuItem
             // 
             this.verProcesosToolStripMenuItem.Name = "verProcesosToolStripMenuItem";
             this.verProcesosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.verProcesosToolStripMenuItem.Text = "Ver procesos";
+            this.verProcesosToolStripMenuItem.Click += new System.EventHandler(this.verProcesosToolStripMenuItem_Click);
             // 
             // windowsMenu
             // 
@@ -227,6 +233,7 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "&Acerca de... ...";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 

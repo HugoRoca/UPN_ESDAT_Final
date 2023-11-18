@@ -51,11 +51,41 @@
     <Compile Include="BusinessLogic\BLUsuario.cs" />
     <Compile Include="Common\Constantes.cs" />
     <Compile Include="Common\Utils.cs" />
+    <Compile Include="FrmAcerca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAcerca.Designer.cs">
+      <DependentUpon>FrmAcerca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmBuscarPostulante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBuscarPostulante.Designer.cs">
+      <DependentUpon>FrmBuscarPostulante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCrearProcesos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCrearProcesos.Designer.cs">
+      <DependentUpon>FrmCrearProcesos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNuevoPostulante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNuevoPostulante.Designer.cs">
+      <DependentUpon>FrmNuevoPostulante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPermiso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPermiso.Designer.cs">
+      <DependentUpon>FrmPermiso.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
@@ -63,11 +93,23 @@
     <Compile Include="FrmPrincipal.Designer.cs">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRol.Designer.cs">
+      <DependentUpon>FrmRol.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmUsuario.Designer.cs">
       <DependentUpon>FrmUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmVerProcesos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmVerProcesos.Designer.cs">
+      <DependentUpon>FrmVerProcesos.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\MenuModel.cs" />
     <Compile Include="Model\RolModel.cs" />

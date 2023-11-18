@@ -40,36 +40,6 @@ namespace UPN_ESDAT_FINAL.Repository
             try
             {
                 entidades = ObtenerTodos();
-                //// Lee todas las líneas del archivo
-                //var lineas = File.ReadAllLines(this.RutaArchivo);
-
-                //// Itera sobre cada línea
-                //foreach (var linea in lineas)
-                //{
-                //    // Divide la línea en campos usando la coma como delimitador
-                //    var campos = linea.Split(',');
-
-                //    // Crea una nueva instancia del tipo genérico T
-                //    var entidad = new T();
-
-                //    // Obtén las propiedades de T
-                //    var propiedades = typeof(T).GetProperties();
-
-                //    // Itera sobre las propiedades
-                //    for (int i = 0; i < propiedades.Length; i++)
-                //    {
-                //        // Si el índice i está dentro del rango de campos
-                //        if (i < campos.Length)
-                //        {
-                //            // Convierte el valor del campo a un tipo adecuado para la propiedad y asígnalo
-                //            var valorCampo = Convert.ChangeType(campos[i], propiedades[i].PropertyType);
-                //            propiedades[i].SetValue(entidad, valorCampo);
-                //        }
-                //    }
-
-                //    // Agrega la entidad a la lista
-                //    entidades.Add(entidad);
-                //}
             }
             catch (Exception ex)
             {
