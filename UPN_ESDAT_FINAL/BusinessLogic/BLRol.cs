@@ -28,5 +28,25 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
             
             return dataRolPermiso.Leer().Where(x=> x.IdRol == rolId).ToList();
         }
+
+        public void GuardarRegistro(RolModel rolModel)
+        {
+            dataRol.Crear(rolModel);
+        }
+
+        public void ActualizarRol(RolModel rolModel)
+        {
+            RolModel enviaDatos = new RolModel();
+
+            dataRol.Actualizar(p => p.Id == rolModel.Id, rol =>
+            {
+                rol.Descripcion = rolModel.Descripcion;
+            });
+        }
+
+        public List<RolModel> ObtenerRoles()
+        {
+            return dataRol.Leer();
+        }
     }
 }

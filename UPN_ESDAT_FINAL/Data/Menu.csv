@@ -1,11 +1,11 @@
-Id,Descripcion,Formulario,Padre
-1,&Usuario,,0
-2,Permisos,FrmPermiso,1
-3,Usuarios,FrmUsuario,1
-4,Roles,FrmRol,1
-5,&Postulante,,0
-6,Buscar Postulante,FrmBuscarPostulante,5
-7,Nuevo Postulante,FrNuevoPostulante,5
-8,&Procesos,,0
-9,Crear Proceso,FrmCrearProceso,8
-10,Ver Procesos,FrmVerProceso,8
+Id|Descripcion|Formulario|Padre
+1|&Usuario||0
+2|Permisos|FrmPermiso|1
+3|Usuarios|FrmUsuario|1
+4|Roles|FrmRol|1
+5|&Postulante||0
+6|Buscar Postulante|FrmBuscarPostulante|5
+7|Nuevo Postulante|FrNuevoPostulante|5
+8|&Procesos||0
+9|Crear Proceso|FrmCrearProceso|8
+10|Ver Procesos|FrmVerProceso|8

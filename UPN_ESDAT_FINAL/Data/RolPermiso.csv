@@ -1,17 +1,17 @@
-IdRol,IdMenu,DescripcionMenu
-1,1,&Usuario
-1,2,Permisos
-1,3,Usuarios
-1,4,Roles
-1,5,&Postulante
-1,6,Buscar Postulante
-1,7,Nuevo Postulante
-1,8,&Procesos
-1,9,Crear Proceso
-1,10,Ver Procesos
-2,8,&Procesos
-2,9,Crear Proceso
-2,10,Ver Procesos
-3,5,&Postulante
-3,6,Buscar Postulante
-3,7,Nuevo Postulante
+IdRol|IdMenu|DescripcionMenu
+1|1|&Usuario
+1|2|Permisos
+1|3|Usuarios
+1|4|Roles
+1|5|&Postulante
+1|6|Buscar Postulante
+1|7|Nuevo Postulante
+1|8|&Procesos
+1|9|Crear Proceso
+1|10|Ver Procesos
+2|8|&Procesos
+2|9|Crear Proceso
+2|10|Ver Procesos
+3|5|&Postulante
+3|6|Buscar Postulante
+3|7|Nuevo Postulante

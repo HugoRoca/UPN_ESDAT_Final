@@ -83,11 +83,16 @@ namespace UPN_ESDAT_FINAL.Repository
             EscribirArchivo(entidadesFiltradas);
         }
 
+        public int ContarRegistros()
+        {
+            return this.Contar();
+        }
+
         // Convertir una línea de texto CSV a un objeto
         private T ConvertirCsvAObjeto(string linea)
         {
             // Divide la línea en valores utilizando la coma como delimitador
-            var valores = linea.Split(',');
+            var valores = linea.Split('|');
 
             // Crea una nueva instancia del tipo genérico T
             var entidad = new T();
@@ -147,6 +152,16 @@ namespace UPN_ESDAT_FINAL.Repository
 
             // Devuelve la lista de entidades
             return entidades;
+        }
+
+        // Obtiene la cantidad de registros que existen en el archivo
+        private int Contar()
+        {
+            // Lee todas las líneas del archivo y omite la primera línea si contiene encabezados
+            var lineas = File.ReadAllLines(this.RutaArchivo).Skip(1);
+
+            // se cuenta el total de la lineas
+            return lineas.Count();
         }
 
         // Escribir la lista de entidades en el archivo
