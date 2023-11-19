@@ -8,6 +8,7 @@ namespace UPN_ESDAT_FINAL.Repository
     public class DataAccess<T> where T : new()
     {
         private string RutaArchivo { get; set; }
+        private readonly char charSeparator = '|';
 
         public DataAccess(string nombreArchivo)
         {
@@ -92,7 +93,7 @@ namespace UPN_ESDAT_FINAL.Repository
         private T ConvertirCsvAObjeto(string linea)
         {
             // Divide la línea en valores utilizando la coma como delimitador
-            var valores = linea.Split('|');
+            var valores = linea.Split(charSeparator);
 
             // Crea una nueva instancia del tipo genérico T
             var entidad = new T();
@@ -170,14 +171,14 @@ namespace UPN_ESDAT_FINAL.Repository
             var lineas = new List<string>();
 
             // Agregar la línea de encabezados
-            var encabezados = string.Join(",", typeof(T).GetProperties().Select(p => p.Name));
+            var encabezados = string.Join(charSeparator.ToString(), typeof(T).GetProperties().Select(p => p.Name));
             lineas.Add(encabezados);
 
             // Agregar las líneas de datos
             foreach (var entidad in entidades)
             {
                 var valores = typeof(T).GetProperties().Select(p => p.GetValue(entidad)?.ToString() ?? "");
-                var linea = string.Join(",", valores);
+                var linea = string.Join(charSeparator.ToString(), valores);
                 lineas.Add(linea);
             }
 

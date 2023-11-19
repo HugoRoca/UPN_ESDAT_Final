@@ -70,6 +70,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
+            this.menuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.menuStrip.Size = new System.Drawing.Size(1094, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
@@ -79,23 +80,27 @@
             this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cerrarSesiónToolStripMenuItem,
             this.exitToolStripMenuItem});
+            this.fileMenu.Image = ((System.Drawing.Image)(resources.GetObject("fileMenu.Image")));
+            this.fileMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.fileMenu.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.fileMenu.Name = "fileMenu";
-            this.fileMenu.Size = new System.Drawing.Size(60, 20);
+            this.fileMenu.Size = new System.Drawing.Size(92, 36);
             this.fileMenu.Text = "&Archivo";
             this.fileMenu.Visible = false;
             // 
             // cerrarSesiónToolStripMenuItem
             // 
+            this.cerrarSesiónToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cerrarSesiónToolStripMenuItem.Image")));
             this.cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
-            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cerrarSesiónToolStripMenuItem.Text = "Cerrar Sesión";
             this.cerrarSesiónToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesiónToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
+            this.exitToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exitToolStripMenuItem.Image")));
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "&Salir";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolsStripMenuItem_Click);
             // 
@@ -105,8 +110,9 @@
             this.permisosToolStripMenuItem,
             this.usuariosToolStripMenuItem,
             this.rolToolStripMenuItem});
+            this.usuarioToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("usuarioToolStripMenuItem.Image")));
             this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
-            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
             this.usuarioToolStripMenuItem.Text = "&Usuario";
             this.usuarioToolStripMenuItem.Visible = false;
             // 
@@ -136,8 +142,9 @@
             this.postulanteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buscarToolStripMenuItem,
             this.nuevoPostulanteToolStripMenuItem});
+            this.postulanteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("postulanteToolStripMenuItem.Image")));
             this.postulanteToolStripMenuItem.Name = "postulanteToolStripMenuItem";
-            this.postulanteToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
+            this.postulanteToolStripMenuItem.Size = new System.Drawing.Size(91, 20);
             this.postulanteToolStripMenuItem.Text = "&Postulante";
             this.postulanteToolStripMenuItem.Visible = false;
             // 
@@ -160,8 +167,9 @@
             this.procesosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.crearProcesoToolStripMenuItem,
             this.verProcesosToolStripMenuItem});
+            this.procesosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("procesosToolStripMenuItem.Image")));
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
-            this.procesosToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.procesosToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
             this.procesosToolStripMenuItem.Text = "&Procesos";
             this.procesosToolStripMenuItem.Visible = false;
             // 
@@ -186,8 +194,9 @@
             this.tileVerticalToolStripMenuItem,
             this.tileHorizontalToolStripMenuItem,
             this.closeAllToolStripMenuItem});
+            this.windowsMenu.Image = ((System.Drawing.Image)(resources.GetObject("windowsMenu.Image")));
             this.windowsMenu.Name = "windowsMenu";
-            this.windowsMenu.Size = new System.Drawing.Size(66, 20);
+            this.windowsMenu.Size = new System.Drawing.Size(82, 20);
             this.windowsMenu.Text = "&Ventanas";
             this.windowsMenu.Visible = false;
             // 
@@ -223,8 +232,9 @@
             // 
             this.helpMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
+            this.helpMenu.Image = ((System.Drawing.Image)(resources.GetObject("helpMenu.Image")));
             this.helpMenu.Name = "helpMenu";
-            this.helpMenu.Size = new System.Drawing.Size(53, 20);
+            this.helpMenu.Size = new System.Drawing.Size(69, 20);
             this.helpMenu.Text = "Ay&uda";
             this.helpMenu.Visible = false;
             // 
@@ -241,6 +251,7 @@
             this.tsslState});
             this.statusStrip1.Location = new System.Drawing.Point(0, 706);
             this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.statusStrip1.Size = new System.Drawing.Size(1094, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.Stretch = false;

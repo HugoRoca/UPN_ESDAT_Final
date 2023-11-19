@@ -24,9 +24,16 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
         public List<RolPermisoModel> ObtenerAccesoMenu(string rol)
         {
             List<RolModel> roles = dataRol.Leer();
-            int rolId = roles.FirstOrDefault(x => x.Descripcion.ToLower() == rol.ToLower()).Id;
+            int rolId = roles.FirstOrDefault<RolModel>(x => x.Descripcion.ToLower() == rol.ToLower()).Id;
             
             return dataRolPermiso.Leer().Where(x=> x.IdRol == rolId).ToList();
+        }
+
+        public RolModel ObtenerRolDescripcion(int idRol)
+        {
+            List<RolModel> rols = dataRol.Leer();
+
+            return rols.Find(x => x.Id == idRol) ?? new RolModel();
         }
 
         public void GuardarRegistro(RolModel rolModel)
@@ -44,9 +51,24 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
             });
         }
 
+        public void InsertarRol(RolModel rolModel)
+        {
+            dataRol.Crear(rolModel);
+        }
+
+        public void EliminarRol(int id)
+        {
+            dataRol.Eliminar(p => p.Id == id);
+        }
+
         public List<RolModel> ObtenerRoles()
         {
             return dataRol.Leer();
+        }
+
+        public int ObtenerTotalRegistros()
+        {
+            return dataRol.ContarRegistros();
         }
     }
 }

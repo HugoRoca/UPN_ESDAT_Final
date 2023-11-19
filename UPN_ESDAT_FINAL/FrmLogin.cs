@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using UPN_ESDAT_FINAL.BusinessLogic;
+using UPN_ESDAT_FINAL.Common;
 using UPN_ESDAT_FINAL.Model;
 
 namespace UPN_ESDAT_FINAL
@@ -27,6 +28,17 @@ namespace UPN_ESDAT_FINAL
             if (usuarioLogin == null || !(usuarioLogin.Usuario.Equals(txtUsuario.Text.ToUpper())))
             {
                 MessageBox.Show("Usuario y/o contraseña inválida.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            BLRol bLRol = new BLRol();
+            Utils utils = new Utils();
+
+            RolModel rol = bLRol.ObtenerRolDescripcion(usuarioLogin.RolId);
+
+            if (rol == null || rol.Descripcion == "")
+            {
+                utils.MostrarMensaje("No tienes configurado un Rol, contactate con el administrador!", Common.Enum.TipoMensaje.Error);
                 return;
             }
 

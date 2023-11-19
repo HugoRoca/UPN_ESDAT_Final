@@ -10,6 +10,7 @@ namespace UPN_ESDAT_FINAL
     public partial class FrmPrincipal : Form
     {
         private readonly UsuarioModel _usuarioModel;
+
         public FrmPrincipal(UsuarioModel usuarioModel)
         {
             InitializeComponent();
@@ -20,9 +21,11 @@ namespace UPN_ESDAT_FINAL
         {
             BLRol bLRol = new BLRol();
 
-            tsslState.Text = $"HOLA {_usuarioModel.Nombres} {_usuarioModel.Apellidos} | ROL: {_usuarioModel.Rol}";
+            string rolDescripcion = bLRol.ObtenerRolDescripcion(this._usuarioModel.RolId).Descripcion;
 
-            List<RolPermisoModel> permisos = bLRol.ObtenerAccesoMenu(_usuarioModel.Rol);
+            tsslState.Text = $"HOLA {_usuarioModel.Nombres} {_usuarioModel.Apellidos} | ROL: {rolDescripcion}";
+
+            List<RolPermisoModel> permisos = bLRol.ObtenerAccesoMenu(rolDescripcion);
 
             foreach (var item in menuStrip.Items)
             {
@@ -92,9 +95,8 @@ namespace UPN_ESDAT_FINAL
         }
 
         private void cerrarSesiónToolStripMenuItem_Click(object sender, EventArgs e)
-        {            
+        {
             FrmLogin frmLogin = new FrmLogin();
-            frmLogin.MdiParent = this;
             frmLogin.Show();
 
             this.Hide();
