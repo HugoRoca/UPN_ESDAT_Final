@@ -38,9 +38,9 @@
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvRoles = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label3 = new System.Windows.Forms.Label();
             this.gbDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).BeginInit();
             this.SuspendLayout();
@@ -48,18 +48,21 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(44, 26);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(46, 30);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.Size = new System.Drawing.Size(49, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "Id Rol:";
             // 
             // txtIdRol
             // 
-            this.txtIdRol.Location = new System.Drawing.Point(88, 23);
+            this.txtIdRol.Location = new System.Drawing.Point(103, 27);
+            this.txtIdRol.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtIdRol.Name = "txtIdRol";
             this.txtIdRol.ReadOnly = true;
-            this.txtIdRol.Size = new System.Drawing.Size(80, 20);
+            this.txtIdRol.Size = new System.Drawing.Size(93, 21);
             this.txtIdRol.TabIndex = 1;
             // 
             // gbDatos
@@ -71,18 +74,22 @@
             this.gbDatos.Controls.Add(this.label2);
             this.gbDatos.Controls.Add(this.label1);
             this.gbDatos.Controls.Add(this.txtIdRol);
-            this.gbDatos.Location = new System.Drawing.Point(6, 31);
+            this.gbDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbDatos.Location = new System.Drawing.Point(7, 36);
+            this.gbDatos.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gbDatos.Name = "gbDatos";
-            this.gbDatos.Size = new System.Drawing.Size(407, 119);
+            this.gbDatos.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.gbDatos.Size = new System.Drawing.Size(475, 128);
             this.gbDatos.TabIndex = 2;
             this.gbDatos.TabStop = false;
             this.gbDatos.Text = "Datos";
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(324, 86);
+            this.btnEliminar.Location = new System.Drawing.Point(377, 81);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminar.Size = new System.Drawing.Size(90, 40);
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
@@ -91,9 +98,10 @@
             // btnGuardar
             // 
             this.btnGuardar.Enabled = false;
-            this.btnGuardar.Location = new System.Drawing.Point(243, 86);
+            this.btnGuardar.Location = new System.Drawing.Point(283, 81);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.Size = new System.Drawing.Size(90, 40);
             this.btnGuardar.TabIndex = 2;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -101,9 +109,10 @@
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Location = new System.Drawing.Point(162, 86);
+            this.btnNuevo.Location = new System.Drawing.Point(188, 81);
+            this.btnNuevo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(75, 23);
+            this.btnNuevo.Size = new System.Drawing.Size(90, 40);
             this.btnNuevo.TabIndex = 1;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = true;
@@ -111,17 +120,21 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(88, 55);
+            this.txtDescripcion.Location = new System.Drawing.Point(103, 54);
+            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtDescripcion.MaxLength = 50;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(313, 20);
+            this.txtDescripcion.Size = new System.Drawing.Size(364, 21);
             this.txtDescripcion.TabIndex = 0;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 58);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(8, 57);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 13);
+            this.label2.Size = new System.Drawing.Size(87, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "Descripción:";
             // 
@@ -138,40 +151,30 @@
             this.Descripcion});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightSeaGreen;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvRoles.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvRoles.Location = new System.Drawing.Point(6, 156);
+            this.dgvRoles.Location = new System.Drawing.Point(7, 170);
+            this.dgvRoles.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvRoles.MultiSelect = false;
             this.dgvRoles.Name = "dgvRoles";
             this.dgvRoles.ReadOnly = true;
             this.dgvRoles.RowHeadersVisible = false;
             this.dgvRoles.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvRoles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRoles.Size = new System.Drawing.Size(407, 243);
+            this.dgvRoles.Size = new System.Drawing.Size(475, 290);
             this.dgvRoles.TabIndex = 3;
             this.dgvRoles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRoles_CellClick);
-            // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(1, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(435, 28);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "ROL";
             // 
             // Id
             // 
             this.Id.HeaderText = "ID";
             this.Id.Name = "Id";
             this.Id.ReadOnly = true;
-            this.Id.Width = 43;
+            this.Id.Width = 44;
             // 
             // Descripcion
             // 
@@ -180,15 +183,30 @@
             this.Descripcion.Name = "Descripcion";
             this.Descripcion.ReadOnly = true;
             // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.SystemColors.Control;
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(7, 9);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(475, 24);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "ROL";
+            // 
             // FrmRol
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(422, 409);
+            this.ClientSize = new System.Drawing.Size(492, 472);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dgvRoles);
             this.Controls.Add(this.gbDatos);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.Name = "FrmRol";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

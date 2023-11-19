@@ -60,6 +60,7 @@
             // 
             // menuStrip
             // 
+            this.menuStrip.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
             this.usuarioToolStripMenuItem,
@@ -70,8 +71,9 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
             this.menuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menuStrip.Size = new System.Drawing.Size(1094, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1276, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -80,11 +82,12 @@
             this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cerrarSesiónToolStripMenuItem,
             this.exitToolStripMenuItem});
+            this.fileMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.fileMenu.Image = ((System.Drawing.Image)(resources.GetObject("fileMenu.Image")));
             this.fileMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.fileMenu.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.fileMenu.Name = "fileMenu";
-            this.fileMenu.Size = new System.Drawing.Size(92, 36);
+            this.fileMenu.Size = new System.Drawing.Size(90, 36);
             this.fileMenu.Text = "&Archivo";
             this.fileMenu.Visible = false;
             // 
@@ -112,7 +115,7 @@
             this.rolToolStripMenuItem});
             this.usuarioToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("usuarioToolStripMenuItem.Image")));
             this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
-            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
+            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
             this.usuarioToolStripMenuItem.Text = "&Usuario";
             this.usuarioToolStripMenuItem.Visible = false;
             // 
@@ -144,7 +147,7 @@
             this.nuevoPostulanteToolStripMenuItem});
             this.postulanteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("postulanteToolStripMenuItem.Image")));
             this.postulanteToolStripMenuItem.Name = "postulanteToolStripMenuItem";
-            this.postulanteToolStripMenuItem.Size = new System.Drawing.Size(91, 20);
+            this.postulanteToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
             this.postulanteToolStripMenuItem.Text = "&Postulante";
             this.postulanteToolStripMenuItem.Visible = false;
             // 
@@ -169,7 +172,7 @@
             this.verProcesosToolStripMenuItem});
             this.procesosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("procesosToolStripMenuItem.Image")));
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
-            this.procesosToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
+            this.procesosToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
             this.procesosToolStripMenuItem.Text = "&Procesos";
             this.procesosToolStripMenuItem.Visible = false;
             // 
@@ -196,7 +199,7 @@
             this.closeAllToolStripMenuItem});
             this.windowsMenu.Image = ((System.Drawing.Image)(resources.GetObject("windowsMenu.Image")));
             this.windowsMenu.Name = "windowsMenu";
-            this.windowsMenu.Size = new System.Drawing.Size(82, 20);
+            this.windowsMenu.Size = new System.Drawing.Size(86, 20);
             this.windowsMenu.Text = "&Ventanas";
             this.windowsMenu.Visible = false;
             // 
@@ -234,7 +237,7 @@
             this.aboutToolStripMenuItem});
             this.helpMenu.Image = ((System.Drawing.Image)(resources.GetObject("helpMenu.Image")));
             this.helpMenu.Name = "helpMenu";
-            this.helpMenu.Size = new System.Drawing.Size(69, 20);
+            this.helpMenu.Size = new System.Drawing.Size(68, 20);
             this.helpMenu.Text = "Ay&uda";
             this.helpMenu.Visible = false;
             // 
@@ -249,10 +252,11 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslState});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 706);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 818);
             this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.statusStrip1.Size = new System.Drawing.Size(1094, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1276, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.Stretch = false;
             this.statusStrip1.TabIndex = 2;
@@ -266,14 +270,16 @@
             // 
             // FrmPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1094, 728);
+            this.ClientSize = new System.Drawing.Size(1276, 840);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.Name = "FrmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

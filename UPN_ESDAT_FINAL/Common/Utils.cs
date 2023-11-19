@@ -21,15 +21,18 @@ namespace UPN_ESDAT_FINAL.Common
                 case Enum.AccionBoton.Editar:
                     btnNuevo.Text = "Cancelar";
                     btnGuardar.Enabled = true;
+                    btnGuardar.Text = "Guardar";
                     btnEliminar.Enabled = false;
                     break;
                 case Enum.AccionBoton.EditarEliminar:
-                    btnNuevo.Text = "Cancelar";
+                    btnNuevo.Text = "Nuevo";
+                    btnGuardar.Text = "Editar";
                     btnGuardar.Enabled = true;
                     btnEliminar.Enabled = true;
                     break;
                 case Enum.AccionBoton.Default:
                     btnNuevo.Text = "Nuevo";
+                    btnGuardar.Text = "Guardar";
                     btnGuardar.Enabled = false;
                     btnEliminar.Enabled = true;
                     break;

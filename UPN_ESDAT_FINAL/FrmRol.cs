@@ -20,11 +20,13 @@ namespace UPN_ESDAT_FINAL
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            if (accion == Common.Enum.AccionBoton.Nuevo)
+            if (btnNuevo.Text == "Nuevo")
             {
                 int nuevoId = _blRol.ObtenerTotalRegistros();
                 txtIdRol.Text = _utils.GenerarId(nuevoId).ToString();
 
+                txtDescripcion.Enabled = true;
+                txtDescripcion.Clear();
                 txtDescripcion.Focus();
 
                 accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.Nuevo);
@@ -34,22 +36,37 @@ namespace UPN_ESDAT_FINAL
                 accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.Default);
                 txtIdRol.Clear();
                 txtDescripcion.Clear();
+                txtDescripcion.Enabled = false;
             }           
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtIdRol.Text) || string.IsNullOrEmpty(txtDescripcion.Text))
+            {
+                _utils.MostrarMensaje("Debe de completar todos los campos!", Common.Enum.TipoMensaje.Informativo);
+            }
+
             RolModel rolModel = new RolModel();
             rolModel.Id = int.Parse(txtIdRol.Text);
             rolModel.Descripcion = txtDescripcion.Text;
 
-            if (accion == Common.Enum.AccionBoton.Nuevo)
+            switch (accion)
             {
-                _blRol.InsertarRol(rolModel);
-            }
-            else
-            {
-                _blRol.ActualizarRol(rolModel);
+                case Common.Enum.AccionBoton.Nuevo:
+                    _blRol.InsertarRol(rolModel);
+                    break;
+                case Common.Enum.AccionBoton.Editar:
+                    _blRol.ActualizarRol(rolModel);
+                    break;
+                case Common.Enum.AccionBoton.EditarEliminar:
+                    txtDescripcion.Enabled = true;
+                    accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.Editar);
+                    return;
+                case Common.Enum.AccionBoton.Default:
+                    break;
+                default:
+                    break;
             }
 
             _utils.MostrarMensaje("Datos registrados correctamente!", Common.Enum.TipoMensaje.Informativo);
@@ -57,14 +74,17 @@ namespace UPN_ESDAT_FINAL
             List<RolModel> rolModels = _blRol.ObtenerRoles();
 
             _utils.MostrarDatosEnGridView(dgvRoles, rolModels);
+            accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.Default);
+
             txtIdRol.Clear();
             txtDescripcion.Clear();
+            txtDescripcion.Enabled = false;
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            // Verificar si hay al menos una fila seleccionada
-            if (dgvRoles.SelectedRows.Count > 0)
+            // Verificar si hay un valor en el cuadro de texto tstRolId
+            if (!string.IsNullOrEmpty(txtIdRol.Text))
             {
                 // Obtener la fila seleccionada
                 DataGridViewRow filaSeleccionada = dgvRoles.SelectedRows[0];
@@ -89,6 +109,8 @@ namespace UPN_ESDAT_FINAL
             List<RolModel> rolModels = _blRol.ObtenerRoles();
 
             _utils.MostrarDatosEnGridView(dgvRoles, rolModels);
+
+            txtDescripcion.Enabled = false;
         }
 
         private void dgvRoles_CellClick(object sender, DataGridViewCellEventArgs e)
