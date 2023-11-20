@@ -55,12 +55,13 @@
             // 
             this.label3.BackColor = System.Drawing.SystemColors.Control;
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(7, 9);
+            this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(462, 24);
+            this.label3.Size = new System.Drawing.Size(479, 24);
             this.label3.TabIndex = 5;
             this.label3.Text = "USUARIO";
             // 
@@ -81,7 +82,7 @@
             this.gbDatos.Controls.Add(this.label2);
             this.gbDatos.Controls.Add(this.txtId);
             this.gbDatos.Controls.Add(this.label1);
-            this.gbDatos.Location = new System.Drawing.Point(7, 36);
+            this.gbDatos.Location = new System.Drawing.Point(5, 27);
             this.gbDatos.Name = "gbDatos";
             this.gbDatos.Size = new System.Drawing.Size(462, 193);
             this.gbDatos.TabIndex = 6;
@@ -228,9 +229,10 @@
             // dgvUsuario
             // 
             this.dgvUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUsuario.Location = new System.Drawing.Point(7, 235);
+            this.dgvUsuario.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dgvUsuario.Location = new System.Drawing.Point(0, 226);
             this.dgvUsuario.Name = "dgvUsuario";
-            this.dgvUsuario.Size = new System.Drawing.Size(462, 199);
+            this.dgvUsuario.Size = new System.Drawing.Size(479, 220);
             this.dgvUsuario.TabIndex = 8;
             this.dgvUsuario.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuario_CellClick);
             // 
@@ -248,7 +250,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "FrmUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmUsuario";
+            this.Text = "Usuario";
             this.Load += new System.EventHandler(this.FrmUsuario_Load);
             this.gbDatos.ResumeLayout(false);
             this.gbDatos.PerformLayout();

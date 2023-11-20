@@ -40,8 +40,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dgvRoles = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tvOpciones = new System.Windows.Forms.TreeView();
             this.gbDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -66,26 +69,23 @@
             // 
             // gbDatos
             // 
-            this.gbDatos.Controls.Add(this.btnEliminar);
-            this.gbDatos.Controls.Add(this.btnGuardar);
-            this.gbDatos.Controls.Add(this.btnNuevo);
             this.gbDatos.Controls.Add(this.txtDescripcion);
             this.gbDatos.Controls.Add(this.label2);
             this.gbDatos.Controls.Add(this.label1);
             this.gbDatos.Controls.Add(this.txtIdRol);
             this.gbDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbDatos.Location = new System.Drawing.Point(7, 36);
+            this.gbDatos.Location = new System.Drawing.Point(237, 27);
             this.gbDatos.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gbDatos.Name = "gbDatos";
             this.gbDatos.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.gbDatos.Size = new System.Drawing.Size(475, 128);
+            this.gbDatos.Size = new System.Drawing.Size(278, 91);
             this.gbDatos.TabIndex = 2;
             this.gbDatos.TabStop = false;
             this.gbDatos.Text = "Datos";
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(377, 81);
+            this.btnEliminar.Location = new System.Drawing.Point(425, 344);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(90, 40);
@@ -97,7 +97,7 @@
             // btnGuardar
             // 
             this.btnGuardar.Enabled = false;
-            this.btnGuardar.Location = new System.Drawing.Point(283, 81);
+            this.btnGuardar.Location = new System.Drawing.Point(331, 344);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(90, 40);
@@ -108,7 +108,7 @@
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Location = new System.Drawing.Point(188, 81);
+            this.btnNuevo.Location = new System.Drawing.Point(236, 344);
             this.btnNuevo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(90, 40);
@@ -123,7 +123,7 @@
             this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtDescripcion.MaxLength = 50;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(364, 21);
+            this.txtDescripcion.Size = new System.Drawing.Size(167, 21);
             this.txtDescripcion.TabIndex = 0;
             // 
             // label2
@@ -153,7 +153,8 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvRoles.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvRoles.Location = new System.Drawing.Point(7, 170);
+            this.dgvRoles.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dgvRoles.Location = new System.Drawing.Point(0, 0);
             this.dgvRoles.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvRoles.MultiSelect = false;
             this.dgvRoles.Name = "dgvRoles";
@@ -161,7 +162,7 @@
             this.dgvRoles.RowHeadersVisible = false;
             this.dgvRoles.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvRoles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRoles.Size = new System.Drawing.Size(475, 290);
+            this.dgvRoles.Size = new System.Drawing.Size(229, 391);
             this.dgvRoles.TabIndex = 3;
             this.dgvRoles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRoles_CellClick);
             // 
@@ -169,21 +170,45 @@
             // 
             this.label3.BackColor = System.Drawing.SystemColors.Control;
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(7, 9);
+            this.label3.Location = new System.Drawing.Point(229, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(475, 24);
+            this.label3.Size = new System.Drawing.Size(292, 24);
             this.label3.TabIndex = 4;
             this.label3.Text = "ROL";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tvOpciones);
+            this.groupBox1.Location = new System.Drawing.Point(237, 124);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(278, 214);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Opciones:";
+            // 
+            // tvOpciones
+            // 
+            this.tvOpciones.CheckBoxes = true;
+            this.tvOpciones.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvOpciones.Location = new System.Drawing.Point(3, 17);
+            this.tvOpciones.Name = "tvOpciones";
+            this.tvOpciones.Size = new System.Drawing.Size(272, 194);
+            this.tvOpciones.TabIndex = 0;
             // 
             // FrmRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(492, 472);
+            this.ClientSize = new System.Drawing.Size(521, 391);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.dgvRoles);
             this.Controls.Add(this.gbDatos);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -198,6 +223,7 @@
             this.gbDatos.ResumeLayout(false);
             this.gbDatos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -214,5 +240,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dgvRoles;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TreeView tvOpciones;
     }
 }

@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using UPN_ESDAT_FINAL.BusinessLogic;
 using UPN_ESDAT_FINAL.Common;
 using UPN_ESDAT_FINAL.Model;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace UPN_ESDAT_FINAL
 {
     public partial class FrmRol : Form
     {
         BLRol _blRol = new BLRol();
+        BLMenu _blMenu = new BLMenu();
+
         Utils _utils = new Utils();
+
         Common.Enum.AccionBoton accion = Common.Enum.AccionBoton.Nuevo;
 
         public FrmRol()
@@ -124,8 +129,81 @@ namespace UPN_ESDAT_FINAL
                 txtIdRol.Text = filaSeleccionada.Cells["Id"].Value.ToString();
                 txtDescripcion.Text = filaSeleccionada.Cells["Descripcion"].Value.ToString();
 
+                CargarDatosEnTreeView(int.Parse(txtIdRol.Text));
+
                 accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.EditarEliminar);
             }
+        }
+
+        private void ConstruirTreeView(int idRol)
+        {
+            List<MenuModel> menuModel = _blMenu.Obtener();
+            List<RolPermisoModel> rolPermisos = _blRol.ObtenerAccesoMenu(idRol);
+
+            // Construir el TreeView
+            foreach (var menu in menuModel)
+            {
+                TreeNode nodoMenu = new TreeNode(menu.Descripcion);
+
+                // Marcar los nodos que tienen permisos asignados
+                foreach (var permiso in rolPermisos)
+                {
+                    if (permiso.IdMenu == menu.Id)
+                    {
+                        TreeNode nodoPermiso = new TreeNode(permiso.DescripcionMenu);
+                        nodoPermiso.Tag = permiso; // Puedes almacenar el objeto Permiso en el Tag del nodo si necesitas más información
+                        nodoMenu.Nodes.Add(nodoPermiso);
+                        nodoPermiso.Checked = true; // Marcar el checkbox
+                    }
+                }
+
+                tvOpciones.Nodes.Add(nodoMenu);
+            }
+        }
+
+        private void CargarDatosEnTreeView(int idRol)
+        {
+            tvOpciones.Nodes.Clear();
+
+            // Obtener datos simulados (puedes reemplazar esto con tu lógica para obtener datos reales)
+            List<MenuModel> listaMenus = _blMenu.Obtener();
+            List<RolPermisoModel> permisosRol = _blRol.ObtenerAccesoMenu(idRol);
+
+            // Construir el TreeView
+            foreach (var menu in listaMenus.Where(m => m.IdPadre == 0))
+            {
+                // Si el menú no tiene permisos asociados, no se agrega al TreeView
+                if (permisosRol.Any(p => p.IdMenu == menu.Id))
+                {
+                    TreeNode nodoMenu = ConstruirNodoMenu(menu, permisosRol, listaMenus);
+                    tvOpciones.Nodes.Add(nodoMenu);
+                }
+            }
+        }
+
+        private TreeNode ConstruirNodoMenu(MenuModel menu, List<RolPermisoModel> permisosRol, List<MenuModel> listaMenus)
+        {
+            TreeNode nodoMenu = new TreeNode(menu.Descripcion);
+
+            // Filtrar permisos asociados al menú específico
+            List<RolPermisoModel> permisosMenu = permisosRol.Where(p => p.IdMenu == menu.Id).ToList();
+
+            foreach (var permiso in permisosMenu)
+            {
+                TreeNode nodoPermiso = new TreeNode(permiso.DescripcionMenu);
+                nodoMenu.Nodes.Add(nodoPermiso);
+                nodoPermiso.Tag = permiso; // Puedes almacenar el objeto Permiso en el Tag del nodo si necesitas más información
+                nodoPermiso.Checked = true; // Marcar el checkbox
+            }
+
+            // Construir nodos hijos recursivamente
+            foreach (var hijo in listaMenus.Where(m => m.IdPadre == menu.Id))
+            {
+                TreeNode nodoHijo = ConstruirNodoMenu(hijo, permisosRol, listaMenus);
+                nodoMenu.Nodes.Add(nodoHijo);
+            }
+
+            return nodoMenu;
         }
     }
 }

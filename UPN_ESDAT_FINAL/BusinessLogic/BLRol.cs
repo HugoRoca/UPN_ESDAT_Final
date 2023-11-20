@@ -21,11 +21,8 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
             dataRolPermiso = new DataAccess<RolPermisoModel>(nombreArchivoRolPermiso);
         }
 
-        public List<RolPermisoModel> ObtenerAccesoMenu(string rol)
-        {
-            List<RolModel> roles = dataRol.Leer();
-            int rolId = roles.FirstOrDefault<RolModel>(x => x.Descripcion.ToLower() == rol.ToLower()).Id;
-            
+        public List<RolPermisoModel> ObtenerAccesoMenu(int rolId)
+        {          
             return dataRolPermiso.Leer().Where(x=> x.IdRol == rolId).ToList();
         }
 

@@ -21,11 +21,11 @@ namespace UPN_ESDAT_FINAL
         {
             BLRol bLRol = new BLRol();
 
-            string rolDescripcion = bLRol.ObtenerRolDescripcion(this._usuarioModel.RolId).Descripcion;
+            RolModel rolModel = bLRol.ObtenerRolDescripcion(this._usuarioModel.RolId);
 
-            tsslState.Text = $"HOLA {_usuarioModel.Nombres} {_usuarioModel.Apellidos} | ROL: {rolDescripcion}";
+            tsslState.Text = $"HOLA {_usuarioModel.Nombres} {_usuarioModel.Apellidos} | ROL: {rolModel.Descripcion}";
 
-            List<RolPermisoModel> permisos = bLRol.ObtenerAccesoMenu(rolDescripcion);
+            List<RolPermisoModel> permisos = bLRol.ObtenerAccesoMenu(this._usuarioModel.RolId);
 
             foreach (var item in menuStrip.Items)
             {
