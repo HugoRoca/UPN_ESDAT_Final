@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace UPN_ESDAT_FINAL.Common
 {
@@ -93,6 +96,93 @@ namespace UPN_ESDAT_FINAL.Common
 
                 // Agregar la fila al DataGridView
                 dataGridView.Rows.Add(fila);
+            }
+        }
+
+        public bool ValidarCamposGroupBox(GroupBox groupBox)
+        {
+            // Verificar que todos los TextBox no estén vacíos
+            bool todosTextBoxNoVacios = groupBox.Controls.OfType<TextBox>().All(textBox => !string.IsNullOrEmpty(textBox.Text));
+
+            // Verificar que el ComboBox tenga un índice seleccionado
+            bool comboBoxSeleccionado = groupBox.Controls.OfType<ComboBox>().Any(comboBox => comboBox.SelectedIndex > 0);
+
+            // Devolver true si todos los TextBox no están vacíos y el ComboBox tiene un índice seleccionado
+            return todosTextBoxNoVacios && comboBoxSeleccionado;
+        }
+
+        public void CargarDatosEnGridView<T>(DataGridView dataGridView, List<T> listaModel, 
+            List<string> columnasOcultar = null, bool ultimaColumnaFill = false)
+        {
+            // Limpiar filas existentes
+            dataGridView.Rows.Clear();
+
+            // Limpiar columnas existentes
+            dataGridView.Columns.Clear();
+
+            // Obtener las propiedades del primer elemento en la lista
+            PropertyInfo[] propiedades = listaModel.First().GetType().GetProperties();
+
+            // Configurar las columnas del DataGridView basándose en las propiedades
+            foreach (var propiedad in propiedades)
+            {
+                // Agregar columnas al DataGridView con el nombre de la propiedad
+                dataGridView.Columns.Add(propiedad.Name, propiedad.Name);
+            }
+
+            // Agregar filas al DataGridView basándose en los elementos de la lista
+            foreach (var item in listaModel)
+            {
+                DataGridViewRow fila = new DataGridViewRow();
+
+                foreach (var propiedad in propiedades)
+                {
+                    DataGridViewTextBoxCell celda = new DataGridViewTextBoxCell();
+                    celda.Value = propiedad.GetValue(item)?.ToString() ?? ""; // Manejar valores nulos
+                    fila.Cells.Add(celda);
+                }
+
+                dataGridView.Rows.Add(fila);
+            }
+
+            dataGridView.AllowUserToAddRows = false;
+            dataGridView.AllowUserToDeleteRows = false;
+            dataGridView.AllowUserToResizeRows = false;
+            dataGridView.BackgroundColor = System.Drawing.SystemColors.Control;
+            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView.ReadOnly = true;
+            dataGridView.RowHeadersVisible = false;
+            dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            // dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightSeaGreen;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataGridView.DefaultCellStyle = dataGridViewCellStyle1;
+
+            columnasOcultar = columnasOcultar ?? new List<string>();
+
+            if (columnasOcultar.Count > 0)
+            {
+                // Ocultar las columnas en la lista
+                foreach (string columna in columnasOcultar)
+                {
+                    if (dataGridView.Columns.Contains(columna))
+                    {
+                        dataGridView.Columns[columna].Visible = false;
+                    }
+                }
+            }
+
+            // Ajustar la última columna para ocupar todo el espacio disponible
+            if (dataGridView.Columns.Count > 0 && ultimaColumnaFill)
+            {
+                dataGridView.Columns[dataGridView.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
     }

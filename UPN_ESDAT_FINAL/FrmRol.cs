@@ -73,7 +73,7 @@ namespace UPN_ESDAT_FINAL
 
             List<RolModel> rolModels = _blRol.ObtenerRoles();
 
-            _utils.MostrarDatosEnGridView(dgvRoles, rolModels);
+            _utils.CargarDatosEnGridView(dgvRoles, rolModels, new List<string> { "Id" }, true);
             accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.Default);
 
             txtIdRol.Clear();
@@ -96,7 +96,7 @@ namespace UPN_ESDAT_FINAL
 
                 List<RolModel> rolModels = _blRol.ObtenerRoles();
 
-                _utils.MostrarDatosEnGridView(dgvRoles, rolModels);
+                _utils.CargarDatosEnGridView(dgvRoles, rolModels, new List<string> { "Id" }, true);
             }
             else
             {
@@ -108,7 +108,7 @@ namespace UPN_ESDAT_FINAL
         {
             List<RolModel> rolModels = _blRol.ObtenerRoles();
 
-            _utils.MostrarDatosEnGridView(dgvRoles, rolModels);
+            _utils.CargarDatosEnGridView(dgvRoles, rolModels, new List<string> { "Id" }, true);
 
             txtDescripcion.Enabled = false;
         }

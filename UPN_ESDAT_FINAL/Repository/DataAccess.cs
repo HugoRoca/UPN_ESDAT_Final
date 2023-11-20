@@ -16,7 +16,7 @@ namespace UPN_ESDAT_FINAL.Repository
             string carpetaBase = AppDomain.CurrentDomain.BaseDirectory;
 
             // Combina la carpeta base con la ruta relativa al archivo
-            this.RutaArchivo =  carpetaBase + @"\Data\" + nombreArchivo + ".csv";
+            this.RutaArchivo = carpetaBase + @"\Data\" + nombreArchivo + ".csv";
 
             //this.RutaArchivo = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "\Data\" + nombreArchivo + ".csv");
         }
@@ -104,27 +104,34 @@ namespace UPN_ESDAT_FINAL.Repository
             // Itera sobre las propiedades
             for (int i = 0; i < propiedades.Length; i++)
             {
-                // Obtiene el valor del campo actual y elimina cualquier espacio en blanco alrededor
-                var valor = valores[i].Trim();
-
                 // Obtiene la información de la propiedad actual
                 var propInfo = propiedades[i];
 
-                // Comprueba el tipo de la propiedad y asigna el valor convertido
-                if (propInfo.PropertyType == typeof(int))
+                if (i > valores.Length - 1)
                 {
-                    // Si la propiedad es de tipo int, convierte el valor a int y lo asigna
-                    propInfo.SetValue(entidad, int.Parse(valor));
-                }
-                else if (propInfo.PropertyType == typeof(float))
-                {
-                    // Si la propiedad es de tipo float, convierte el valor a float y lo asigna
-                    propInfo.SetValue(entidad, float.Parse(valor));
+                    propInfo.SetValue(entidad, null);
                 }
                 else
                 {
-                    // Si la propiedad es de otro tipo, asigna el valor como string
-                    propInfo.SetValue(entidad, valor);
+                    // Obtiene el valor del campo actual y elimina cualquier espacio en blanco alrededor
+                    var valor = valores[i].Trim();
+
+                    // Comprueba el tipo de la propiedad y asigna el valor convertido
+                    if (propInfo.PropertyType == typeof(int))
+                    {
+                        // Si la propiedad es de tipo int, convierte el valor a int y lo asigna
+                        propInfo.SetValue(entidad, int.Parse(valor));
+                    }
+                    else if (propInfo.PropertyType == typeof(float))
+                    {
+                        // Si la propiedad es de tipo float, convierte el valor a float y lo asigna
+                        propInfo.SetValue(entidad, float.Parse(valor));
+                    }
+                    else
+                    {
+                        // Si la propiedad es de otro tipo, asigna el valor como string
+                        propInfo.SetValue(entidad, valor);
+                    }
                 }
             }
 

@@ -36,11 +36,6 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
             return rols.Find(x => x.Id == idRol) ?? new RolModel();
         }
 
-        public void GuardarRegistro(RolModel rolModel)
-        {
-            dataRol.Crear(rolModel);
-        }
-
         public void ActualizarRol(RolModel rolModel)
         {
             RolModel enviaDatos = new RolModel();
