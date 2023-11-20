@@ -33,15 +33,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtIdRol = new System.Windows.Forms.TextBox();
             this.gbDatos = new System.Windows.Forms.GroupBox();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.dgvRoles = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tvOpciones = new System.Windows.Forms.TreeView();
+            this.chklMenu = new System.Windows.Forms.CheckedListBox();
             this.gbDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -83,6 +84,26 @@
             this.gbDatos.TabStop = false;
             this.gbDatos.Text = "Datos";
             // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Location = new System.Drawing.Point(103, 54);
+            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtDescripcion.MaxLength = 50;
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(167, 21);
+            this.txtDescripcion.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(8, 57);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(87, 15);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Descripción:";
+            // 
             // btnEliminar
             // 
             this.btnEliminar.Location = new System.Drawing.Point(425, 344);
@@ -116,26 +137,6 @@
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = true;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
-            // 
-            // txtDescripcion
-            // 
-            this.txtDescripcion.Location = new System.Drawing.Point(103, 54);
-            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtDescripcion.MaxLength = 50;
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(167, 21);
-            this.txtDescripcion.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(8, 57);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 15);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Descripción:";
             // 
             // dgvRoles
             // 
@@ -176,7 +177,7 @@
             this.label3.Location = new System.Drawing.Point(229, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(292, 24);
+            this.label3.Size = new System.Drawing.Size(641, 24);
             this.label3.TabIndex = 4;
             this.label3.Text = "ROL";
             // 
@@ -198,12 +199,22 @@
             this.tvOpciones.Name = "tvOpciones";
             this.tvOpciones.Size = new System.Drawing.Size(272, 194);
             this.tvOpciones.TabIndex = 0;
+            this.tvOpciones.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvOpciones_AfterCheck);
+            // 
+            // chklMenu
+            // 
+            this.chklMenu.FormattingEnabled = true;
+            this.chklMenu.Location = new System.Drawing.Point(556, 54);
+            this.chklMenu.Name = "chklMenu";
+            this.chklMenu.Size = new System.Drawing.Size(245, 228);
+            this.chklMenu.TabIndex = 6;
             // 
             // FrmRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(521, 391);
+            this.ClientSize = new System.Drawing.Size(870, 391);
+            this.Controls.Add(this.chklMenu);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnGuardar);
@@ -242,5 +253,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TreeView tvOpciones;
+        private System.Windows.Forms.CheckedListBox chklMenu;
     }
 }
