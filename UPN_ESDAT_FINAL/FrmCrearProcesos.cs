@@ -16,5 +16,10 @@ namespace UPN_ESDAT_FINAL
         {
             InitializeComponent();
         }
+
+        private void FrmCrearProcesos_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
