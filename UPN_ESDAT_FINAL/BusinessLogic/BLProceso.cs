@@ -40,6 +40,11 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
             });
         }
 
+        public void EliminarRegistros(int id)
+        {
+            _dataProceso.Eliminar(p => p.Id == id);
+        }
+
         public void InsertarRegistro(ProcesoModel procesoModel)
         {
             _dataProceso.Crear(procesoModel);

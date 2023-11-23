@@ -8,5 +8,6 @@
         public int IdArea { get; set; }
         public string Documentos { get; set; }
         public string Estado { get; set; }
+        public string Area { get; set; }
     }
 }

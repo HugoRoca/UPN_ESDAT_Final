@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using UPN_ESDAT_FINAL.BusinessLogic;
 using UPN_ESDAT_FINAL.Common;
 using UPN_ESDAT_FINAL.Model;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace UPN_ESDAT_FINAL
 {

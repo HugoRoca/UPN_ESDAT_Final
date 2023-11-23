@@ -48,12 +48,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgvProceso = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
+            this.txtDocumento = new System.Windows.Forms.TextBox();
             this.gbDatosProceso.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProceso)).BeginInit();
             this.SuspendLayout();
             // 
             // gbDatosProceso
             // 
+            this.gbDatosProceso.Controls.Add(this.txtDocumento);
             this.gbDatosProceso.Controls.Add(this.btnVerPostulante);
             this.gbDatosProceso.Controls.Add(this.btnEliminar);
             this.gbDatosProceso.Controls.Add(this.btnGuardar);
@@ -70,55 +72,60 @@
             this.gbDatosProceso.Controls.Add(this.label2);
             this.gbDatosProceso.Controls.Add(this.txtIdProceso);
             this.gbDatosProceso.Controls.Add(this.label1);
-            this.gbDatosProceso.Location = new System.Drawing.Point(9, 33);
+            this.gbDatosProceso.Location = new System.Drawing.Point(13, 30);
             this.gbDatosProceso.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gbDatosProceso.Name = "gbDatosProceso";
             this.gbDatosProceso.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.gbDatosProceso.Size = new System.Drawing.Size(500, 365);
+            this.gbDatosProceso.Size = new System.Drawing.Size(804, 311);
             this.gbDatosProceso.TabIndex = 1;
             this.gbDatosProceso.TabStop = false;
             this.gbDatosProceso.Text = "Datos";
             // 
             // btnVerPostulante
             // 
+            this.btnVerPostulante.BackColor = System.Drawing.Color.MediumSpringGreen;
             this.btnVerPostulante.Location = new System.Drawing.Point(239, 28);
             this.btnVerPostulante.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnVerPostulante.Name = "btnVerPostulante";
             this.btnVerPostulante.Size = new System.Drawing.Size(124, 27);
             this.btnVerPostulante.TabIndex = 18;
             this.btnVerPostulante.Text = "Ver Postulantes";
-            this.btnVerPostulante.UseVisualStyleBackColor = true;
+            this.btnVerPostulante.UseVisualStyleBackColor = false;
             this.btnVerPostulante.Visible = false;
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(380, 305);
+            this.btnEliminar.Location = new System.Drawing.Point(691, 239);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(105, 46);
             this.btnEliminar.TabIndex = 17;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(266, 305);
+            this.btnGuardar.Enabled = false;
+            this.btnGuardar.Location = new System.Drawing.Point(577, 239);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(105, 46);
             this.btnGuardar.TabIndex = 16;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Location = new System.Drawing.Point(152, 305);
+            this.btnNuevo.Location = new System.Drawing.Point(463, 239);
             this.btnNuevo.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(105, 46);
             this.btnNuevo.TabIndex = 15;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // cbEstado
             // 
@@ -126,7 +133,7 @@
             this.cbEstado.Location = new System.Drawing.Point(142, 262);
             this.cbEstado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbEstado.Name = "cbEstado";
-            this.cbEstado.Size = new System.Drawing.Size(238, 23);
+            this.cbEstado.Size = new System.Drawing.Size(296, 23);
             this.cbEstado.TabIndex = 14;
             // 
             // btnSubir
@@ -134,9 +141,9 @@
             this.btnSubir.Location = new System.Drawing.Point(142, 231);
             this.btnSubir.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSubir.Name = "btnSubir";
-            this.btnSubir.Size = new System.Drawing.Size(124, 27);
+            this.btnSubir.Size = new System.Drawing.Size(72, 27);
             this.btnSubir.TabIndex = 13;
-            this.btnSubir.Text = "Subir Archivo PDF";
+            this.btnSubir.Text = "Subir PDF";
             this.btnSubir.UseVisualStyleBackColor = true;
             // 
             // cbArea
@@ -145,7 +152,7 @@
             this.cbArea.Location = new System.Drawing.Point(142, 202);
             this.cbArea.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbArea.Name = "cbArea";
-            this.cbArea.Size = new System.Drawing.Size(254, 23);
+            this.cbArea.Size = new System.Drawing.Size(296, 23);
             this.cbArea.TabIndex = 12;
             // 
             // label6
@@ -184,7 +191,7 @@
             this.txtDescripcionLarga.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtDescripcionLarga.Multiline = true;
             this.txtDescripcionLarga.Name = "txtDescripcionLarga";
-            this.txtDescripcionLarga.Size = new System.Drawing.Size(343, 104);
+            this.txtDescripcionLarga.Size = new System.Drawing.Size(654, 104);
             this.txtDescripcionLarga.TabIndex = 5;
             // 
             // label3
@@ -202,7 +209,7 @@
             this.txtDescripcionCorta.Location = new System.Drawing.Point(142, 60);
             this.txtDescripcionCorta.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtDescripcionCorta.Name = "txtDescripcionCorta";
-            this.txtDescripcionCorta.Size = new System.Drawing.Size(343, 21);
+            this.txtDescripcionCorta.Size = new System.Drawing.Size(654, 21);
             this.txtDescripcionCorta.TabIndex = 3;
             // 
             // label2
@@ -237,12 +244,13 @@
             // dgvProceso
             // 
             this.dgvProceso.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProceso.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dgvProceso.Location = new System.Drawing.Point(517, 0);
+            this.dgvProceso.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dgvProceso.Location = new System.Drawing.Point(0, 348);
             this.dgvProceso.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvProceso.Name = "dgvProceso";
-            this.dgvProceso.Size = new System.Drawing.Size(460, 412);
+            this.dgvProceso.Size = new System.Drawing.Size(830, 437);
             this.dgvProceso.TabIndex = 1;
+            this.dgvProceso.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProceso_CellClick);
             // 
             // label7
             // 
@@ -254,15 +262,23 @@
             this.label7.Location = new System.Drawing.Point(0, 0);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(517, 27);
+            this.label7.Size = new System.Drawing.Size(830, 27);
             this.label7.TabIndex = 0;
             this.label7.Text = "PROCESO";
+            // 
+            // txtDocumento
+            // 
+            this.txtDocumento.Location = new System.Drawing.Point(221, 234);
+            this.txtDocumento.Name = "txtDocumento";
+            this.txtDocumento.ReadOnly = true;
+            this.txtDocumento.Size = new System.Drawing.Size(217, 21);
+            this.txtDocumento.TabIndex = 19;
             // 
             // FrmCrearProcesos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(977, 412);
+            this.ClientSize = new System.Drawing.Size(830, 785);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dgvProceso);
             this.Controls.Add(this.gbDatosProceso);
@@ -303,5 +319,6 @@
         private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnVerPostulante;
+        private System.Windows.Forms.TextBox txtDocumento;
     }
 }

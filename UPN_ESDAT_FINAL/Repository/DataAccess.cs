@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace UPN_ESDAT_FINAL.Repository
 {
@@ -143,7 +144,7 @@ namespace UPN_ESDAT_FINAL.Repository
         private List<T> ObtenerTodos()
         {
             // Lee todas las líneas del archivo y omite la primera línea si contiene encabezados
-            var lineas = File.ReadAllLines(this.RutaArchivo).Skip(1);
+            var lineas = File.ReadAllLines(this.RutaArchivo, Encoding.GetEncoding("ISO-8859-1")).Skip(1);
 
             // Lista para almacenar las entidades
             var entidades = new List<T>();
@@ -190,7 +191,7 @@ namespace UPN_ESDAT_FINAL.Repository
             }
 
             // Escribir en el archivo
-            File.WriteAllLines(this.RutaArchivo, lineas);
+            File.WriteAllLines(this.RutaArchivo, lineas, Encoding.UTF8);
         }
     }
 }

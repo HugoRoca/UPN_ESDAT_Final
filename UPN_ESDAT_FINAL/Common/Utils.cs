@@ -12,6 +12,20 @@ namespace UPN_ESDAT_FINAL.Common
             return id + 1;
         }
 
+        public string GenerarFormatoDocumento(int id, string nombre)
+        {
+            // Definir la cantidad máxima de ceros a la izquierda
+            int cantidadCeros = 6; // Puedes ajustar este valor según tus necesidades
+
+            // Formatear el número con ceros a la izquierda
+            string formatoId = id.ToString($"D{cantidadCeros}");
+
+            // Combinar el formato y el nombre
+            string resultado = $"P{formatoId}_{nombre}";
+
+            return resultado;
+        }
+
         public Enum.AccionBoton Botones(Button btnNuevo, Button btnGuardar, Button btnEliminar, Enum.AccionBoton _enum)
         {
             switch (_enum)
@@ -108,7 +122,8 @@ namespace UPN_ESDAT_FINAL.Common
         }
 
         public void CargarDatosEnGridView<T>(DataGridView dataGridView, List<T> listaModel, 
-            List<string> columnasOcultar = null, bool ultimaColumnaFill = false)
+            List<string> columnasOcultar = null, bool ultimaColumnaFill = false,
+            Dictionary<string, int> tamanosColumnas = null, List<string> ordenColumnas = null)
         {
             // Limpiar filas existentes
             dataGridView.Rows.Clear();
@@ -179,6 +194,30 @@ namespace UPN_ESDAT_FINAL.Common
             if (dataGridView.Columns.Count > 0 && ultimaColumnaFill)
             {
                 dataGridView.Columns[dataGridView.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+
+            // Ordenar las columnas según la lista proporcionada
+            if (ordenColumnas != null && ordenColumnas.Count > 0)
+            {
+                foreach (string columna in ordenColumnas)
+                {
+                    if (dataGridView.Columns.Contains(columna))
+                    {
+                        dataGridView.Columns[columna].DisplayIndex = ordenColumnas.IndexOf(columna);
+                    }
+                }
+            }
+
+            // Establecer tamaños personalizados para las columnas
+            if (tamanosColumnas != null && tamanosColumnas.Count > 0)
+            {
+                foreach (var kvp in tamanosColumnas)
+                {
+                    if (dataGridView.Columns.Contains(kvp.Key))
+                    {
+                        dataGridView.Columns[kvp.Key].Width = kvp.Value;
+                    }
+                }
             }
         }
     }
