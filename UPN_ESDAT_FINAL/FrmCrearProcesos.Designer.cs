@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCrearProcesos));
             this.gbDatosProceso = new System.Windows.Forms.GroupBox();
-            this.btnVerPostulante = new System.Windows.Forms.Button();
+            this.btnVerPdf = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
@@ -55,8 +55,7 @@
             // 
             // gbDatosProceso
             // 
-            this.gbDatosProceso.Controls.Add(this.txtDocumento);
-            this.gbDatosProceso.Controls.Add(this.btnVerPostulante);
+            this.gbDatosProceso.Controls.Add(this.btnVerPdf);
             this.gbDatosProceso.Controls.Add(this.btnEliminar);
             this.gbDatosProceso.Controls.Add(this.btnGuardar);
             this.gbDatosProceso.Controls.Add(this.btnNuevo);
@@ -72,6 +71,7 @@
             this.gbDatosProceso.Controls.Add(this.label2);
             this.gbDatosProceso.Controls.Add(this.txtIdProceso);
             this.gbDatosProceso.Controls.Add(this.label1);
+            this.gbDatosProceso.Controls.Add(this.txtDocumento);
             this.gbDatosProceso.Location = new System.Drawing.Point(13, 30);
             this.gbDatosProceso.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gbDatosProceso.Name = "gbDatosProceso";
@@ -81,17 +81,18 @@
             this.gbDatosProceso.TabStop = false;
             this.gbDatosProceso.Text = "Datos";
             // 
-            // btnVerPostulante
+            // btnVerPdf
             // 
-            this.btnVerPostulante.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.btnVerPostulante.Location = new System.Drawing.Point(239, 28);
-            this.btnVerPostulante.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnVerPostulante.Name = "btnVerPostulante";
-            this.btnVerPostulante.Size = new System.Drawing.Size(124, 27);
-            this.btnVerPostulante.TabIndex = 18;
-            this.btnVerPostulante.Text = "Ver Postulantes";
-            this.btnVerPostulante.UseVisualStyleBackColor = false;
-            this.btnVerPostulante.Visible = false;
+            this.btnVerPdf.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnVerPdf.Location = new System.Drawing.Point(221, 231);
+            this.btnVerPdf.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnVerPdf.Name = "btnVerPdf";
+            this.btnVerPdf.Size = new System.Drawing.Size(217, 27);
+            this.btnVerPdf.TabIndex = 18;
+            this.btnVerPdf.Text = "Ver archivo PDF";
+            this.btnVerPdf.UseVisualStyleBackColor = false;
+            this.btnVerPdf.Visible = false;
+            this.btnVerPdf.Click += new System.EventHandler(this.btnVerPdf_Click);
             // 
             // btnEliminar
             // 
@@ -129,6 +130,7 @@
             // 
             // cbEstado
             // 
+            this.cbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEstado.FormattingEnabled = true;
             this.cbEstado.Location = new System.Drawing.Point(142, 262);
             this.cbEstado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -138,6 +140,7 @@
             // 
             // btnSubir
             // 
+            this.btnSubir.Enabled = false;
             this.btnSubir.Location = new System.Drawing.Point(142, 231);
             this.btnSubir.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSubir.Name = "btnSubir";
@@ -145,9 +148,11 @@
             this.btnSubir.TabIndex = 13;
             this.btnSubir.Text = "Subir PDF";
             this.btnSubir.UseVisualStyleBackColor = true;
+            this.btnSubir.Click += new System.EventHandler(this.btnSubir_Click);
             // 
             // cbArea
             // 
+            this.cbArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbArea.FormattingEnabled = true;
             this.cbArea.Location = new System.Drawing.Point(142, 202);
             this.cbArea.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -273,6 +278,7 @@
             this.txtDocumento.ReadOnly = true;
             this.txtDocumento.Size = new System.Drawing.Size(217, 21);
             this.txtDocumento.TabIndex = 19;
+            this.txtDocumento.Visible = false;
             // 
             // FrmCrearProcesos
             // 
@@ -318,7 +324,7 @@
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button btnVerPostulante;
+        private System.Windows.Forms.Button btnVerPdf;
         private System.Windows.Forms.TextBox txtDocumento;
     }
 }

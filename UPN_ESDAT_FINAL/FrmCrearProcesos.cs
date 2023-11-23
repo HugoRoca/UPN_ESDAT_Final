@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using UPN_ESDAT_FINAL.BusinessLogic;
 using UPN_ESDAT_FINAL.Common;
@@ -61,6 +62,8 @@ namespace UPN_ESDAT_FINAL
             txtDescripcionLarga.Enabled = valor;
             cbEstado.Enabled = valor;
             cbArea.Enabled = valor;
+            btnSubir.Enabled = valor;
+            btnVerPdf.Enabled = valor;
 
             txtDescripcionCorta.Focus();
         }
@@ -107,6 +110,7 @@ namespace UPN_ESDAT_FINAL
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
+            btnVerPdf.Visible = false;
             if (btnNuevo.Text == "Nuevo")
             {
                 int nuevoId = _blProceso.ContarRegistros();
@@ -132,16 +136,25 @@ namespace UPN_ESDAT_FINAL
                 return;
             }
 
+            if (accion == Common.Enum.AccionBoton.EditarEliminar)
+            {
+                TextboxAccion(true, false);
+                accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.Editar);
+                return;
+            }
+
             ProcesoModel procesoModel = new ProcesoModel();
             procesoModel.Id = int.Parse(txtIdProceso.Text);
             procesoModel.DescripcionCorta = txtDescripcionCorta.Text;
             procesoModel.DescripcionLarga = txtDescripcionLarga.Text;
             procesoModel.IdArea = (int)cbArea.SelectedValue;
-            procesoModel.Documentos = txtDocumento.Text;
 
             int estadoId = (int)cbEstado.SelectedValue;
 
             procesoModel.Estado = estados.Find(x => x.Id == estadoId)?.Descripcion ?? "";
+
+            // Documento
+            procesoModel.Documentos = _utils.CopiarArchivo(txtDocumento.Text, Common.Enum.Extension.PDF, procesoModel.Id, "Proceso");
 
             switch (accion)
             {
@@ -193,7 +206,7 @@ namespace UPN_ESDAT_FINAL
 
         private void dgvProceso_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && accion == Common.Enum.AccionBoton.Default)
             {
                 DataGridViewRow filaSeleccionada = dgvProceso.Rows[e.RowIndex];
 
@@ -202,16 +215,41 @@ namespace UPN_ESDAT_FINAL
                 txtIdProceso.Text = filaSeleccionada.Cells["Id"].Value.ToString();
                 txtDescripcionCorta.Text = filaSeleccionada.Cells["DescripcionCorta"].Value.ToString();
                 txtDescripcionLarga.Text = filaSeleccionada.Cells["DescripcionLarga"].Value.ToString();
-                txtDocumento.Text = filaSeleccionada.Cells["Documentos"].Value.ToString();
                 cbArea.SelectedIndex = int.Parse(filaSeleccionada.Cells["IdArea"].Value.ToString());
+                txtDocumento.Text = filaSeleccionada.Cells["Documentos"].Value.ToString();
 
                 int estadoId = estados.Find(x => x.Descripcion == filaSeleccionada.Cells["Estado"].Value.ToString())?.Id ?? 0;
                 cbEstado.SelectedIndex = estadoId;
 
                 accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.EditarEliminar);
 
-                btnSubir.Text = "Ver PDF";
+                if (!string.IsNullOrEmpty(txtDocumento.Text))
+                {
+                    txtDocumento.Text = _utils.ObtenerRutaArchivo("Proceso", int.Parse(txtIdProceso.Text), Common.Enum.Extension.PDF);
+                    btnVerPdf.Visible = true;
+                }
             }
+        }
+
+        private void btnSubir_Click(object sender, EventArgs e)
+        {
+            // Configurar el diálogo para buscar archivos PDF
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Archivos PDF|*.pdf";
+            openFileDialog.Title = "Seleccionar archivo PDF";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Mostrar la ruta seleccionada en el cuadro de texto
+                txtDocumento.Text = openFileDialog.FileName;
+                btnVerPdf.Visible = true;
+            }
+        }
+
+        private void btnVerPdf_Click(object sender, EventArgs e)
+        {
+            FrmVerDocumentoPDF frmVerDocumentoPDF = new FrmVerDocumentoPDF(txtDocumento.Text);
+            frmVerDocumentoPDF.ShowDialog();
         }
     }
 }

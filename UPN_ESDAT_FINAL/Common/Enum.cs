@@ -2,6 +2,12 @@
 {
     public class Enum
     {
+        public enum Extension
+        {
+            PDF,
+            Word
+        }
+
         public enum TipoMensaje
         {
             Informativo,

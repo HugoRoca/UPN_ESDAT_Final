@@ -27,6 +27,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -48,14 +50,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Spire.Pdf, Version=9.10.2.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>packages\Spire.PDFViewer.7.12.1\lib\net48\Spire.Pdf.dll</HintPath>
+    <Reference Include="Patagames.Pdf, Version=11.79.45.48, Culture=neutral, PublicKeyToken=60fd6cf9b15941cf, processorArchitecture=MSIL">
+      <HintPath>packages\Pdfium.Net.SDK.4.87.2704\lib\net48\Patagames.Pdf.dll</HintPath>
     </Reference>
-    <Reference Include="Spire.PdfViewer.Asp, Version=7.12.1.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>packages\Spire.PDFViewer.7.12.1\lib\net48\Spire.PdfViewer.Asp.dll</HintPath>
+    <Reference Include="Patagames.Pdf.WinForms, Version=4.24.18.48, Culture=neutral, PublicKeyToken=60fd6cf9b15941cf, processorArchitecture=MSIL">
+      <HintPath>packages\Pdfium.Net.SDK.4.87.2704\lib\net48\Patagames.Pdf.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Spire.PdfViewer.Forms, Version=7.12.1.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>packages\Spire.PDFViewer.7.12.1\lib\net48\Spire.PdfViewer.Forms.dll</HintPath>
+    <Reference Include="Patagames.Pdf.Wpf, Version=4.24.20.48, Culture=neutral, PublicKeyToken=60fd6cf9b15941cf, processorArchitecture=MSIL">
+      <HintPath>packages\Pdfium.Net.SDK.4.87.2704\lib\net48\Patagames.Pdf.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -149,6 +151,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\DataAccess.cs" />
+    <Compile Include="FrmVerDocumentoPDF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmVerDocumentoPDF.Designer.cs">
+      <DependentUpon>FrmVerDocumentoPDF.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FrmCrearProcesos.resx">
       <DependentUpon>FrmCrearProcesos.cs</DependentUpon>
     </EmbeddedResource>
@@ -167,9 +175,14 @@
     <EmbeddedResource Include="FrmUsuario.resx">
       <DependentUpon>FrmUsuario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmVerDocumentoPDF.resx">
+      <DependentUpon>FrmVerDocumentoPDF.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmVerProcesos.resx">
       <DependentUpon>FrmVerProcesos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pdf.Net.SDK.licx" />
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -251,6 +264,9 @@
     <None Include="Files\Proceso\P000015_Proceso.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="libpdfium.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -280,9 +296,27 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="icudt.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\pdfium.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\pdfium.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
+  <Import Project="packages\Pdfium.Net.SDK.4.87.2704\build\Pdfium.Net.SDK.targets" Condition="Exists('packages\Pdfium.Net.SDK.4.87.2704\build\Pdfium.Net.SDK.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Pdfium.Net.SDK.4.87.2704\build\Pdfium.Net.SDK.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Pdfium.Net.SDK.4.87.2704\build\Pdfium.Net.SDK.targets'))" />
+  </Target>
 </Project>

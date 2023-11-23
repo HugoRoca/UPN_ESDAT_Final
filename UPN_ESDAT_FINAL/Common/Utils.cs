@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
+using UPN_ESDAT_FINAL.Model;
 
 namespace UPN_ESDAT_FINAL.Common
 {
@@ -24,6 +27,67 @@ namespace UPN_ESDAT_FINAL.Common
             string resultado = $"P{formatoId}_{nombre}";
 
             return resultado;
+        }
+
+        public string ObtenerRutaArchivo(string nombre, int id, Enum.Extension extension)
+        {
+            // Combina la carpeta base con la ruta relativa al archivo
+            string carpetaBase = AppDomain.CurrentDomain.BaseDirectory;
+            string rutaDestino = carpetaBase + @"\Files\Proceso\";
+
+            string ext = "";
+            // Se selecciona extension
+            switch (extension)
+            {
+                case Enum.Extension.PDF:
+                    ext = "pdf";
+                    break;
+                case Enum.Extension.Word:
+                    ext = "docx";
+                    break;
+                default:
+                    break;
+            }
+
+            nombre = $"{this.GenerarFormatoDocumento(id, nombre)}.{ext}";
+
+            return Path.Combine(rutaDestino, nombre);
+        }
+
+        public string CopiarArchivo(string documento, Enum.Extension extension, int id = 0, string nombre = "")
+        {
+            // Combina la carpeta base con la ruta relativa al archivo
+            string carpetaBase = AppDomain.CurrentDomain.BaseDirectory;
+            string rutaDestino = carpetaBase + @"\Files\Proceso\";
+            
+            // Obtener el nombre del archivo seleccionado
+            string nombreArchivo = Path.GetFileName(documento);
+
+            string ext = "";
+            // Se selecciona extension
+            switch (extension)
+            {
+                case Enum.Extension.PDF:
+                    ext = "pdf";
+                    break;
+                case Enum.Extension.Word:
+                    ext = "docx";
+                    break;
+                default:
+                    break;
+            }
+
+            // Generar un nuevo nombre para el archivo (puedes personalizar esta lógica)
+            string nuevoNombre = $"{this.GenerarFormatoDocumento(id, nombre)}.{ext}";
+           
+            // Construir la ruta completa de destino
+            string rutaCompletaDestino = Path.Combine(rutaDestino, nuevoNombre);
+           
+            // Copiar el archivo a la nueva ubicación con el nuevo nombre
+            // Si existe lo sobre escribe
+            File.Copy(documento, rutaCompletaDestino, true);
+
+            return nuevoNombre;
         }
 
         public Enum.AccionBoton Botones(Button btnNuevo, Button btnGuardar, Button btnEliminar, Enum.AccionBoton _enum)
