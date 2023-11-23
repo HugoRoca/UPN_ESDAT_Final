@@ -37,10 +37,10 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -52,10 +52,9 @@
             // txtPassword
             // 
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPassword.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(446, 218);
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Location = new System.Drawing.Point(447, 218);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtPassword.Multiline = true;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(403, 40);
@@ -64,10 +63,10 @@
             // txtUsuario
             // 
             this.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUsuario.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsuario.Font = new System.Drawing.Font("Arial", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsuario.Location = new System.Drawing.Point(446, 172);
             this.txtUsuario.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtUsuario.Multiline = true;
+            this.txtUsuario.MaxLength = 20;
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(403, 40);
             this.txtUsuario.TabIndex = 6;
@@ -149,27 +148,16 @@
             this.panel1.Size = new System.Drawing.Size(375, 565);
             this.panel1.TabIndex = 16;
             // 
-            // label4
+            // label7
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(181, 280);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(170, 17);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "Bienvenido al sistema de";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(49, 302);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(301, 17);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "Administración de procesos de incorporación";
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(304, 535);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(46, 14);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Grupo 1";
             // 
             // label6
             // 
@@ -182,16 +170,27 @@
             this.label6.TabIndex = 17;
             this.label6.Text = "Desarrollador por";
             // 
-            // label7
+            // label5
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(304, 535);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(46, 14);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "Grupo 1";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(49, 302);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(301, 17);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Administración de procesos de incorporación";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(181, 280);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(170, 17);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Bienvenido al sistema de";
             // 
             // label1
             // 

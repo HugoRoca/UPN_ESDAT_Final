@@ -16,7 +16,7 @@ namespace UPN_ESDAT_FINAL.Repository
             string carpetaBase = AppDomain.CurrentDomain.BaseDirectory;
 
             // Combina la carpeta base con la ruta relativa al archivo
-            this.RutaArchivo = carpetaBase + @"\Data\" + nombreArchivo + ".csv";
+            this.RutaArchivo = carpetaBase + @"\Files\CSV\" + nombreArchivo + ".csv";
 
             //this.RutaArchivo = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "\Data\" + nombreArchivo + ".csv");
         }
