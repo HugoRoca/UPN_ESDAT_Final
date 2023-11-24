@@ -11,5 +11,6 @@ namespace UPN_ESDAT_FINAL.Model
         public string Email { get; set; }
         public string FechaNacimiento { get; set; }
         public string Documentos { get; set; }
+        public int MyProperty { get; set; }
     }
 }

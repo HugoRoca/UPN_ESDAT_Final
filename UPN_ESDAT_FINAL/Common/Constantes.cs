@@ -13,7 +13,7 @@ namespace UPN_ESDAT_FINAL.Common
         {
             public const string Activo = "ACTIVO";
             public const string EnPausa = "EN PAUSA";
-            public const string Inhabilitar = "INHABILITAR";
+            public const string Inhabilitar = "INHABILITADO";
             public const string Finalizado = "FINALIZADO";
         }
     }

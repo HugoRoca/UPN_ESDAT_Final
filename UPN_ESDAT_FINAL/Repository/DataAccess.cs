@@ -88,6 +88,14 @@ namespace UPN_ESDAT_FINAL.Repository
             return this.Contar();
         }
 
+        // Buscar en el csv mediante una condicion
+        public List<T> Buscar(Predicate<T> condicion)
+        {
+            var entidades = ObtenerTodos();
+            
+            return entidades.Where(e => condicion(e)).ToList();
+        }
+
         // Convertir una línea de texto CSV a un objeto
         private T ConvertirCsvAObjeto(string linea)
         {

@@ -49,5 +49,12 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
         {
             _dataProceso.Crear(procesoModel);
         }
+
+        public List<ProcesoModel> ObtenerPorEstado(string estado)
+        {
+            if (string.IsNullOrEmpty(estado)) return _dataProceso.Leer();
+
+            return _dataProceso.Buscar(p => p.Estado == estado);
+        }
     }
 }

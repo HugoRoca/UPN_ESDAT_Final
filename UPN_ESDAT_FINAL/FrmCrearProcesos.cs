@@ -34,6 +34,9 @@ namespace UPN_ESDAT_FINAL
             CargarCombo();
 
             TextboxAccion(false);
+
+            cbArea.SelectedIndex = 0;
+            cbEstado.SelectedIndex = 0;
         }
 
         private List<ProcesoModel> ModelDatos(List<ProcesoModel> procesos)
@@ -53,6 +56,7 @@ namespace UPN_ESDAT_FINAL
                 txtIdProceso.Clear();
                 txtDescripcionCorta.Clear();
                 txtDescripcionLarga.Clear();
+                txtDocumento.Clear();
                 cbArea.SelectedIndex = 0;
                 cbEstado.SelectedIndex = 0;
             }
@@ -73,7 +77,7 @@ namespace UPN_ESDAT_FINAL
 
             List<AreaModel> areas = _blArea.ObtenerTodos();
 
-            areas.Insert(0, new AreaModel { Descripcion = "Seleccione una opción", Id = -1 });
+            areas.Insert(0, new AreaModel { Descripcion = "Seleccione una opción", Id = 0 });
 
             // Asignar la lista de items al ComboBox
             cbEstado.DataSource = estados;
@@ -100,7 +104,7 @@ namespace UPN_ESDAT_FINAL
         private void CargaEstados()
         {
             // Agregar el elemento predeterminado al inicio de la lista
-            estados.Insert(0, new EstadoProcesoModel { Descripcion = "Seleccione una opción", Id = -1 });
+            estados.Insert(0, new EstadoProcesoModel { Descripcion = "Seleccione una opción", Id = 0 });
             estados.Add(new EstadoProcesoModel { Descripcion = Constantes.EstadoProceso.Activo, Id = 1 });
             estados.Add(new EstadoProcesoModel { Descripcion = Constantes.EstadoProceso.EnPausa, Id = 2 });
             estados.Add(new EstadoProcesoModel { Descripcion = Constantes.EstadoProceso.Inhabilitar, Id = 3 });
@@ -129,16 +133,16 @@ namespace UPN_ESDAT_FINAL
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (!_utils.ValidarCamposGroupBox(gbDatosProceso))
-            {
-                _utils.MostrarMensaje("Debe de completar todos los campos!", Common.Enum.TipoMensaje.Error);
-                return;
-            }
-
             if (accion == Common.Enum.AccionBoton.EditarEliminar)
             {
                 TextboxAccion(true, false);
                 accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.Editar);
+                return;
+            }
+
+            if (!_utils.ValidarCamposGroupBox(gbDatosProceso))
+            {
+                _utils.MostrarMensaje("Debe de completar todos los campos!", Common.Enum.TipoMensaje.Error);
                 return;
             }
 
@@ -147,10 +151,7 @@ namespace UPN_ESDAT_FINAL
             procesoModel.DescripcionCorta = txtDescripcionCorta.Text;
             procesoModel.DescripcionLarga = txtDescripcionLarga.Text;
             procesoModel.IdArea = (int)cbArea.SelectedValue;
-
-            int estadoId = (int)cbEstado.SelectedValue;
-
-            procesoModel.Estado = estados.Find(x => x.Id == estadoId)?.Descripcion ?? "";
+            procesoModel.Estado = cbEstado.Text;
 
             // Documento
             procesoModel.Documentos = _utils.CopiarArchivo(txtDocumento.Text, Common.Enum.Extension.PDF, procesoModel.Id, "Proceso");

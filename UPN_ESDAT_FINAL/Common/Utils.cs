@@ -182,10 +182,13 @@ namespace UPN_ESDAT_FINAL.Common
             // Verificar si existen combos
             bool existenCombos = groupBox.Controls.OfType<ComboBox>().Any();
 
-            // Verificar que el ComboBox tenga un índice seleccionado
+            // Verificar que el ComboBox tenga un índice seleccionado (cualquier índice mayor o igual a 0)
             bool comboBoxSeleccionado = true;
 
-            if (existenCombos) comboBoxSeleccionado = groupBox.Controls.OfType<ComboBox>().Any(comboBox => comboBox.SelectedIndex > 0);
+            if (existenCombos)
+            {
+                comboBoxSeleccionado = groupBox.Controls.OfType<ComboBox>().All(comboBox => comboBox.SelectedIndex > 0);
+            }
 
             // Devolver true si todos los TextBox no están vacíos y el ComboBox tiene un índice seleccionado
             return todosTextBoxNoVacios && comboBoxSeleccionado;
@@ -195,9 +198,33 @@ namespace UPN_ESDAT_FINAL.Common
             List<string> columnasOcultar = null, bool ultimaColumnaFill = false,
             Dictionary<string, int> tamanosColumnas = null, List<string> ordenColumnas = null)
         {
+            dataGridView.MultiSelect = false;
+            dataGridView.AllowUserToAddRows = false;
+            dataGridView.AllowUserToDeleteRows = false;
+            dataGridView.AllowUserToResizeRows = false;
+            dataGridView.BackgroundColor = System.Drawing.SystemColors.Control;
+            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView.ReadOnly = true;
+            dataGridView.RowHeadersVisible = false;
+            dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            // dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightSeaGreen;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataGridView.DefaultCellStyle = dataGridViewCellStyle1;
+
+
             // Limpiar filas existentes
             dataGridView.Rows.Clear();
 
+            if (!listaModel.Any()) return;
+            
             // Limpiar columnas existentes
             dataGridView.Columns.Clear();
 
@@ -225,27 +252,6 @@ namespace UPN_ESDAT_FINAL.Common
 
                 dataGridView.Rows.Add(fila);
             }
-
-            dataGridView.MultiSelect = false;
-            dataGridView.AllowUserToAddRows = false;
-            dataGridView.AllowUserToDeleteRows = false;
-            dataGridView.AllowUserToResizeRows = false;
-            dataGridView.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.ReadOnly = true;
-            dataGridView.RowHeadersVisible = false;
-            dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            // dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightSeaGreen;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dataGridView.DefaultCellStyle = dataGridViewCellStyle1;
 
             columnasOcultar = columnasOcultar ?? new List<string>();
 
