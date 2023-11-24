@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows.Forms;
 using UPN_ESDAT_FINAL.BusinessLogic;
 using UPN_ESDAT_FINAL.Common;
@@ -14,7 +13,7 @@ namespace UPN_ESDAT_FINAL
         BLProceso _blProceso = new BLProceso();
         Utils _utils = new Utils();
 
-        Common.Enum.AccionBoton accion = Common.Enum.AccionBoton.Nuevo;
+        Common.Enum.AccionBoton accion = Common.Enum.AccionBoton.Default;
         List<AreaModel> areas = new List<AreaModel>();
         List<EstadoProcesoModel> estados = new List<EstadoProcesoModel>();
         List<string> _ocultarColumnas = new List<string> { "Id", "IdArea" };
@@ -206,7 +205,7 @@ namespace UPN_ESDAT_FINAL
 
         private void dgvProceso_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && accion == Common.Enum.AccionBoton.Default)
+            if (e.RowIndex >= 0 && (accion == Common.Enum.AccionBoton.Default || accion == Common.Enum.AccionBoton.EditarEliminar))
             {
                 DataGridViewRow filaSeleccionada = dgvProceso.Rows[e.RowIndex];
 

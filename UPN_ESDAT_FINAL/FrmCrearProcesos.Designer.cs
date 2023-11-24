@@ -46,9 +46,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtIdProceso = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtDocumento = new System.Windows.Forms.TextBox();
             this.dgvProceso = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtDocumento = new System.Windows.Forms.TextBox();
             this.gbDatosProceso.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProceso)).BeginInit();
             this.SuspendLayout();
@@ -76,7 +76,7 @@
             this.gbDatosProceso.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gbDatosProceso.Name = "gbDatosProceso";
             this.gbDatosProceso.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.gbDatosProceso.Size = new System.Drawing.Size(804, 311);
+            this.gbDatosProceso.Size = new System.Drawing.Size(804, 259);
             this.gbDatosProceso.TabIndex = 1;
             this.gbDatosProceso.TabStop = false;
             this.gbDatosProceso.Text = "Datos";
@@ -84,7 +84,7 @@
             // btnVerPdf
             // 
             this.btnVerPdf.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.btnVerPdf.Location = new System.Drawing.Point(221, 231);
+            this.btnVerPdf.Location = new System.Drawing.Point(221, 197);
             this.btnVerPdf.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnVerPdf.Name = "btnVerPdf";
             this.btnVerPdf.Size = new System.Drawing.Size(217, 27);
@@ -96,7 +96,7 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(691, 239);
+            this.btnEliminar.Location = new System.Drawing.Point(691, 205);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(105, 46);
@@ -108,7 +108,7 @@
             // btnGuardar
             // 
             this.btnGuardar.Enabled = false;
-            this.btnGuardar.Location = new System.Drawing.Point(577, 239);
+            this.btnGuardar.Location = new System.Drawing.Point(577, 205);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(105, 46);
@@ -119,7 +119,7 @@
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Location = new System.Drawing.Point(463, 239);
+            this.btnNuevo.Location = new System.Drawing.Point(463, 205);
             this.btnNuevo.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(105, 46);
@@ -132,7 +132,7 @@
             // 
             this.cbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEstado.FormattingEnabled = true;
-            this.cbEstado.Location = new System.Drawing.Point(142, 262);
+            this.cbEstado.Location = new System.Drawing.Point(142, 228);
             this.cbEstado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbEstado.Name = "cbEstado";
             this.cbEstado.Size = new System.Drawing.Size(296, 23);
@@ -141,7 +141,7 @@
             // btnSubir
             // 
             this.btnSubir.Enabled = false;
-            this.btnSubir.Location = new System.Drawing.Point(142, 231);
+            this.btnSubir.Location = new System.Drawing.Point(142, 197);
             this.btnSubir.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSubir.Name = "btnSubir";
             this.btnSubir.Size = new System.Drawing.Size(72, 27);
@@ -154,7 +154,7 @@
             // 
             this.cbArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbArea.FormattingEnabled = true;
-            this.cbArea.Location = new System.Drawing.Point(142, 202);
+            this.cbArea.Location = new System.Drawing.Point(142, 168);
             this.cbArea.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbArea.Name = "cbArea";
             this.cbArea.Size = new System.Drawing.Size(296, 23);
@@ -163,7 +163,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(85, 265);
+            this.label6.Location = new System.Drawing.Point(85, 231);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(48, 15);
@@ -173,7 +173,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(59, 235);
+            this.label5.Location = new System.Drawing.Point(59, 201);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 15);
@@ -183,7 +183,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(98, 205);
+            this.label4.Location = new System.Drawing.Point(98, 171);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 15);
@@ -196,7 +196,7 @@
             this.txtDescripcionLarga.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtDescripcionLarga.Multiline = true;
             this.txtDescripcionLarga.Name = "txtDescripcionLarga";
-            this.txtDescripcionLarga.Size = new System.Drawing.Size(654, 104);
+            this.txtDescripcionLarga.Size = new System.Drawing.Size(654, 72);
             this.txtDescripcionLarga.TabIndex = 5;
             // 
             // label3
@@ -246,14 +246,23 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Id:";
             // 
+            // txtDocumento
+            // 
+            this.txtDocumento.Location = new System.Drawing.Point(221, 200);
+            this.txtDocumento.Name = "txtDocumento";
+            this.txtDocumento.ReadOnly = true;
+            this.txtDocumento.Size = new System.Drawing.Size(217, 21);
+            this.txtDocumento.TabIndex = 19;
+            this.txtDocumento.Visible = false;
+            // 
             // dgvProceso
             // 
             this.dgvProceso.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProceso.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvProceso.Location = new System.Drawing.Point(0, 348);
+            this.dgvProceso.Location = new System.Drawing.Point(0, 295);
             this.dgvProceso.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvProceso.Name = "dgvProceso";
-            this.dgvProceso.Size = new System.Drawing.Size(830, 437);
+            this.dgvProceso.Size = new System.Drawing.Size(830, 355);
             this.dgvProceso.TabIndex = 1;
             this.dgvProceso.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProceso_CellClick);
             // 
@@ -271,20 +280,11 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "PROCESO";
             // 
-            // txtDocumento
-            // 
-            this.txtDocumento.Location = new System.Drawing.Point(221, 234);
-            this.txtDocumento.Name = "txtDocumento";
-            this.txtDocumento.ReadOnly = true;
-            this.txtDocumento.Size = new System.Drawing.Size(217, 21);
-            this.txtDocumento.TabIndex = 19;
-            this.txtDocumento.Visible = false;
-            // 
             // FrmCrearProcesos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(830, 785);
+            this.ClientSize = new System.Drawing.Size(830, 650);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dgvProceso);
             this.Controls.Add(this.gbDatosProceso);

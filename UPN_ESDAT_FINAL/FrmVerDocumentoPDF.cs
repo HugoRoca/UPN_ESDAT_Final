@@ -1,14 +1,5 @@
-﻿using Patagames.Pdf.Net;
-using Patagames.Pdf.Net.Controls.WinForms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UPN_ESDAT_FINAL
@@ -27,7 +18,7 @@ namespace UPN_ESDAT_FINAL
         {
             if (File.Exists(this._fileName))
             {
-                pdfViewer1.LoadDocument(this._fileName);
+                axAcroPDF1.LoadFile(this._fileName);
             }
         }
     }

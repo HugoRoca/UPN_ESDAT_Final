@@ -178,8 +178,13 @@ namespace UPN_ESDAT_FINAL.Common
             // Verificar que todos los TextBox no estén vacíos
             bool todosTextBoxNoVacios = groupBox.Controls.OfType<TextBox>().All(textBox => !string.IsNullOrEmpty(textBox.Text));
 
+            // Verificar si existen combos
+            bool existenCombos = groupBox.Controls.OfType<ComboBox>().Any();
+
             // Verificar que el ComboBox tenga un índice seleccionado
-            bool comboBoxSeleccionado = groupBox.Controls.OfType<ComboBox>().Any(comboBox => comboBox.SelectedIndex > 0);
+            bool comboBoxSeleccionado = true;
+
+            if (existenCombos) comboBoxSeleccionado = groupBox.Controls.OfType<ComboBox>().Any(comboBox => comboBox.SelectedIndex > 0);
 
             // Devolver true si todos los TextBox no están vacíos y el ComboBox tiene un índice seleccionado
             return todosTextBoxNoVacios && comboBoxSeleccionado;
@@ -220,6 +225,7 @@ namespace UPN_ESDAT_FINAL.Common
                 dataGridView.Rows.Add(fila);
             }
 
+            dataGridView.MultiSelect = false;
             dataGridView.AllowUserToAddRows = false;
             dataGridView.AllowUserToDeleteRows = false;
             dataGridView.AllowUserToResizeRows = false;

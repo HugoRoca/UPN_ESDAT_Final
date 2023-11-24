@@ -50,15 +50,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Patagames.Pdf, Version=11.79.45.48, Culture=neutral, PublicKeyToken=60fd6cf9b15941cf, processorArchitecture=MSIL">
-      <HintPath>packages\Pdfium.Net.SDK.4.87.2704\lib\net48\Patagames.Pdf.dll</HintPath>
-    </Reference>
-    <Reference Include="Patagames.Pdf.WinForms, Version=4.24.18.48, Culture=neutral, PublicKeyToken=60fd6cf9b15941cf, processorArchitecture=MSIL">
-      <HintPath>packages\Pdfium.Net.SDK.4.87.2704\lib\net48\Patagames.Pdf.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="Patagames.Pdf.Wpf, Version=4.24.20.48, Culture=neutral, PublicKeyToken=60fd6cf9b15941cf, processorArchitecture=MSIL">
-      <HintPath>packages\Pdfium.Net.SDK.4.87.2704\lib\net48\Patagames.Pdf.Wpf.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -75,6 +66,7 @@
     <Compile Include="BusinessLogic\BLArea.cs" />
     <Compile Include="BusinessLogic\BLEstadoProceso.cs" />
     <Compile Include="BusinessLogic\BLMenu.cs" />
+    <Compile Include="BusinessLogic\BLPostulante.cs" />
     <Compile Include="BusinessLogic\BLProceso.cs" />
     <Compile Include="BusinessLogic\BLRol.cs" />
     <Compile Include="BusinessLogic\BLUsuario.cs" />
@@ -144,6 +136,7 @@
     <Compile Include="Model\AreaModel.cs" />
     <Compile Include="Model\EstadoProcesoModel.cs" />
     <Compile Include="Model\MenuModel.cs" />
+    <Compile Include="Model\PostulanteModel.cs" />
     <Compile Include="Model\ProcesoModel.cs" />
     <Compile Include="Model\RolModel.cs" />
     <Compile Include="Model\RolPermisoModel.cs" />
@@ -163,6 +156,9 @@
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmNuevoPostulante.resx">
+      <DependentUpon>FrmNuevoPostulante.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmPermiso.resx">
       <DependentUpon>FrmPermiso.cs</DependentUpon>
     </EmbeddedResource>
@@ -181,7 +177,6 @@
     <EmbeddedResource Include="FrmVerProcesos.resx">
       <DependentUpon>FrmVerProcesos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pdf.Net.SDK.licx" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -264,10 +259,6 @@
     <None Include="Files\Proceso\P000015_Proceso.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="libpdfium.dylib">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -297,26 +288,27 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="icudt.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="x64\pdfium.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="x86\pdfium.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <COMReference Include="AcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AxAcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
-  <Import Project="packages\Pdfium.Net.SDK.4.87.2704\build\Pdfium.Net.SDK.targets" Condition="Exists('packages\Pdfium.Net.SDK.4.87.2704\build\Pdfium.Net.SDK.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('packages\Pdfium.Net.SDK.4.87.2704\build\Pdfium.Net.SDK.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Pdfium.Net.SDK.4.87.2704\build\Pdfium.Net.SDK.targets'))" />
-  </Target>
 </Project>
