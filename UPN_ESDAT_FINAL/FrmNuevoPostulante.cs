@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows.Forms;
 using UPN_ESDAT_FINAL.BusinessLogic;
 using UPN_ESDAT_FINAL.Common;
@@ -173,7 +174,7 @@ namespace UPN_ESDAT_FINAL
                 txtCelular.Text = filaSeleccionada.Cells["Celular"].Value.ToString();
                 txtEmail.Text = filaSeleccionada.Cells["Email"].Value.ToString();
                 txtCV.Text = filaSeleccionada.Cells["Documentos"].Value.ToString();
-                dtpFechaNac.Value = filaSeleccionada.Cells["FechaNacimiento"].Value.ToString() ?? "2005-11-10";
+                dtpFechaNac.Value = DateTime.ParseExact(filaSeleccionada.Cells["FechaNacimiento"].Value.ToString(), "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
 
                 accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.EditarEliminar);

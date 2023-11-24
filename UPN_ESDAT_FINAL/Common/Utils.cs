@@ -29,12 +29,13 @@ namespace UPN_ESDAT_FINAL.Common
             return resultado;
         }
 
-        public string ObtenerRutaArchivo(string nombre, int id, Enum.Extension extension)
+        public string ObtenerRutaArchivo(string carpeta, int id, Enum.Extension extension)
         {
             // Combina la carpeta base con la ruta relativa al archivo
-            string carpetaBase = AppDomain.CurrentDomain.BaseDirectory;
-            string rutaDestino = carpetaBase + @"\Files\Proceso\";
+            //string carpetaBase = AppDomain.CurrentDomain.BaseDirectory;
+            //string rutaDestino = carpetaBase + @"\Files\Proceso\";
 
+            string rutaDestino = Path.Combine(Application.StartupPath, "Files", "Proceso");
             string ext = "";
             // Se selecciona extension
             switch (extension)
@@ -49,9 +50,9 @@ namespace UPN_ESDAT_FINAL.Common
                     break;
             }
 
-            nombre = $"{this.GenerarFormatoDocumento(id, nombre)}.{ext}";
+            carpeta = $"{this.GenerarFormatoDocumento(id, carpeta)}.{ext}";
 
-            return Path.Combine(rutaDestino, nombre);
+            return Path.Combine(rutaDestino, carpeta);
         }
 
         public string CopiarArchivo(string documento, Enum.Extension extension, int id = 0, string nombre = "")

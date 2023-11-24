@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace UPN_ESDAT_FINAL.Repository
 {
@@ -13,11 +14,8 @@ namespace UPN_ESDAT_FINAL.Repository
 
         public DataAccess(string nombreArchivo)
         {
-            // Obtén la carpeta base de la aplicación
-            string carpetaBase = AppDomain.CurrentDomain.BaseDirectory;
-
             // Combina la carpeta base con la ruta relativa al archivo
-            this.RutaArchivo = carpetaBase + @"\Files\CSV\" + nombreArchivo + ".csv";
+            this.RutaArchivo = Path.Combine(Application.StartupPath, "Files", "CSV", nombreArchivo + ".csv");
 
             //this.RutaArchivo = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "\Data\" + nombreArchivo + ".csv");
         }
