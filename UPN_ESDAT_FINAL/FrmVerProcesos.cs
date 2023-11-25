@@ -15,14 +15,20 @@ namespace UPN_ESDAT_FINAL
         BLProceso _blProceso = new BLProceso();
         BLArea _blArea = new BLArea();
         Utils _utils = new Utils();
+        Listas _listas = new Listas();
 
         List<AreaModel> areas = new List<AreaModel>();
-        List<EstadoProcesoModel> estados =  new List<EstadoProcesoModel>();
+        List<Valores> estados = new List<Valores>();
         List<string> _ocultarColumnas = new List<string> { "Id", "IdArea", "Documentos" };
-        List<string> _ordenColumnas = new List<string> { "Estado", "DescripcionCorta", "DescripcionLarga", "Documentos", "Area" };
+        List<string> _ordenColumnas = new List<string> { "Ver Proceso", "Estado", "DescripcionCorta", "DescripcionLarga", "Area" };
         Dictionary<string, int> _tamanioColumnas = new Dictionary<string, int> {
-            { "DescripcionCorta", 300 },
-            { "DescripcionLarga", 650 }
+            { "DescripcionCorta", 250 },
+            { "DescripcionLarga", 550 },
+            { "Area", 150 }
+        };
+        Dictionary<string, string> _botones = new Dictionary<string, string>
+        {
+            { "btnVerProceso", "Ver Proceso" }
         };
 
         public FrmVerProcesos()
@@ -30,19 +36,11 @@ namespace UPN_ESDAT_FINAL
             InitializeComponent();
         }
 
-        private void CargaEstados()
-        {
-            // Agregar el elemento predeterminado al inicio de la lista
-            estados.Insert(0, new EstadoProcesoModel { Descripcion = "TODOS", Id = 0 });
-            estados.Add(new EstadoProcesoModel { Descripcion = Constantes.EstadoProceso.Activo, Id = 1 });
-            estados.Add(new EstadoProcesoModel { Descripcion = Constantes.EstadoProceso.EnPausa, Id = 2 });
-            estados.Add(new EstadoProcesoModel { Descripcion = Constantes.EstadoProceso.Inhabilitar, Id = 3 });
-            estados.Add(new EstadoProcesoModel { Descripcion = Constantes.EstadoProceso.Finalizado, Id = 4 });
-        }
-
         private void FrmVerProcesos_Load(object sender, EventArgs e)
         {
-            CargaEstados();
+            estados = _listas.EstadosProceso();
+
+            estados.Insert(0, new Valores { Descripcion = "Seleccione una opción", Id = 0 });
 
             // Asignar la lista de items al ComboBox
             cbEstado.DataSource = estados;
@@ -59,7 +57,7 @@ namespace UPN_ESDAT_FINAL
                 item.Area = areas.Find(x => x.Id == item.IdArea)?.Descripcion ?? "";
             }
 
-            _utils.CargarDatosEnGridView(dgvProceso, procesos, _ocultarColumnas, true, _tamanioColumnas, _ordenColumnas);
+            _utils.CargarDatosEnGridView(dgvProceso, procesos, _ocultarColumnas, true, _tamanioColumnas, _ordenColumnas, _botones);
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -79,7 +77,7 @@ namespace UPN_ESDAT_FINAL
                 pro.Area = areas.Find(x => x.Id == pro.IdArea)?.Descripcion ?? "";
             }
 
-            _utils.CargarDatosEnGridView(dgvProceso, procesos, _ocultarColumnas, true, _tamanioColumnas, _ordenColumnas);
+            _utils.CargarDatosEnGridView(dgvProceso, procesos, _ocultarColumnas, true, _tamanioColumnas, _ordenColumnas, _botones);
         }
 
         private void dgvProceso_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
@@ -91,18 +89,43 @@ namespace UPN_ESDAT_FINAL
             switch (estado)
             {
                 case Constantes.EstadoProceso.EnPausa:
-                    dgvProceso.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Gold;
+                    dgvProceso.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LemonChiffon;
                     break;
                 case Constantes.EstadoProceso.Finalizado:
-                    dgvProceso.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.SpringGreen;
+                    dgvProceso.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
                     break;
                 case Constantes.EstadoProceso.Inhabilitar:
-                    dgvProceso.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.HotPink;
+                    dgvProceso.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.IndianRed;
                     break;
                 default:
                     // Restablecer el color de fondo si el estado no coincide con ninguna condición anterior
                     dgvProceso.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
                     break;
+            }
+        }
+
+        private void dgvProceso_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            foreach (var kvp in _botones)
+            {
+                string nombreBoton = kvp.Key;
+
+                if (e.RowIndex >= 0 && e.ColumnIndex == dgvProceso.Columns[nombreBoton].Index)
+                {
+                    // Manejar el clic del botón, pasando la fila correspondiente
+                    // Puedes acceder a la fila de datos usando listaModel[e.RowIndex]
+                    // Realiza la lógica de manejo del botón según tus necesidades
+                    DataGridViewRow filaSeleccionada = dgvProceso.Rows[e.RowIndex];
+
+                    // Obtener los valores de las celdas en la fila seleccionada
+                    // Mostrar los valores en TextBox
+                    string proceso = filaSeleccionada.Cells["DescripcionCorta"].Value.ToString();
+                    string estado = filaSeleccionada.Cells["Estado"].Value.ToString();
+                    int idProceso = int.Parse(filaSeleccionada.Cells["Id"].Value.ToString());
+
+                    FrmListaProcesoPostulante frmListaProcesoPostulante = new FrmListaProcesoPostulante(idProceso, proceso, estado);
+                    frmListaProcesoPostulante.ShowDialog();
+                }
             }
         }
     }

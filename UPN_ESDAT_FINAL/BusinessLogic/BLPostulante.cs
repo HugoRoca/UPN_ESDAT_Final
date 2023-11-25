@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UPN_ESDAT_FINAL.Model;
 using UPN_ESDAT_FINAL.Repository;
 
@@ -39,12 +40,22 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
                 update.Email = postulanteModel.Email;
                 update.FechaNacimiento = postulanteModel.FechaNacimiento;
                 update.Documentos = postulanteModel.Documentos;
+                update.Dni = postulanteModel.Dni;
             });
         }
 
         public void Eliminar(int id)
         {
             _dataPostulante.Eliminar(p => p.Id == id);
+        }
+
+        public PostulanteModel BuscarPorDocumento(string documento)
+        {
+            List<PostulanteModel> postulantes = _dataPostulante.Buscar(p => p.Dni == documento);
+
+            if (!postulantes.Any()) return new PostulanteModel();
+
+            return postulantes.FirstOrDefault(x => x.Dni == documento);
         }
     }
 }

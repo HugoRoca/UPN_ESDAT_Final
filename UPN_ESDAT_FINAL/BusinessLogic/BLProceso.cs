@@ -56,5 +56,14 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
 
             return _dataProceso.Buscar(p => p.Estado == estado);
         }
+
+        public ProcesoModel BuscarPorId(int id)
+        {
+            List<ProcesoModel> procesos = _dataProceso.Buscar(p=> p.Id == id);
+
+            if (!procesos.Any()) return new ProcesoModel();
+
+            return procesos.FirstOrDefault();
+        }
     }
 }

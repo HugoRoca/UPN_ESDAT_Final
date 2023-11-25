@@ -51,7 +51,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>D31F6CBAD92E6597E909546F1BF385050F26D73E</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>A4EDE37FE57E9EBB1A273786DBC3CAABF34DC8E6</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>UPN_ESDAT_FINAL_TemporaryKey.pfx</ManifestKeyFile>
@@ -77,7 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogic\BLArea.cs" />
-    <Compile Include="BusinessLogic\BLEstadoProceso.cs" />
     <Compile Include="BusinessLogic\BLMenu.cs" />
     <Compile Include="BusinessLogic\BLPostulante.cs" />
     <Compile Include="BusinessLogic\BLProceso.cs" />
@@ -85,12 +84,19 @@
     <Compile Include="BusinessLogic\BLUsuario.cs" />
     <Compile Include="Common\Constantes.cs" />
     <Compile Include="Common\Enum.cs" />
+    <Compile Include="Common\Listas.cs" />
     <Compile Include="Common\Utils.cs" />
     <Compile Include="FrmAcerca.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmAcerca.Designer.cs">
       <DependentUpon>FrmAcerca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAsignarProcesoPostulante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAsignarProcesoPostulante.Designer.cs">
+      <DependentUpon>FrmAsignarProcesoPostulante.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmBuscarPostulante.cs">
       <SubType>Form</SubType>
@@ -103,6 +109,12 @@
     </Compile>
     <Compile Include="FrmCrearProcesos.Designer.cs">
       <DependentUpon>FrmCrearProcesos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmListaProcesoPostulante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmListaProcesoPostulante.Designer.cs">
+      <DependentUpon>FrmListaProcesoPostulante.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
@@ -147,13 +159,13 @@
       <DependentUpon>FrmVerProcesos.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\AreaModel.cs" />
-    <Compile Include="Model\EstadoProcesoModel.cs" />
     <Compile Include="Model\MenuModel.cs" />
     <Compile Include="Model\PostulanteModel.cs" />
     <Compile Include="Model\ProcesoModel.cs" />
     <Compile Include="Model\RolModel.cs" />
     <Compile Include="Model\RolPermisoModel.cs" />
     <Compile Include="Model\UsuarioModel.cs" />
+    <Compile Include="Model\Valores.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\DataAccess.cs" />
@@ -163,8 +175,17 @@
     <Compile Include="FrmVerDocumentoPDF.Designer.cs">
       <DependentUpon>FrmVerDocumentoPDF.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FrmAsignarProcesoPostulante.resx">
+      <DependentUpon>FrmAsignarProcesoPostulante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmBuscarPostulante.resx">
+      <DependentUpon>FrmBuscarPostulante.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmCrearProcesos.resx">
       <DependentUpon>FrmCrearProcesos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmListaProcesoPostulante.resx">
+      <DependentUpon>FrmListaProcesoPostulante.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
@@ -414,6 +435,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="UPN_ESDAT_FINAL_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -52,6 +52,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FrmVerDocumentoPDF";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ver Documento PDF";
             this.Load += new System.EventHandler(this.FrmVerDocumentoPDF_Load);
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).EndInit();

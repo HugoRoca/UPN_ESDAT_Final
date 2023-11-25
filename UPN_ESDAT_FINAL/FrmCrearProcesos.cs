@@ -12,10 +12,11 @@ namespace UPN_ESDAT_FINAL
         BLArea _blArea = new BLArea();
         BLProceso _blProceso = new BLProceso();
         Utils _utils = new Utils();
+        Listas _listas = new Listas();
 
         Common.Enum.AccionBoton accion = Common.Enum.AccionBoton.Default;
         List<AreaModel> areas = new List<AreaModel>();
-        List<EstadoProcesoModel> estados = new List<EstadoProcesoModel>();
+        List<Valores> estados = new List<Valores>();
         List<string> _ocultarColumnas = new List<string> { "Id", "IdArea" };
         List<string> _ordenColumnas = new List<string> { "Estado", "DescripcionCorta", "DescripcionLarga", "Documentos", "Area" };
         Dictionary<string, int> _tamanioColumnas = new Dictionary<string, int> {
@@ -73,7 +74,9 @@ namespace UPN_ESDAT_FINAL
 
         private void CargarCombo()
         {
-            CargaEstados();
+            estados = _listas.EstadosProceso();
+
+            estados.Insert(0, new Valores { Descripcion = "Seleccione una opción", Id = 0 });
 
             List<AreaModel> areas = _blArea.ObtenerTodos();
 
@@ -99,16 +102,6 @@ namespace UPN_ESDAT_FINAL
             procesos = ModelDatos(procesos);
 
             _utils.CargarDatosEnGridView(dgvProceso, procesos, _ocultarColumnas, false, _tamanioColumnas, _ordenColumnas);
-        }
-
-        private void CargaEstados()
-        {
-            // Agregar el elemento predeterminado al inicio de la lista
-            estados.Insert(0, new EstadoProcesoModel { Descripcion = "Seleccione una opción", Id = 0 });
-            estados.Add(new EstadoProcesoModel { Descripcion = Constantes.EstadoProceso.Activo, Id = 1 });
-            estados.Add(new EstadoProcesoModel { Descripcion = Constantes.EstadoProceso.EnPausa, Id = 2 });
-            estados.Add(new EstadoProcesoModel { Descripcion = Constantes.EstadoProceso.Inhabilitar, Id = 3 });
-            estados.Add(new EstadoProcesoModel { Descripcion = Constantes.EstadoProceso.Finalizado, Id = 4 });
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -154,7 +147,7 @@ namespace UPN_ESDAT_FINAL
             procesoModel.Estado = cbEstado.Text;
 
             // Documento
-            procesoModel.Documentos = _utils.CopiarArchivo(txtDocumento.Text, Common.Enum.Extension.PDF, procesoModel.Id, "Proceso");
+            procesoModel.Documentos = _utils.CopiarArchivo(txtDocumento.Text, Common.Enum.Extension.PDF, procesoModel.Id, Constantes.Carpetas.Proceso);
 
             switch (accion)
             {
@@ -225,7 +218,7 @@ namespace UPN_ESDAT_FINAL
 
                 if (!string.IsNullOrEmpty(txtDocumento.Text))
                 {
-                    txtDocumento.Text = _utils.ObtenerRutaArchivo("Proceso", int.Parse(txtIdProceso.Text), Common.Enum.Extension.PDF);
+                    txtDocumento.Text = _utils.ObtenerRutaArchivo(Constantes.Carpetas.Proceso, int.Parse(txtIdProceso.Text), Common.Enum.Extension.PDF);
                     btnVerPdf.Visible = true;
                 }
             }

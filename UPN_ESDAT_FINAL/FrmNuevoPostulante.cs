@@ -16,7 +16,7 @@ namespace UPN_ESDAT_FINAL
 
         Common.Enum.AccionBoton accion = Common.Enum.AccionBoton.Default;
 
-        List<string> _ocultarColumnas = new List<string> { "Id", "Documentos" };
+        List<string> _ocultarColumnas = new List<string> { "Id", "Documentos", "IdProceso" };
         List<string> _ordenColumnas = new List<string>();
         Dictionary<string, int> _tamanioColumnas = new Dictionary<string, int> {
             { "Nombres", 150 },
@@ -24,9 +24,12 @@ namespace UPN_ESDAT_FINAL
             { "Email", 300 }
         };
 
-        public FrmNuevoPostulante()
+        bool _cerrarDespuesGuardar = false;
+
+        public FrmNuevoPostulante(bool cerrarDespuesGuardar = false)
         {
             InitializeComponent();
+            _cerrarDespuesGuardar = cerrarDespuesGuardar;
         }
 
         private void TextboxAccion(bool valor, bool limpiar = true)
@@ -39,6 +42,7 @@ namespace UPN_ESDAT_FINAL
                 txtEmail.Clear();
                 txtCelular.Clear();
                 txtCV.Clear();
+                txtDNICE.Clear();
             }
 
             txtIdPostulante.Enabled = valor;
@@ -47,6 +51,7 @@ namespace UPN_ESDAT_FINAL
             txtEmail.Enabled = valor;
             txtCelular.Enabled = valor;
             txtCV.Enabled = valor;
+            txtDNICE.Enabled = valor;
             btnSubir.Enabled = valor;
             btnVerPdf.Enabled = valor;
 
@@ -60,6 +65,17 @@ namespace UPN_ESDAT_FINAL
             _utils.CargarDatosEnGridView(dgvPostulante, postulantes, _ocultarColumnas, false, _tamanioColumnas, _ordenColumnas);
 
             TextboxAccion(false);
+
+            if (_cerrarDespuesGuardar)
+            {
+                int nuevoId = _blPostulante.ObtenerTotalRegistros();
+
+                TextboxAccion(true);
+
+                txtIdPostulante.Text = _utils.GenerarId(nuevoId).ToString();
+
+                accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.Nuevo);
+            }
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -104,9 +120,10 @@ namespace UPN_ESDAT_FINAL
             postulanteModel.Celular = txtCelular.Text;
             postulanteModel.Email = txtEmail.Text;
             postulanteModel.FechaNacimiento = dtpFechaNac.Value.ToString("yyyy-MM-dd");
+            postulanteModel.Dni = txtDNICE.Text;
 
             // Documento
-            postulanteModel.Documentos = _utils.CopiarArchivo(txtCV.Text, Common.Enum.Extension.PDF, postulanteModel.Id, "Postulante");
+            postulanteModel.Documentos = _utils.CopiarArchivo(txtCV.Text, Common.Enum.Extension.PDF, postulanteModel.Id, Constantes.Carpetas.Postulante);
 
             switch (accion)
             {
@@ -127,6 +144,12 @@ namespace UPN_ESDAT_FINAL
             }
 
             _utils.MostrarMensaje("Datos registrados correctamente!", Common.Enum.TipoMensaje.Informativo);
+
+            if (_cerrarDespuesGuardar)
+            {
+                this.Close();
+                return;
+            }
 
             List<PostulanteModel> postulantes = _blPostulante.ObtenerTodos();
 
@@ -175,13 +198,13 @@ namespace UPN_ESDAT_FINAL
                 txtEmail.Text = filaSeleccionada.Cells["Email"].Value.ToString();
                 txtCV.Text = filaSeleccionada.Cells["Documentos"].Value.ToString();
                 dtpFechaNac.Value = DateTime.ParseExact(filaSeleccionada.Cells["FechaNacimiento"].Value.ToString(), "yyyy-MM-dd", CultureInfo.InvariantCulture);
-
+                txtDNICE.Text = filaSeleccionada.Cells["Dni"].Value.ToString();
 
                 accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.EditarEliminar);
 
                 if (!string.IsNullOrEmpty(txtCV.Text))
                 {
-                    txtCV.Text = _utils.ObtenerRutaArchivo("Proceso", int.Parse(txtIdPostulante.Text), Common.Enum.Extension.PDF);
+                    txtCV.Text = _utils.ObtenerRutaArchivo(Constantes.Carpetas.Postulante, int.Parse(txtIdPostulante.Text), Common.Enum.Extension.PDF);
                     btnVerPdf.Visible = true;
                 }
             }

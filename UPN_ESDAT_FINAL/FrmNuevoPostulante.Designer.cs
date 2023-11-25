@@ -30,6 +30,8 @@
         {
             this.label7 = new System.Windows.Forms.Label();
             this.gbDatos = new System.Windows.Forms.GroupBox();
+            this.txtDNICE = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
@@ -70,6 +72,8 @@
             // 
             // gbDatos
             // 
+            this.gbDatos.Controls.Add(this.txtDNICE);
+            this.gbDatos.Controls.Add(this.label9);
             this.gbDatos.Controls.Add(this.btnEliminar);
             this.gbDatos.Controls.Add(this.btnGuardar);
             this.gbDatos.Controls.Add(this.btnNuevo);
@@ -98,6 +102,23 @@
             this.gbDatos.TabStop = false;
             this.gbDatos.Text = "Datos";
             // 
+            // txtDNICE
+            // 
+            this.txtDNICE.Location = new System.Drawing.Point(82, 130);
+            this.txtDNICE.MaxLength = 20;
+            this.txtDNICE.Name = "txtDNICE";
+            this.txtDNICE.Size = new System.Drawing.Size(142, 21);
+            this.txtDNICE.TabIndex = 5;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(26, 133);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(50, 15);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "DNI/CE:";
+            // 
             // btnEliminar
             // 
             this.btnEliminar.Location = new System.Drawing.Point(519, 132);
@@ -116,7 +137,7 @@
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(105, 46);
-            this.btnGuardar.TabIndex = 22;
+            this.btnGuardar.TabIndex = 10;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -139,7 +160,7 @@
             this.btnVerPdf.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnVerPdf.Name = "btnVerPdf";
             this.btnVerPdf.Size = new System.Drawing.Size(158, 27);
-            this.btnVerPdf.TabIndex = 20;
+            this.btnVerPdf.TabIndex = 9;
             this.btnVerPdf.Text = "Ver archivo PDF";
             this.btnVerPdf.UseVisualStyleBackColor = false;
             this.btnVerPdf.Visible = false;
@@ -152,14 +173,14 @@
             this.btnSubir.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSubir.Name = "btnSubir";
             this.btnSubir.Size = new System.Drawing.Size(72, 27);
-            this.btnSubir.TabIndex = 19;
+            this.btnSubir.TabIndex = 8;
             this.btnSubir.Text = "Subir PDF";
             this.btnSubir.UseVisualStyleBackColor = true;
             this.btnSubir.Click += new System.EventHandler(this.btnSubir_Click);
             // 
             // txtCV
             // 
-            this.txtCV.Location = new System.Drawing.Point(230, 103);
+            this.txtCV.Location = new System.Drawing.Point(519, 106);
             this.txtCV.Name = "txtCV";
             this.txtCV.Size = new System.Drawing.Size(100, 21);
             this.txtCV.TabIndex = 13;
@@ -182,7 +203,7 @@
             this.dtpFechaNac.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtpFechaNac.Name = "dtpFechaNac";
             this.dtpFechaNac.Size = new System.Drawing.Size(153, 21);
-            this.dtpFechaNac.TabIndex = 11;
+            this.dtpFechaNac.TabIndex = 7;
             this.dtpFechaNac.Value = new System.DateTime(2005, 12, 31, 0, 0, 0, 0);
             // 
             // label6
@@ -197,9 +218,10 @@
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(403, 22);
+            this.txtEmail.MaxLength = 100;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(221, 21);
-            this.txtEmail.TabIndex = 9;
+            this.txtEmail.TabIndex = 6;
             // 
             // label5
             // 
@@ -213,9 +235,10 @@
             // txtCelular
             // 
             this.txtCelular.Location = new System.Drawing.Point(82, 103);
+            this.txtCelular.MaxLength = 20;
             this.txtCelular.Name = "txtCelular";
             this.txtCelular.Size = new System.Drawing.Size(142, 21);
-            this.txtCelular.TabIndex = 7;
+            this.txtCelular.TabIndex = 4;
             // 
             // label4
             // 
@@ -228,10 +251,12 @@
             // 
             // txtApellidos
             // 
+            this.txtApellidos.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtApellidos.Location = new System.Drawing.Point(82, 76);
+            this.txtApellidos.MaxLength = 100;
             this.txtApellidos.Name = "txtApellidos";
             this.txtApellidos.Size = new System.Drawing.Size(230, 21);
-            this.txtApellidos.TabIndex = 5;
+            this.txtApellidos.TabIndex = 3;
             // 
             // label3
             // 
@@ -244,10 +269,12 @@
             // 
             // txtNombres
             // 
+            this.txtNombres.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombres.Location = new System.Drawing.Point(82, 49);
+            this.txtNombres.MaxLength = 100;
             this.txtNombres.Name = "txtNombres";
             this.txtNombres.Size = new System.Drawing.Size(230, 21);
-            this.txtNombres.TabIndex = 3;
+            this.txtNombres.TabIndex = 2;
             // 
             // label2
             // 
@@ -278,7 +305,6 @@
             // dgvPostulante
             // 
             this.dgvPostulante.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPostulante.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgvPostulante.Location = new System.Drawing.Point(0, 236);
             this.dgvPostulante.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvPostulante.Name = "dgvPostulante";
@@ -290,7 +316,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(660, 519);
+            this.ClientSize = new System.Drawing.Size(660, 521);
             this.Controls.Add(this.dgvPostulante);
             this.Controls.Add(this.gbDatos);
             this.Controls.Add(this.label7);
@@ -333,5 +359,7 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnNuevo;
+        private System.Windows.Forms.TextBox txtDNICE;
+        private System.Windows.Forms.Label label9;
     }
 }

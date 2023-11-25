@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using UPN_ESDAT_FINAL.Model;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace UPN_ESDAT_FINAL.Common
 {
@@ -35,7 +36,7 @@ namespace UPN_ESDAT_FINAL.Common
             //string carpetaBase = AppDomain.CurrentDomain.BaseDirectory;
             //string rutaDestino = carpetaBase + @"\Files\Proceso\";
 
-            string rutaDestino = Path.Combine(Application.StartupPath, "Files", "Proceso");
+            string rutaDestino = Path.Combine(Application.StartupPath, "Files", carpeta);
             string ext = "";
             // Se selecciona extension
             switch (extension)
@@ -55,12 +56,11 @@ namespace UPN_ESDAT_FINAL.Common
             return Path.Combine(rutaDestino, carpeta);
         }
 
-        public string CopiarArchivo(string documento, Enum.Extension extension, int id = 0, string nombre = "")
+        public string CopiarArchivo(string documento, Enum.Extension extension, int id = 0, string nombreCarpetaArchivo = "")
         {
             // Combina la carpeta base con la ruta relativa al archivo
-            string carpetaBase = AppDomain.CurrentDomain.BaseDirectory;
-            string rutaDestino = carpetaBase + @"\Files\Proceso\";
-            
+            string rutaDestino = Path.Combine(Application.StartupPath, "Files", nombreCarpetaArchivo);
+
             // Obtener el nombre del archivo seleccionado
             string nombreArchivo = Path.GetFileName(documento);
 
@@ -79,7 +79,7 @@ namespace UPN_ESDAT_FINAL.Common
             }
 
             // Generar un nuevo nombre para el archivo (puedes personalizar esta lógica)
-            string nuevoNombre = $"{this.GenerarFormatoDocumento(id, nombre)}.{ext}";
+            string nuevoNombre = $"{this.GenerarFormatoDocumento(id, nombreCarpetaArchivo)}.{ext}";
            
             // Construir la ruta completa de destino
             string rutaCompletaDestino = Path.Combine(rutaDestino, nuevoNombre);
@@ -194,9 +194,27 @@ namespace UPN_ESDAT_FINAL.Common
             return todosTextBoxNoVacios && comboBoxSeleccionado;
         }
 
-        public void CargarDatosEnGridView<T>(DataGridView dataGridView, List<T> listaModel, 
-            List<string> columnasOcultar = null, bool ultimaColumnaFill = false,
-            Dictionary<string, int> tamanosColumnas = null, List<string> ordenColumnas = null)
+        /// <summary>
+        /// Configura y carga datos en un DataGridView, incluyendo columnas dinámicas,
+        /// ocultar columnas, ajuste de tamaño de columnas, orden de columnas,
+        /// y botones dinámicos con funciones asociadas al hacer clic.
+        /// </summary>
+        /// <typeparam name="T">Tipo de elementos en la lista de datos</typeparam>
+        /// <param name="dataGridView">DataGridView a configurar y llenar</param>
+        /// <param name="listaModel">Lista de datos a cargar en el DataGridView</param>
+        /// <param name="columnasOcultar">Lista de nombres de columnas a ocultar</param>
+        /// <param name="ultimaColumnaFill">Indica si la última columna debe ocupar todo el espacio disponible</param>
+        /// <param name="tamanosColumnas">Diccionario con tamaños personalizados para columnas</param>
+        /// <param name="ordenColumnas">Lista de nombres de columnas en el orden deseado</param>
+        /// <param name="funcionesBotones">Diccionario que asocia funciones a nombres de columnas de botones</param
+        public void CargarDatosEnGridView<T>(
+            DataGridView dataGridView, 
+            List<T> listaModel, 
+            List<string> columnasOcultar = null, 
+            bool ultimaColumnaFill = false,
+            Dictionary<string, int> tamanosColumnas = null, 
+            List<string> ordenColumnas = null,
+            Dictionary<string, string> funcionesBotones = null)
         {
             dataGridView.MultiSelect = false;
             dataGridView.AllowUserToAddRows = false;
@@ -251,6 +269,27 @@ namespace UPN_ESDAT_FINAL.Common
                 }
 
                 dataGridView.Rows.Add(fila);
+            }
+
+            // Agregar columnas de botones si se proporcionan
+            if (funcionesBotones != null && funcionesBotones.Count > 0)
+            {
+                foreach (var kvp in funcionesBotones)
+                {
+                    string nombreBoton = kvp.Key;
+                    string textoBoton = kvp.Value;
+
+                    // Agregar columna de botón al DataGridView
+                    DataGridViewButtonColumn botonColumn = new DataGridViewButtonColumn
+                    {
+                        Name = nombreBoton,
+                        HeaderText = textoBoton,
+                        Text = textoBoton,
+                        UseColumnTextForButtonValue = true
+                    };
+
+                    dataGridView.Columns.Add(botonColumn);
+                }
             }
 
             columnasOcultar = columnasOcultar ?? new List<string>();
