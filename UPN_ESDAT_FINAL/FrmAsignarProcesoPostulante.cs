@@ -177,6 +177,7 @@ namespace UPN_ESDAT_FINAL
             if (string.IsNullOrEmpty(txtObservaciones.Text))
             {
                 _utils.MostrarMensaje("Debe completar el campo observaciones!", Common.Enum.TipoMensaje.Informativo);
+                return;
             }
 
             ProcesoPostulanteModel posDet = new ProcesoPostulanteModel();
