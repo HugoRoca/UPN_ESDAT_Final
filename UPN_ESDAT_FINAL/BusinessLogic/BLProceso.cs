@@ -23,11 +23,6 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
             return _dataProceso.Leer();
         }
 
-        public int ContarRegistros()
-        {
-            return _dataProceso.ContarRegistros();
-        }
-
         public void ActualizarRegistro(ProcesoModel procesoModel)
         {
             _dataProceso.Actualizar(p => p.Id == procesoModel.Id, update =>
@@ -40,7 +35,15 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
             });
         }
 
-        public void EliminarRegistros(int id)
+        public void ActualizarEstado(ProcesoModel procesoModel)
+        {
+            _dataProceso.Actualizar(p => p.Id == procesoModel.Id, update =>
+            {
+                update.Estado = procesoModel.Estado;
+            });
+        }
+
+        public void EliminarRegistros(string id)
         {
             _dataProceso.Eliminar(p => p.Id == id);
         }
@@ -57,9 +60,9 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
             return _dataProceso.Buscar(p => p.Estado == estado);
         }
 
-        public ProcesoModel BuscarPorId(int id)
+        public ProcesoModel BuscarPorId(string id)
         {
-            List<ProcesoModel> procesos = _dataProceso.Buscar(p=> p.Id == id);
+            List<ProcesoModel> procesos = _dataProceso.Buscar(p => p.Id == id);
 
             if (!procesos.Any()) return new ProcesoModel();
 

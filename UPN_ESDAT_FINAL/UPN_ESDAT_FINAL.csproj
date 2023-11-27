@@ -79,7 +79,6 @@
     <Compile Include="BusinessLogic\BLArea.cs" />
     <Compile Include="BusinessLogic\BLMenu.cs" />
     <Compile Include="BusinessLogic\BLPostulante.cs" />
-    <Compile Include="BusinessLogic\BLPostulanteDetalle.cs" />
     <Compile Include="BusinessLogic\BLProceso.cs" />
     <Compile Include="BusinessLogic\BLProcesoPostulante.cs" />
     <Compile Include="BusinessLogic\BLRol.cs" />
@@ -156,7 +155,6 @@
     </Compile>
     <Compile Include="Model\AreaModel.cs" />
     <Compile Include="Model\MenuModel.cs" />
-    <Compile Include="Model\PostulanteDetalleModel.cs" />
     <Compile Include="Model\PostulanteModel.cs" />
     <Compile Include="Model\ProcesoModel.cs" />
     <Compile Include="Model\ProcesoPostulanteModel.cs" />
@@ -226,9 +224,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Files\CSV\Postulante.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Files\CSV\PostulanteDetalle.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Files\CSV\Proceso.csv">
@@ -336,6 +331,15 @@
     <None Include="Files\Postulante\P000030_Postulante.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Files\Postulante\P6f19d252-d66d-4075-a36c-2e182b832d39_Postulante.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Postulante\P74555e40-1278-49ed-ab8f-f9cb1d942f79_Postulante.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Postulante\P8a49a125-bb6b-4114-b419-1931e92aa7a1_Postulante.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Files\Proceso\P000001_Proceso.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -424,6 +428,33 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Files\Proceso\P000030_Proceso.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Proceso\P055d37a8-0df8-48e2-bfee-a6f748d809c3_Proceso.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Proceso\P106ecef9-224b-434c-961e-616b5ed55d61_Proceso.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Proceso\P18788843-608d-48d0-b3c0-3fcb3b503ad2_Proceso.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Proceso\P1ce0fac2-9959-4d91-98b1-6ea71d400d66_Proceso.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Proceso\P3c039694-d751-4b06-a120-265897946d86_Proceso.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Proceso\P50039563-6fa8-4439-8b1b-709e6038432d_Proceso.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Proceso\Pb8cc4bf9-4274-49bb-b6d0-f69705bfbd39_Proceso.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Proceso\Pce7b5f94-014b-4377-a368-7913411a13a6_Proceso.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Proceso\Peb624feb-7b8d-4396-809a-c452759c54cf_Proceso.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">

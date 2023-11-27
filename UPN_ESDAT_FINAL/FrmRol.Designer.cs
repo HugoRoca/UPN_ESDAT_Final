@@ -64,7 +64,7 @@
             this.txtIdRol.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtIdRol.Name = "txtIdRol";
             this.txtIdRol.ReadOnly = true;
-            this.txtIdRol.Size = new System.Drawing.Size(93, 21);
+            this.txtIdRol.Size = new System.Drawing.Size(167, 21);
             this.txtIdRol.TabIndex = 1;
             // 
             // gbDatos

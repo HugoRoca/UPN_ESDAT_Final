@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 using UPN_ESDAT_FINAL.Model;
 using UPN_ESDAT_FINAL.Repository;
 
@@ -20,11 +21,6 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
             return _dataPostulante.Leer();
         }
 
-        public int ObtenerTotalRegistros()
-        {
-            return _dataPostulante.ContarRegistros();
-        }
-
         public void Insertar(PostulanteModel postulanteModel)
         {
             _dataPostulante.Crear(postulanteModel);
@@ -42,10 +38,20 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
                 update.Documentos = postulanteModel.Documentos;
                 update.Dni = postulanteModel.Dni;
                 update.IdProceso = postulanteModel.IdProceso;
+                update.Estado = postulanteModel.Estado;
             });
         }
 
-        public void Eliminar(int id)
+        public void ActualizarEstado(PostulanteModel postulanteModel)
+        {
+            _dataPostulante.Actualizar(p => p.Id == postulanteModel.Id, update =>
+            {
+                update.IdProceso = postulanteModel.IdProceso;
+                update.Estado = postulanteModel.Estado;
+            });
+        }
+
+        public void Eliminar(string id)
         {
             _dataPostulante.Eliminar(p => p.Id == id);
         }
@@ -57,6 +63,16 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
             if (!postulantes.Any()) return new PostulanteModel();
 
             return postulantes.FirstOrDefault(x => x.Dni == documento);
+        }
+
+        public PostulanteModel BuscarPorId(string id)
+        {
+            List<PostulanteModel> postulantes = _dataPostulante.Buscar(p => p.Id == id);
+
+            if (!postulantes.Any()) return new PostulanteModel();
+
+            return postulantes.FirstOrDefault(x => x.Id == id);
+
         }
     }
 }

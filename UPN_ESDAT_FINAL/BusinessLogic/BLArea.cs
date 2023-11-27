@@ -18,10 +18,5 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
         {
             return _dataArea.Leer();
         }
-
-        public int ContarRegistros()
-        {
-            return _dataArea.ContarRegistros();
-        }
     }
 }

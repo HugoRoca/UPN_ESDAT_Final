@@ -215,7 +215,7 @@
             this.txtId.Location = new System.Drawing.Point(88, 20);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
-            this.txtId.Size = new System.Drawing.Size(76, 21);
+            this.txtId.Size = new System.Drawing.Size(270, 21);
             this.txtId.TabIndex = 1;
             // 
             // label1

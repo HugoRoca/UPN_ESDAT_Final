@@ -290,7 +290,7 @@
             this.txtIdPostulante.Location = new System.Drawing.Point(82, 22);
             this.txtIdPostulante.Name = "txtIdPostulante";
             this.txtIdPostulante.ReadOnly = true;
-            this.txtIdPostulante.Size = new System.Drawing.Size(76, 21);
+            this.txtIdPostulante.Size = new System.Drawing.Size(230, 21);
             this.txtIdPostulante.TabIndex = 1;
             // 
             // label1

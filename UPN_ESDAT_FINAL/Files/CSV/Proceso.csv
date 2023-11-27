@@ -1,31 +1,10 @@
-Id|DescripcionCorta|DescripcionLarga|IdArea|Documentos|Estado
-1|Desarrollador Web|Se busca un desarrollador web con experiencia en HTML, CSS, y JavaScript.|2|P000001_Proceso.pdf|FINALIZADO
-2|Analista de Datos|Se requiere un analista de datos para analizar y visualizar la información de la empresa.|3|P000002_Proceso.pdf|EN PAUSA
-3|Especialista en Marketing Digital|Buscamos un experto en marketing digital para impulsar la presencia en línea de la empresa.|1|P000003_Proceso.pdf|FINALIZADO
-4|Ingeniero de Redes|Estamos en búsqueda de un ingeniero de redes con experiencia en configuración y mantenimiento de redes.|2|P000004_Proceso.pdf|FINALIZADO
-5|Diseñador Gráfico|Se necesita un diseñador gráfico creativo para desarrollar material visual atractivo.|4|P000005_Proceso.pdf|FINALIZADO
-6|Coordinador de Proyectos|Estamos buscando un coordinador de proyectos para supervisar la implementación de nuevas iniciativas.|1|P000006_Proceso.pdf|INHABILITADO
-7|Especialista en Recursos Humanos|Buscamos un profesional en recursos humanos para gestionar el proceso de contratación y desarrollo del personal.|3|P000007_Proceso.pdf|ACTIVO
-8|Técnico de Soporte IT|Se busca un técnico de soporte IT para brindar asistencia técnica a los usuarios internos.|2|P000008_Proceso.pdf|FINALIZADO
-9|Asistente Administrativo|Estamos en la búsqueda de un asistente administrativo para apoyar en tareas administrativas diarias.|4|P000009_Proceso.pdf|EN PAUSA
-10|Especialista en Calidad|Buscamos un especialista en control de calidad para asegurar la excelencia en nuestros productos y servicios.|1|P000010_Proceso.pdf|FINALIZADO
-11|Desarrollador de Aplicaciones Móviles|Se requiere un desarrollador de aplicaciones móviles con experiencia en iOS y Android.|2|P000011_Proceso.pdf|EN PAUSA
-12|Economista|Estamos en búsqueda de un economista para analizar y prever tendencias económicas.|3|P000012_Proceso.pdf|FINALIZADO
-13|Asesor Jurídico|Buscamos un asesor jurídico para brindar asesoramiento legal a la empresa.|4|P000013_Proceso.pdf|FINALIZADO
-14|Especialista en Seguridad Informática|Se necesita un especialista en seguridad informática para garantizar la protección de la información.|2|P000014_Proceso.pdf|INHABILITADO
-15|Asistente de Marketing|Estamos en la búsqueda de un asistente de marketing para apoyar en la ejecución de estrategias de marketing.|1|P000015_Proceso.pdf|INHABILITADO
-16|Ingeniero de Software|Buscamos un ingeniero de software para liderar el desarrollo de nuevas aplicaciones.|2|documentos_ingeniero.pdf|EN PAUSA
-17|Analista Financiero|Estamos en búsqueda de un analista financiero para evaluar y mejorar la salud financiera de la empresa.|3|documentos_financiero.pdf|ACTIVO
-18|Especialista en Comunicaciones|Buscamos un especialista en comunicaciones para gestionar la imagen y la reputación de la empresa.|1|documentos_comunicaciones.pdf|ACTIVO
-19|Técnico de Laboratorio|Se necesita un técnico de laboratorio para realizar pruebas y análisis de productos.|4|documentos_laboratorio.pdf|INHABILITADO
-20|Asistente de Recursos Humanos|Estamos en la búsqueda de un asistente de recursos humanos para apoyar en tareas administrativas del departamento.|3|documentos_asistente_rrhh.pdf|FINALIZADO
-21|Desarrollador Full Stack|Buscamos un desarrollador Full Stack con experiencia en tecnologías front-end y back-end.|2|documentos_fullstack.pdf|ACTIVO
-22|Especialista en Logística|Estamos en búsqueda de un especialista en logística para optimizar los procesos de distribución.|4|documentos_logistica.pdf|FINALIZADO
-23|Diseñador de Experiencia de Usuario (UX)|Se busca un diseñador UX para mejorar la experiencia del usuario en nuestras plataformas digitales.|1|documentos_ux.pdf|ACTIVO
-24|Gestor de Proyectos de Construcción|Buscamos un gestor de proyectos con experiencia en el sector de la construcción.|3|documentos_construccion.pdf|ACTIVO
-25|Especialista en Inteligencia Artificial|Estamos en búsqueda de un experto en inteligencia artificial para desarrollar soluciones innovadoras.|2|documentos_ai.pdf|EN PAUSA
-26|Asistente Administrativo de Ventas|Se necesita un asistente administrativo para apoyar en el departamento de ventas.|1|documentos_ventas.pdf|FINALIZADO
-27|Ingeniero de Sistemas|Buscamos un ingeniero de sistemas para el diseño y mantenimiento de sistemas informáticos.|2|documentos_sistemas.pdf|EN PAUSA
-28|Coordinador de Eventos|Estamos en la búsqueda de un coordinador de eventos para organizar actividades corporativas.|4|documentos_eventos.pdf|FINALIZADO
-29|Especialista en Desarrollo Organizacional|Buscamos un especialista en desarrollo organizacional para fortalecer la cultura empresarial.|3|documentos_desarrollo_org.pdf|INHABILITADO
-30|Analista de Seguridad de la Información|Se requiere un analista de seguridad de la información para proteger los activos digitales de la empresa.|2|documentos_seguridad_info.pdf|FINALIZADO
+ï»¿Id|DescripcionCorta|DescripcionLarga|IdArea|Documentos|Estado|Area
+50039563-6fa8-4439-8b1b-709e6038432d|Desarrollador Web|Se busca un desarrollador web con experiencia en HTML, CSS, y JavaScript.|1|P50039563-6fa8-4439-8b1b-709e6038432d_Proceso.pdf|ACTIVO|
+ce7b5f94-014b-4377-a368-7913411a13a6|Analista de Datos|Se requiere un analista de datos para analizar y visualizar la informaciÃ³n de la empresa.|1|Pce7b5f94-014b-4377-a368-7913411a13a6_Proceso.pdf|ACTIVO|
+b8cc4bf9-4274-49bb-b6d0-f69705bfbd39|Ingeniero de Redes|Estamos en bÃºsqueda de un ingeniero de redes con experiencia en configuraciÃ³n y mantenimiento de redes.|1|Pb8cc4bf9-4274-49bb-b6d0-f69705bfbd39_Proceso.pdf|ACTIVO|
+18788843-608d-48d0-b3c0-3fcb3b503ad2|DiseÃ±ador GrÃ¡fico|Se necesita un diseÃ±ador grÃ¡fico creativo para desarrollar material visual atractivo.|1|P18788843-608d-48d0-b3c0-3fcb3b503ad2_Proceso.pdf|ACTIVO|
+3c039694-d751-4b06-a120-265897946d86|Coordinador de Proyectos|Estamos buscando un coordinador de proyectos para supervisar la implementaciÃ³n de nuevas iniciativas.|1|P3c039694-d751-4b06-a120-265897946d86_Proceso.pdf|ACTIVO|
+055d37a8-0df8-48e2-bfee-a6f748d809c3|Especialista en Recursos Humanos|Buscamos un profesional en recursos humanos para gestionar el proceso de contrataciÃ³n y desarrollo del personal|4|P055d37a8-0df8-48e2-bfee-a6f748d809c3_Proceso.pdf|ACTIVO|
+1ce0fac2-9959-4d91-98b1-6ea71d400d66|TÃ©cnico de Soporte IT|Se busca un tÃ©cnico de soporte IT para brindar asistencia tÃ©cnica a los usuarios internos|1|P1ce0fac2-9959-4d91-98b1-6ea71d400d66_Proceso.pdf|ACTIVO|
+106ecef9-224b-434c-961e-616b5ed55d61|Asistente Administrativo|Estamos en la bÃºsqueda de un asistente administrativo para apoyar en tareas administrativas diarias.|5|P106ecef9-224b-434c-961e-616b5ed55d61_Proceso.pdf|EN PAUSA|
+eb624feb-7b8d-4396-809a-c452759c54cf|Desarrollador de Aplicaciones MÃ³viles|Se requiere un desarrollador de aplicaciones mÃ³viles con experiencia en iOS y Android.|1|Peb624feb-7b8d-4396-809a-c452759c54cf_Proceso.pdf|INHABILITADO|

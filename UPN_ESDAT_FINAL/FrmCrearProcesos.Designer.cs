@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCrearProcesos));
             this.gbDatosProceso = new System.Windows.Forms.GroupBox();
+            this.lblProcesoFinalizado = new System.Windows.Forms.Label();
             this.btnAsignarProceso = new System.Windows.Forms.Button();
             this.btnVerPdf = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -50,7 +51,6 @@
             this.txtDocumento = new System.Windows.Forms.TextBox();
             this.dgvProceso = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
-            this.lblProcesoFinalizado = new System.Windows.Forms.Label();
             this.gbDatosProceso.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProceso)).BeginInit();
             this.SuspendLayout();
@@ -85,11 +85,23 @@
             this.gbDatosProceso.TabStop = false;
             this.gbDatosProceso.Text = "Datos";
             // 
+            // lblProcesoFinalizado
+            // 
+            this.lblProcesoFinalizado.AutoSize = true;
+            this.lblProcesoFinalizado.BackColor = System.Drawing.Color.LimeGreen;
+            this.lblProcesoFinalizado.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProcesoFinalizado.Location = new System.Drawing.Point(532, 20);
+            this.lblProcesoFinalizado.Name = "lblProcesoFinalizado";
+            this.lblProcesoFinalizado.Size = new System.Drawing.Size(263, 31);
+            this.lblProcesoFinalizado.TabIndex = 21;
+            this.lblProcesoFinalizado.Text = "Proceso Finalizado";
+            this.lblProcesoFinalizado.Visible = false;
+            // 
             // btnAsignarProceso
             // 
             this.btnAsignarProceso.BackColor = System.Drawing.Color.Salmon;
             this.btnAsignarProceso.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAsignarProceso.Location = new System.Drawing.Point(462, 185);
+            this.btnAsignarProceso.Location = new System.Drawing.Point(463, 168);
             this.btnAsignarProceso.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.btnAsignarProceso.Name = "btnAsignarProceso";
             this.btnAsignarProceso.Size = new System.Drawing.Size(333, 46);
@@ -149,6 +161,7 @@
             // cbEstado
             // 
             this.cbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEstado.Enabled = false;
             this.cbEstado.FormattingEnabled = true;
             this.cbEstado.Location = new System.Drawing.Point(142, 228);
             this.cbEstado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -251,7 +264,7 @@
             this.txtIdProceso.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtIdProceso.Name = "txtIdProceso";
             this.txtIdProceso.ReadOnly = true;
-            this.txtIdProceso.Size = new System.Drawing.Size(89, 21);
+            this.txtIdProceso.Size = new System.Drawing.Size(296, 21);
             this.txtIdProceso.TabIndex = 1;
             // 
             // label1
@@ -296,18 +309,6 @@
             this.label7.Size = new System.Drawing.Size(830, 27);
             this.label7.TabIndex = 0;
             this.label7.Text = "PROCESO";
-            // 
-            // lblProcesoFinalizado
-            // 
-            this.lblProcesoFinalizado.AutoSize = true;
-            this.lblProcesoFinalizado.BackColor = System.Drawing.Color.LimeGreen;
-            this.lblProcesoFinalizado.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProcesoFinalizado.Location = new System.Drawing.Point(532, 20);
-            this.lblProcesoFinalizado.Name = "lblProcesoFinalizado";
-            this.lblProcesoFinalizado.Size = new System.Drawing.Size(263, 31);
-            this.lblProcesoFinalizado.TabIndex = 21;
-            this.lblProcesoFinalizado.Text = "Proceso Finalizado";
-            this.lblProcesoFinalizado.Visible = false;
             // 
             // FrmCrearProcesos
             // 

@@ -26,8 +26,7 @@ namespace UPN_ESDAT_FINAL
         {
             if (btnNuevo.Text == "Nuevo")
             {
-                int nuevoId = _blRol.ObtenerTotalRegistros();
-                txtIdRol.Text = _utils.GenerarId(nuevoId).ToString();
+                txtIdRol.Text = _utils.GenerarId().ToString();
 
                 txtDescripcion.Enabled = true;
                 txtDescripcion.Clear();

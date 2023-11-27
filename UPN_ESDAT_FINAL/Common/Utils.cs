@@ -4,33 +4,26 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
-using UPN_ESDAT_FINAL.Model;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace UPN_ESDAT_FINAL.Common
 {
     public class Utils
     {
-        public int GenerarId(int id)
+        public string GenerarId()
         {
-            return id + 1;
+            Guid uniqueId = Guid.NewGuid();
+            return uniqueId.ToString();
         }
 
-        public string GenerarFormatoDocumento(int id, string nombre)
+        public string GenerarFormatoDocumento(string id, string nombre)
         {
-            // Definir la cantidad máxima de ceros a la izquierda
-            int cantidadCeros = 6; // Puedes ajustar este valor según tus necesidades
-
-            // Formatear el número con ceros a la izquierda
-            string formatoId = id.ToString($"D{cantidadCeros}");
-
             // Combinar el formato y el nombre
-            string resultado = $"P{formatoId}_{nombre}";
+            string resultado = $"P{id}_{nombre}";
 
             return resultado;
         }
 
-        public string ObtenerRutaArchivo(string carpeta, int id, Enum.Extension extension)
+        public string ObtenerRutaArchivo(string carpeta, string id, Enum.Extension extension)
         {
             // Combina la carpeta base con la ruta relativa al archivo
             //string carpetaBase = AppDomain.CurrentDomain.BaseDirectory;
@@ -56,7 +49,7 @@ namespace UPN_ESDAT_FINAL.Common
             return Path.Combine(rutaDestino, carpeta);
         }
 
-        public string CopiarArchivo(string documento, Enum.Extension extension, int id = 0, string nombreCarpetaArchivo = "")
+        public string CopiarArchivo(string documento, Enum.Extension extension, string id = "", string nombreCarpetaArchivo = "")
         {
             // Combina la carpeta base con la ruta relativa al archivo
             string rutaDestino = Path.Combine(Application.StartupPath, "Files", nombreCarpetaArchivo);
@@ -145,33 +138,6 @@ namespace UPN_ESDAT_FINAL.Common
             }
 
             return true;
-        }
-
-        public void MostrarDatosEnGridView<T>(DataGridView dataGridView, List<T> listaModel)
-        {
-            // Limpiar las filas existentes en el DataGridView
-            dataGridView.Rows.Clear();
-
-            // Obtener las propiedades del tipo T
-            PropertyInfo[] propiedades = typeof(T).GetProperties();
-
-            // Iterar sobre la lista y agregar las filas al DataGridView
-            foreach (var item in listaModel)
-            {
-                DataGridViewRow fila = new DataGridViewRow();
-
-                // Iterar sobre las propiedades y agregar celdas a la fila
-                foreach (var propiedad in propiedades)
-                {
-                    DataGridViewTextBoxCell celda = new DataGridViewTextBoxCell();
-                    celda.Value = propiedad.GetValue(item)?.ToString() ?? ""; // Manejar valores nulos
-
-                    fila.Cells.Add(celda);
-                }
-
-                // Agregar la fila al DataGridView
-                dataGridView.Rows.Add(fila);
-            }
         }
 
         public bool ValidarCamposGroupBox(GroupBox groupBox)

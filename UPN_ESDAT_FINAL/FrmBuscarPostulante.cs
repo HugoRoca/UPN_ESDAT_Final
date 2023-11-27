@@ -22,16 +22,11 @@ namespace UPN_ESDAT_FINAL
 
             if (postulante == null || string.IsNullOrEmpty(postulante.Dni))
             {
-                bool message = _utils.MostrarMensaje("El postulante no existe, ¿Desea registrarlo?", Common.Enum.TipoMensaje.YesNoCancel);
+                if (!_utils.MostrarMensaje("El postulante no existe, ¿Desea registrarlo?", Common.Enum.TipoMensaje.YesNoCancel)) return;
 
-                if (message)
-                {
-                    FrmNuevoPostulante frmNuevoPostulante = new FrmNuevoPostulante(true);
-                    frmNuevoPostulante.Size = new System.Drawing.Size(676, 274);
-                    frmNuevoPostulante.ShowDialog();
-                }
-
-                return;
+                FrmNuevoPostulante frmNuevoPostulante = new FrmNuevoPostulante(true, txtDocumento.Text);
+                frmNuevoPostulante.Size = new System.Drawing.Size(676, 274);
+                frmNuevoPostulante.ShowDialog();    
             }
 
             postulante = _blPostulante.BuscarPorDocumento(txtDocumento.Text);

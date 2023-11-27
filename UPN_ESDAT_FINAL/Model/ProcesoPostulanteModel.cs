@@ -2,7 +2,11 @@
 {
     public class ProcesoPostulanteModel
     {
-        public int IdProceso { get; set; }
-        public int IdPostulante { get; set; }
+        public string Id { get; set; }
+        public string IdProceso { get; set; }
+        public string IdPostulante { get; set; }
+        public string Estado { get; set; }
+        public string Observaciones { get; set; }
+        public string Nombres { get; set; }
     }
 }

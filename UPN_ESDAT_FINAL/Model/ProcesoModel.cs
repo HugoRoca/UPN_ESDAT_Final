@@ -2,7 +2,7 @@
 {
     public class ProcesoModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string DescripcionCorta { get; set; }
         public string DescripcionLarga { get; set; }
         public int IdArea { get; set; }

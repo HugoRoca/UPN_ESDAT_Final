@@ -70,11 +70,9 @@ namespace UPN_ESDAT_FINAL
         {
             if (btnNuevo.Text == "Nuevo")
             {
-                int nuevoId = _blUsuario.ObtenerTotalRegistros();
-
                 TextboxAccion(true);
 
-                txtId.Text = _utils.GenerarId(nuevoId).ToString();
+                txtId.Text = _utils.GenerarId().ToString();
 
                 accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.Nuevo);
             }
@@ -94,7 +92,7 @@ namespace UPN_ESDAT_FINAL
             }
 
             UsuarioModel usuarioModel = new UsuarioModel();
-            usuarioModel.Id = int.Parse(txtId.Text);
+            usuarioModel.Id = txtId.Text;
             usuarioModel.Usuario = txtUsuario.Text;
             usuarioModel.Password = txtPassword.Text;
             usuarioModel.Nombres = txtNombres.Text;

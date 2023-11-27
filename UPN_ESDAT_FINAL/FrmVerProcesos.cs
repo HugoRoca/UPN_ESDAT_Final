@@ -121,10 +121,14 @@ namespace UPN_ESDAT_FINAL
                     // Mostrar los valores en TextBox
                     string proceso = filaSeleccionada.Cells["DescripcionCorta"].Value.ToString();
                     string estado = filaSeleccionada.Cells["Estado"].Value.ToString();
-                    int idProceso = int.Parse(filaSeleccionada.Cells["Id"].Value.ToString());
+                    string idProceso = filaSeleccionada.Cells["Id"].Value.ToString();
 
                     FrmListaProcesoPostulante frmListaProcesoPostulante = new FrmListaProcesoPostulante(idProceso, proceso, estado);
-                    frmListaProcesoPostulante.ShowDialog();
+                    
+                    if (frmListaProcesoPostulante.ShowDialog() == DialogResult.OK)
+                    {
+                        btnBuscar_Click(sender, e);
+                    }
                 }
             }
         }

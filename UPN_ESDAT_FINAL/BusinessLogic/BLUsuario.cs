@@ -55,7 +55,7 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
             });
         }
 
-        public void EliminarUsuario(int id)
+        public void EliminarUsuario(string id)
         {
             dataUsuario.Eliminar(p => p.Id == id);
         }
@@ -76,11 +76,6 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
             }
 
             return usuarios;
-        }
-
-        public int ObtenerTotalRegistros()
-        {
-            return dataUsuario.ContarRegistros();
         }
     }
 }

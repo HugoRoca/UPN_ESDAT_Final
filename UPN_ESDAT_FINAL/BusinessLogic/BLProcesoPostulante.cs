@@ -19,9 +19,27 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
             _dataProceso.Crear(procesoPostulanteModel);
         }
 
-        public List<ProcesoPostulanteModel> BuscarPorIdPostulante(int id)
+        public void ActualizarObservacion(ProcesoPostulanteModel procesoPostulanteModel)
+        {
+            _dataProceso.Actualizar(p => p.Id == procesoPostulanteModel.Id, pro =>
+            {
+                pro.Observaciones = procesoPostulanteModel.Observaciones;
+            });
+        }
+
+        public List<ProcesoPostulanteModel> BuscarPorIdPostulante(string id)
         {
             return _dataProceso.Buscar(p => p.IdPostulante == id);
+        }
+
+        public List<ProcesoPostulanteModel> BuscarPorIdProceso(string id)
+        {
+            return _dataProceso.Buscar(p => p.IdProceso == id);
+        }
+
+        public List<ProcesoPostulanteModel> BuscarPorIdPostulanteYProceso(string idPostulante, string idProceso)
+        {
+            return _dataProceso.Buscar(p => p.IdProceso == idProceso && p.IdPostulante == idPostulante);
         }
     }
 }

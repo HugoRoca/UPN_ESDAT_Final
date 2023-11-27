@@ -11,12 +11,14 @@ namespace UPN_ESDAT_FINAL
     public partial class FrmAsignarProcesoPostulante : Form
     {
         BLProceso _blProceso = new BLProceso();
-        BLPostulanteDetalle _blPostulanteDetalle = new BLPostulanteDetalle();
+        BLPostulante _blPostulante = new BLPostulante();
+        BLProcesoPostulante _blProcesoPostulante = new BLProcesoPostulante();
+
         Utils _utils = new Utils();
         Listas _listas = new Listas();
 
-        List<PostulanteDetalleModel> listaPosDet = new List<PostulanteDetalleModel>();
         PostulanteModel _postulante;
+        List<ProcesoPostulanteModel> listaProcesoPostulante = new List<ProcesoPostulanteModel>();
         List<string> _ocultarColumnas = new List<string> { "Id", "IdArea", "Documentos", "DescripcionLarga", "Area" };
         Dictionary<string, int> _tamanioColumnas = new Dictionary<string, int> {
             { "DescripcionCorta", 250 },
@@ -39,16 +41,16 @@ namespace UPN_ESDAT_FINAL
             lblDocumento.Text = _postulante.Dni;
             txtCV.Text = _utils.ObtenerRutaArchivo(Constantes.Carpetas.Postulante, _postulante.Id, Common.Enum.Extension.PDF);
 
-            if (_postulante.IdProceso == 0)
+            if (string.IsNullOrEmpty(_postulante.IdProceso))
             {
-                procesoEnProceso();
+                PostulanteSinProceso();
                 return;
             }
 
             // Postulante cuando ya tiene asignado un proceso
             ProcesoModel proceso = _blProceso.BuscarPorId(_postulante.IdProceso);
 
-            if (proceso.Id == 0)
+            if (string.IsNullOrEmpty(proceso.Id))
             {
                 _utils.MostrarMensaje("Hubo un problema al encontrar el proceso asignado", Common.Enum.TipoMensaje.Advertencia);
                 this.Close();
@@ -57,6 +59,7 @@ namespace UPN_ESDAT_FINAL
             switch (proceso.Estado)
             {
                 case Constantes.EstadoProceso.Activo:
+                case Constantes.EstadoProceso.EnPausa:
                     ProcesoActivo();
                     break;
                 case Constantes.EstadoProceso.Finalizado:
@@ -86,7 +89,7 @@ namespace UPN_ESDAT_FINAL
                     DataGridViewRow filaSeleccionada = dgvProcesos.Rows[e.RowIndex];
 
                     // Obtener los valores de las celdas en la fila seleccionada
-                    int idProceso = int.Parse(filaSeleccionada.Cells["Id"].Value.ToString());
+                    string idProceso = filaSeleccionada.Cells["Id"].Value.ToString();
 
                     ProcesoModel procesoModel = _blProceso.BuscarPorId(idProceso);
 
@@ -103,7 +106,7 @@ namespace UPN_ESDAT_FINAL
         }
 
 
-        private void procesoEnProceso()
+        private void PostulanteSinProceso()
         {
             List<ProcesoModel> procesos = _blProceso.ObtenerPorEstado(Constantes.EstadoProceso.Activo);
 
@@ -132,15 +135,15 @@ namespace UPN_ESDAT_FINAL
 
         private void CargarGriViewEstados()
         {
-            listaPosDet = _blPostulanteDetalle.ObtenerDetalle(_postulante.Id);
+            listaProcesoPostulante = _blProcesoPostulante.BuscarPorIdPostulanteYProceso(_postulante.Id, _postulante.IdProceso);
 
-            List<string> _ocultarColumnas = new List<string> { "Id", "IdProceso", "IdPostulante" };
+            List<string> _ocultarColumnas = new List<string> { "Id", "IdProceso", "IdPostulante", "Nombres" };
             List<string> _ordenColumnas = new List<string> { "Estado", "Observaciones" };
             Dictionary<string, int> _tamanioColumnas = new Dictionary<string, int> {
-                { "Observaciones", 150 }
+                { "Observaciones", 320 }
             };
 
-            _utils.CargarDatosEnGridView(dgvEstadosPostulante, listaPosDet, _ocultarColumnas, true, _tamanioColumnas, _ordenColumnas, null);
+            _utils.CargarDatosEnGridView(dgvEstadosPostulante, listaProcesoPostulante, _ocultarColumnas, true, _tamanioColumnas, _ordenColumnas, null);
         }
 
         private void CargarEstadosPostulante()
@@ -163,27 +166,44 @@ namespace UPN_ESDAT_FINAL
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            PostulanteDetalleModel posDet = new PostulanteDetalleModel();
-            posDet.Id = _utils.GenerarId(_blPostulanteDetalle.ContarRegistros());
+            ProcesoModel procesoModel = _blProceso.BuscarPorId(_postulante.IdProceso);
+
+            if (procesoModel.Estado != Constantes.EstadoProceso.Activo)
+            {
+                _utils.MostrarMensaje("Para registrar estados el proceso debe estar activo!", Common.Enum.TipoMensaje.Informativo);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtObservaciones.Text))
+            {
+                _utils.MostrarMensaje("Debe completar el campo observaciones!", Common.Enum.TipoMensaje.Informativo);
+            }
+
+            ProcesoPostulanteModel posDet = new ProcesoPostulanteModel();
+            posDet.Id = _utils.GenerarId();
             posDet.IdPostulante = _postulante.Id;
             posDet.IdProceso = _postulante.IdProceso;
             posDet.Observaciones = txtObservaciones.Text;
             posDet.Estado = cbEstados.Text;
 
-            PostulanteDetalleModel postulante = listaPosDet.FirstOrDefault(x => x.Estado == posDet.Estado) ?? new PostulanteDetalleModel();
+            ProcesoPostulanteModel postulante = listaProcesoPostulante.FirstOrDefault(x => x.Estado == posDet.Estado) ?? new ProcesoPostulanteModel();
 
-            if (postulante.Id > 0)
+            if (!string.IsNullOrEmpty(postulante.Id))
             {
                 if (_utils.MostrarMensaje("Solo debe existir un estado único por proceso, ¿Desea reemplazarlo?", Common.Enum.TipoMensaje.YesNoCancel))
                 {
                     posDet.Id = postulante.Id;
                     posDet.Observaciones = posDet.Observaciones;
 
-                    _blPostulanteDetalle.Actualizar(posDet);
+                    _blProcesoPostulante.ActualizarObservacion(posDet);
                 }
             } else
             {
-                _blPostulanteDetalle.Insertar(posDet);
+                _blProcesoPostulante.Insertar(posDet);
+
+                _postulante.Estado = posDet.Estado;
+
+                _blPostulante.Actualizar(_postulante);
             }
 
             txtObservaciones.Clear();

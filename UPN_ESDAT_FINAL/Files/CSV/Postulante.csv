@@ -1,31 +1,4 @@
-Id|Nombres|Apellidos|Celular|Email|FechaNacimiento|Documentos|Dni|IdProceso
-1|Brana|Bonucci|999147851|Brana.Bonucci@hotmail.com|2005-11-23|P000001_Postulante.pdf|00001234|24
-2|Aimil|Carmena|999147852|Aimil.Carmena@hotmail.com|2005-11-23|P000002_Postulante.pdf|12340000|26
-3|Maryellen|Lumbard|999147853|Maryellen.Lumbard@hotmail.com|2005-11-23|P000003_Postulante.pdf|01020101|0
-4|Deane|Mozelle|999147854|Deane.Mozelle@hotmail.com|2005-11-23|P000004_Postulante.pdf|10201000|0
-5|Barbi|Rustice|999147855|Barbi.Rustice@hotmail.com|2005-11-23|P000005_Postulante.pdf|00000122|0
-6|Jacquetta|Ellerey|999147856|Jacquetta.Ellerey@hotmail.com|2005-11-23|P000006_Postulante.pdf|95115009|0
-7|Elvira|Kendrick|999147857|Elvira.Kendrick@hotmail.com|2005-11-23|P000007_Postulante.pdf|12345678|0
-8|Elena|Keily|999147858|Elena.Keily@hotmail.com|2005-11-23|P000008_Postulante.pdf|01458754|0
-9|Giustina|Arathorn|999147859|Giustina.Arathorn@hotmail.com|2005-11-23|P000009_Postulante.pdf|02589632|0
-10|Suzette|Denis|9991478510|Suzette.Denis@hotmail.com|2005-11-23|P000010_Postulante.pdf|10203040|0
-11|Kathy|Neva|9991478511|Kathy.Neva@hotmail.com|2005-11-23|P000011_Postulante.pdf|14785874|0
-12|Carol-Jean|Gahl|9991478512|Carol-Jean.Gahl@hotmail.com|2005-11-23|P000012_Postulante.pdf|65988754|0
-13|Elora|Behre|9991478513|Elora.Behre@hotmail.com|2005-11-23|P000013_Postulante.pdf|32216554|0
-14|Adelle|Sherrie|9991478514|Adelle.Sherrie@hotmail.com|2005-11-23|P000014_Postulante.pdf|32549887|0
-15|Margalo|Alexandr|9991478515|Margalo.Alexandr@hotmail.com|2005-11-23|P000015_Postulante.pdf|21659887|0
-16|Aigneis|Land|9991478516|Aigneis.Land@hotmail.com|2005-11-23|P000016_Postulante.pdf|65986532|0
-17|Kamilah|Oriana|9991478517|Kamilah.Oriana@hotmail.com|2005-11-23|P000017_Postulante.pdf|21548798|0
-18|Babita|Claudine|9991478518|Babita.Claudine@hotmail.com|2005-11-23|P000018_Postulante.pdf|32323265|0
-19|Felice|Cressida|9991478519|Felice.Cressida@hotmail.com|2005-11-23|P000019_Postulante.pdf|45454565|0
-20|Gerrie|Nester|9991478520|Gerrie.Nester@hotmail.com|2005-11-23|P000020_Postulante.pdf|15915995|0
-21|Barbi|Si|9991478521|Barbi.Si@hotmail.com|2005-11-23|P000021_Postulante.pdf|65465412|0
-22|Brena|Fennessy|9991478522|Brena.Fennessy@hotmail.com|2005-11-23|P000022_Postulante.pdf|11223366|0
-23|Fanchon|Swigart|9991478523|Fanchon.Swigart@hotmail.com|2005-11-23|P000023_Postulante.pdf|14785326|0
-24|Emylee|Alrich|9991478524|Emylee.Alrich@hotmail.com|2005-11-23|P000024_Postulante.pdf|98798745|0
-25|Farrah|Larochelle|9991478525|Farrah.Larochelle@hotmail.com|2005-11-23|P000025_Postulante.pdf|65432165|0
-26|Kristina|Lorenz|9991478526|Kristina.Lorenz@hotmail.com|2005-11-23|P000026_Postulante.pdf|78945612|0
-27|Kaia|Riva|9991478527|Kaia.Riva@hotmail.com|2005-11-23|P000027_Postulante.pdf|65498712|0
-28|Amii|Yoko|9991478528|Amii.Yoko@hotmail.com|2005-11-23|P000028_Postulante.pdf|32659887|0
-29|Alie|Danby|9991478529|Alie.Danby@hotmail.com|2005-11-23|P000029_Postulante.pdf|65498721|0
-30|Merle|Bultman|9991478530|Merle.Bultman@hotmail.com|2005-11-23|P000030_Postulante.pdf|87654321|0
+﻿Id|Nombres|Apellidos|Celular|Email|FechaNacimiento|Documentos|Dni|IdProceso|Estado
+74555e40-1278-49ed-ab8f-f9cb1d942f79|MATEO ALEJANDRO|GARCÍA DÍAZ|987654321|mateo.gracia@gmail.com|1999-02-09|P74555e40-1278-49ed-ab8f-f9cb1d942f79_Postulante.pdf|12345678|50039563-6fa8-4439-8b1b-709e6038432d|EN EVALUACION PSICOTENICA
+8a49a125-bb6b-4114-b419-1931e92aa7a1|VALENTINA ISABELLA|PÉREZ SÁNCHEZ|987654321|valentina.perez@email.com|1998-12-27|P8a49a125-bb6b-4114-b419-1931e92aa7a1_Postulante.pdf|87654321|50039563-6fa8-4439-8b1b-709e6038432d|EN PROCESO
+6f19d252-d66d-4075-a36c-2e182b832d39|EMILIO SEBASTIÁN|PÉREZ MARTÍNEZ|90123456|emilio.perez@email|1990-12-31|P6f19d252-d66d-4075-a36c-2e182b832d39_Postulante.pdf|678654321||

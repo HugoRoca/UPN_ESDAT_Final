@@ -1,1 +1,4 @@
-IdProceso|IdPostulante|Estado
+﻿Id|IdProceso|IdPostulante|Estado|Observaciones|Nombres
+ea703de1-ee5a-4d5d-92a1-39f4a434d9c1|50039563-6fa8-4439-8b1b-709e6038432d|74555e40-1278-49ed-ab8f-f9cb1d942f79|EN PROCESO|Se vincula a proceso Desarrollador Web|
+ae804168-a2a6-477d-93e7-77d36272f7ba|50039563-6fa8-4439-8b1b-709e6038432d|74555e40-1278-49ed-ab8f-f9cb1d942f79|EN EVALUACION PSICOTENICA|En evaluación de la locura|
+ed568e4b-23cc-4910-94c1-a70057d37643|50039563-6fa8-4439-8b1b-709e6038432d|8a49a125-bb6b-4114-b419-1931e92aa7a1|EN PROCESO|Se vincula a proceso Desarrollador Web|

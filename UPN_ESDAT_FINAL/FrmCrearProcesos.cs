@@ -13,8 +13,7 @@ namespace UPN_ESDAT_FINAL
         BLProceso _blProceso = new BLProceso();
         BLPostulante _blPostulante = new BLPostulante();
         BLProcesoPostulante _blProcesoPostulante = new BLProcesoPostulante();
-        BLPostulanteDetalle _blPostulanteDetalle = new BLPostulanteDetalle();
-
+        
         Utils _utils = new Utils();
         Listas _listas = new Listas();
 
@@ -46,7 +45,7 @@ namespace UPN_ESDAT_FINAL
             CargarCombo();
             TextboxAccion(false);
 
-            if (_desdeFrmAsignar && _postulanteModel.IdProceso == 0)
+            if (_desdeFrmAsignar && string.IsNullOrEmpty(_postulanteModel.IdProceso))
             {
                 txtIdProceso.Text = _procesoModel.Id.ToString();
                 txtDescripcionCorta.Text = _procesoModel.DescripcionCorta;
@@ -57,7 +56,7 @@ namespace UPN_ESDAT_FINAL
 
                 if (!string.IsNullOrEmpty(txtDocumento.Text))
                 {
-                    txtDocumento.Text = _utils.ObtenerRutaArchivo(Constantes.Carpetas.Proceso, int.Parse(txtIdProceso.Text), Common.Enum.Extension.PDF);
+                    txtDocumento.Text = _utils.ObtenerRutaArchivo(Constantes.Carpetas.Proceso, txtIdProceso.Text, Common.Enum.Extension.PDF);
                     btnVerPdf.Visible = true;
                     btnVerPdf.Enabled = true;
                 }
@@ -102,12 +101,12 @@ namespace UPN_ESDAT_FINAL
                 txtDescripcionLarga.Clear();
                 txtDocumento.Clear();
                 cbArea.SelectedIndex = 0;
-                cbEstado.SelectedIndex = 0;
+                cbEstado.SelectedIndex = 1;
             }
 
             txtDescripcionCorta.Enabled = valor;
             txtDescripcionLarga.Enabled = valor;
-            cbEstado.Enabled = valor;
+            cbEstado.Enabled = false;
             cbArea.Enabled = valor;
             btnSubir.Enabled = valor;
             btnVerPdf.Enabled = valor;
@@ -152,13 +151,13 @@ namespace UPN_ESDAT_FINAL
             btnVerPdf.Visible = false;
             if (btnNuevo.Text == "Nuevo")
             {
-                int nuevoId = _blProceso.ContarRegistros();
-
                 TextboxAccion(true);
 
-                txtIdProceso.Text = _utils.GenerarId(nuevoId).ToString();
+                txtIdProceso.Text = _utils.GenerarId().ToString();
 
                 accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.Nuevo);
+
+                cbEstado.SelectedIndex = 1;
             }
             else
             {
@@ -183,7 +182,7 @@ namespace UPN_ESDAT_FINAL
             }
 
             ProcesoModel procesoModel = new ProcesoModel();
-            procesoModel.Id = int.Parse(txtIdProceso.Text);
+            procesoModel.Id = txtIdProceso.Text;
             procesoModel.DescripcionCorta = txtDescripcionCorta.Text;
             procesoModel.DescripcionLarga = txtDescripcionLarga.Text;
             procesoModel.IdArea = (int)cbArea.SelectedValue;
@@ -225,8 +224,9 @@ namespace UPN_ESDAT_FINAL
             if (!string.IsNullOrEmpty(txtIdProceso.Text))
             {
                 if (!_utils.MostrarMensaje("¿Está seguro que desea eliminar le registro?", Common.Enum.TipoMensaje.YesNoCancel)) return;
+                
                 // Obtener los valores de las celdas en la fila seleccionada
-                int Id = int.Parse(txtIdProceso.Text);
+                string Id = txtIdProceso.Text;
 
                 _blProceso.EliminarRegistros(Id);
 
@@ -261,7 +261,7 @@ namespace UPN_ESDAT_FINAL
 
                 if (!string.IsNullOrEmpty(txtDocumento.Text))
                 {
-                    txtDocumento.Text = _utils.ObtenerRutaArchivo(Constantes.Carpetas.Proceso, int.Parse(txtIdProceso.Text), Common.Enum.Extension.PDF);
+                    txtDocumento.Text = _utils.ObtenerRutaArchivo(Constantes.Carpetas.Proceso, txtIdProceso.Text, Common.Enum.Extension.PDF);
                     btnVerPdf.Visible = true;
                 }
             }
@@ -301,21 +301,21 @@ namespace UPN_ESDAT_FINAL
                 _postulanteModel.IdProceso = _procesoModel.Id;
                 _blPostulante.Actualizar(_postulanteModel);
 
-                _blProcesoPostulante.Insertar(new ProcesoPostulanteModel { IdPostulante = _postulanteModel.Id, IdProceso = _procesoModel.Id });
-
                 _postulanteModel.IdProceso = _procesoModel.Id;
                 _blPostulante.Actualizar(_postulanteModel);
 
-                int idposDet = _blPostulanteDetalle.ContarRegistros();
-
-                _blPostulanteDetalle.Insertar(new PostulanteDetalleModel
+                _blProcesoPostulante.Insertar(new ProcesoPostulanteModel
                 {
-                    Id = _utils.GenerarId(idposDet),
+                    Id = _utils.GenerarId(),
                     IdPostulante = _postulanteModel.Id,
                     IdProceso = _procesoModel.Id,
-                    Estado = "EN PROCESO",
+                    Estado = Constantes.EstadoPostulante.EnProceso,
                     Observaciones = $"Se vincula a proceso {_procesoModel.DescripcionCorta}"
                 });
+
+                _postulanteModel.Estado = Constantes.EstadoPostulante.EnProceso;
+
+                _blPostulante.Actualizar(_postulanteModel);
 
                 this.DialogResult = DialogResult.OK;
             }

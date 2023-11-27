@@ -25,11 +25,13 @@ namespace UPN_ESDAT_FINAL
         };
 
         bool _cerrarDespuesGuardar = false;
+        string _documento = "";
 
-        public FrmNuevoPostulante(bool cerrarDespuesGuardar = false)
+        public FrmNuevoPostulante(bool cerrarDespuesGuardar = false, string documento = "")
         {
             InitializeComponent();
             _cerrarDespuesGuardar = cerrarDespuesGuardar;
+            _documento = documento;
         }
 
         private void TextboxAccion(bool valor, bool limpiar = true)
@@ -60,22 +62,24 @@ namespace UPN_ESDAT_FINAL
 
         private void FrmNuevoPostulante_Load(object sender, EventArgs e)
         {
+            if (_cerrarDespuesGuardar)
+            {
+                TextboxAccion(true);
+
+                txtIdPostulante.Text = _utils.GenerarId().ToString();
+                txtDNICE.Text = _documento;
+                txtDNICE.ReadOnly = true;
+
+                accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.Nuevo);
+
+                return;
+            }
+
             List<PostulanteModel> postulantes = _blPostulante.ObtenerTodos();
 
             _utils.CargarDatosEnGridView(dgvPostulante, postulantes, _ocultarColumnas, false, _tamanioColumnas, _ordenColumnas);
 
             TextboxAccion(false);
-
-            if (_cerrarDespuesGuardar)
-            {
-                int nuevoId = _blPostulante.ObtenerTotalRegistros();
-
-                TextboxAccion(true);
-
-                txtIdPostulante.Text = _utils.GenerarId(nuevoId).ToString();
-
-                accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.Nuevo);
-            }
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -83,11 +87,9 @@ namespace UPN_ESDAT_FINAL
             btnVerPdf.Visible = false;
             if (btnNuevo.Text == "Nuevo")
             {
-                int nuevoId = _blPostulante.ObtenerTotalRegistros();
-
                 TextboxAccion(true);
 
-                txtIdPostulante.Text = _utils.GenerarId(nuevoId).ToString();
+                txtIdPostulante.Text = _utils.GenerarId().ToString();
 
                 accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.Nuevo);
             }
@@ -114,7 +116,7 @@ namespace UPN_ESDAT_FINAL
             }
 
             PostulanteModel postulanteModel = new PostulanteModel();
-            postulanteModel.Id = int.Parse(txtIdPostulante.Text);
+            postulanteModel.Id = txtIdPostulante.Text;
             postulanteModel.Nombres = txtNombres.Text;
             postulanteModel.Apellidos = txtApellidos.Text;
             postulanteModel.Celular = txtCelular.Text;
@@ -166,8 +168,9 @@ namespace UPN_ESDAT_FINAL
             if (!string.IsNullOrEmpty(txtIdPostulante.Text))
             {
                 if (!_utils.MostrarMensaje("¿Está seguro que desea eliminar le registro?", Common.Enum.TipoMensaje.YesNoCancel)) return;
+                
                 // Obtener los valores de las celdas en la fila seleccionada
-                int Id = int.Parse(txtIdPostulante.Text);
+                string Id = txtIdPostulante.Text;
 
                 _blPostulante.Eliminar(Id);
 
@@ -204,7 +207,7 @@ namespace UPN_ESDAT_FINAL
 
                 if (!string.IsNullOrEmpty(txtCV.Text))
                 {
-                    txtCV.Text = _utils.ObtenerRutaArchivo(Constantes.Carpetas.Postulante, int.Parse(txtIdPostulante.Text), Common.Enum.Extension.PDF);
+                    txtCV.Text = _utils.ObtenerRutaArchivo(Constantes.Carpetas.Postulante, txtIdPostulante.Text, Common.Enum.Extension.PDF);
                     btnVerPdf.Visible = true;
                 }
             }
