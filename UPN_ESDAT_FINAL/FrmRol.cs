@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using UPN_ESDAT_FINAL.BusinessLogic;
 using UPN_ESDAT_FINAL.Common;
 using UPN_ESDAT_FINAL.Model;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace UPN_ESDAT_FINAL
 {
@@ -55,6 +54,8 @@ namespace UPN_ESDAT_FINAL
             RolModel rolModel = new RolModel();
             rolModel.Id = int.Parse(txtIdRol.Text);
             rolModel.Descripcion = txtDescripcion.Text;
+
+            List<TreeNode> nodosMarcados = ObtenerNodosMarcados(tvOpciones);
 
             switch (accion)
             {
@@ -117,7 +118,7 @@ namespace UPN_ESDAT_FINAL
 
             txtDescripcion.Enabled = false;
 
-            CargarDatosEnCheckedListBox();
+            CargarDatosEnTreeView(0);
         }
 
         private void dgvRoles_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -137,32 +138,6 @@ namespace UPN_ESDAT_FINAL
             }
         }
 
-        private void ConstruirTreeView(int idRol)
-        {
-            List<MenuModel> menuModel = _blMenu.Obtener();
-            List<RolPermisoModel> rolPermisos = _blRol.ObtenerAccesoMenu(idRol);
-
-            // Construir el TreeView
-            foreach (var menu in menuModel)
-            {
-                TreeNode nodoMenu = new TreeNode(menu.Descripcion);
-
-                // Marcar los nodos que tienen permisos asignados
-                foreach (var permiso in rolPermisos)
-                {
-                    if (permiso.IdMenu == menu.Id)
-                    {
-                        TreeNode nodoPermiso = new TreeNode(permiso.DescripcionMenu);
-                        nodoPermiso.Tag = permiso; // Puedes almacenar el objeto Permiso en el Tag del nodo si necesitas más información
-                        nodoMenu.Nodes.Add(nodoPermiso);
-                        nodoPermiso.Checked = true; // Marcar el checkbox
-                    }
-                }
-
-                tvOpciones.Nodes.Add(nodoMenu);
-            }
-        }
-
         private void CargarDatosEnTreeView(int idRol)
         {
             tvOpciones.Nodes.Clear();
@@ -176,8 +151,7 @@ namespace UPN_ESDAT_FINAL
             {
                 if (menu.IdPadre == 0) // Es un nodo padre
                 {
-                    TreeNode nodoPadre = new TreeNode(menu.Descripcion);
-                    ConstruirNodosHijos(menu.Id, listaMenus, nodoPadre);
+                    TreeNode nodoPadre = ConstruirNodoConPermisos(menu, permisosRol, listaMenus);
                     tvOpciones.Nodes.Add(nodoPadre);
                 }
             }
@@ -185,100 +159,78 @@ namespace UPN_ESDAT_FINAL
             tvOpciones.ExpandAll();
         }
 
-        private void ConstruirNodosHijos(int idPadre, List<MenuModel> listaMenus, TreeNode nodoPadre)
+        private TreeNode ConstruirNodoConPermisos(MenuModel menu, List<RolPermisoModel> permisosRol, List<MenuModel> listaMenus)
         {
-            // Buscar nodos hijos para el nodo padre actual
-            foreach (var menu in listaMenus)
+            TreeNode nodoPadre = new TreeNode(menu.Descripcion);
+
+            // Verificar si el menú actual tiene permisos asignados al rol
+            if (TienePermiso(menu.Id, permisosRol))
             {
-                if (menu.IdPadre == idPadre)
-                {
-                    TreeNode nodoHijo = new TreeNode(menu.Descripcion);
-                    ConstruirNodosHijos(menu.Id, listaMenus, nodoHijo); // Construir nodos hijos recursivamente
-                    nodoPadre.Nodes.Add(nodoHijo);
-                }
+                // El rol tiene permisos para este menú, así que lo marcamos
+                nodoPadre.Checked = true;
+            }
+
+            // Construir nodos hijos recursivamente
+            ConstruirNodosHijosConPermisos(menu.Id, nodoPadre, permisosRol, listaMenus);
+
+            return nodoPadre;
+        }
+
+        private void ConstruirNodosHijosConPermisos(int idPadre, TreeNode nodoPadre, List<RolPermisoModel> permisosRol, List<MenuModel> listaMenus)
+        {
+            // Obtener los menús hijos para el nodo padre actual
+            List<MenuModel> hijos = ObtenerMenusHijos(idPadre, listaMenus);
+
+            foreach (var menu in hijos)
+            {
+                TreeNode nodoHijo = ConstruirNodoConPermisos(menu, permisosRol, listaMenus);
+
+                // Agregar el nodo hijo al nodo padre
+                nodoPadre.Nodes.Add(nodoHijo);
+
+                // Llamada recursiva para construir nodos hijos de este nodo hijo
+                ConstruirNodosHijosConPermisos(menu.Id, nodoHijo, permisosRol, listaMenus);
             }
         }
 
-        private void tvOpciones_AfterCheck(object sender, TreeViewEventArgs e)
+        private List<MenuModel> ObtenerMenusHijos(int idPadre, List<MenuModel> listaMenus)
         {
-            if (e.Action == TreeViewAction.ByMouse || e.Action == TreeViewAction.ByKeyboard)
-            {
-                // Solo procesar nodos con hijos
-                if (e.Node.Nodes.Count > 0)
-                {
-                    MarcarDesmarcarHijos(e.Node, e.Node.Checked);
-                }
-
-                // Procesar nodos padres
-                MarcarDesmarcarPadres(e.Node);
-            }
+            // Lógica para obtener los menús hijos de un nodo padre específico
+            // Puedes reemplazar esto con tu lógica real para obtener los menús hijos de la base de datos, por ejemplo.
+            return listaMenus.Where(x => x.IdPadre == idPadre).ToList();
         }
 
-        private void MarcarDesmarcarHijos(TreeNode nodo, bool marca)
+        private bool TienePermiso(int idMenu, List<RolPermisoModel> permisosRol)
         {
-            foreach (TreeNode hijo in nodo.Nodes)
-            {
-                hijo.Checked = marca;
-
-                // Llamar recursivamente para los nodos hijos
-                MarcarDesmarcarHijos(hijo, marca);
-            }
+            // Verificar si el rol tiene permisos para el menú específico
+            return permisosRol.Any(permiso => permiso.IdMenu == idMenu);
         }
 
-        private void MarcarDesmarcarPadres(TreeNode nodo)
+        private List<TreeNode> ObtenerNodosMarcados(TreeView treeView)
         {
-            // Verificar si el nodo tiene un padre y es un nodo padre (no un nodo hoja)
-            if (nodo.Parent != null && nodo.Parent.Nodes.Count > 0)
-            {
-                // Marcar el nodo padre si todos los nodos hijos están marcados
-                bool todosMarcados = true;
-                foreach (TreeNode hijo in nodo.Parent.Nodes)
-                {
-                    if (!hijo.Checked)
-                    {
-                        todosMarcados = false;
-                        break;
-                    }
-                }
+            List<TreeNode> nodosMarcados = new List<TreeNode>();
 
-                nodo.Parent.Checked = todosMarcados;
+            // Recorrer todos los nodos del árbol
+            foreach (TreeNode nodoPadre in treeView.Nodes)
+            {
+                ObtenerNodosMarcadosRecursivo(nodoPadre, nodosMarcados);
             }
 
-            // Llamar recursivamente al método para el nodo padre
-            if (nodo.Parent != null)
-            {
-                MarcarDesmarcarPadres(nodo.Parent);
-            }
+            return nodosMarcados;
         }
 
-        private void CargarDatosEnCheckedListBox()
+        private void ObtenerNodosMarcadosRecursivo(TreeNode nodo, List<TreeNode> nodosMarcados)
         {
-            // Simula la obtención de datos de la base de datos
-            List<MenuModel> listaMenus = _blMenu.Obtener();
-
-            // Construir el CheckedListBox
-            foreach (var menu in listaMenus)
+            // Verificar si el nodo actual está marcado
+            if (nodo.Checked)
             {
-                if (menu.IdPadre == 0) // Es un nodo principal
-                {
-                    chklMenu.Items.Add(menu.Descripcion, false);
-                    ConstruirHijosEnCheckedListBox(menu, listaMenus);
-                }
+                nodosMarcados.Add(nodo);
             }
-        }
 
-        private void ConstruirHijosEnCheckedListBox(MenuModel menuPadre, List<MenuModel> listaMenus)
-        {
-            foreach (var menuHijo in listaMenus)
+            // Llamada recursiva para los nodos hijos
+            foreach (TreeNode nodoHijo in nodo.Nodes)
             {
-                if (menuHijo.IdPadre == menuPadre.Id)
-                {
-                    int indicePadre = chklMenu.Items.IndexOf(menuPadre);
-                    chklMenu.Items.Insert(indicePadre + 1, menuHijo.Descripcion);
-
-                    // Llamar recursivamente para los hijos del hijo actual
-                    ConstruirHijosEnCheckedListBox(menuHijo, listaMenus);
-                }
+                ObtenerNodosMarcadosRecursivo(nodoHijo, nodosMarcados);
             }
         }
     }

@@ -79,7 +79,9 @@
     <Compile Include="BusinessLogic\BLArea.cs" />
     <Compile Include="BusinessLogic\BLMenu.cs" />
     <Compile Include="BusinessLogic\BLPostulante.cs" />
+    <Compile Include="BusinessLogic\BLPostulanteDetalle.cs" />
     <Compile Include="BusinessLogic\BLProceso.cs" />
+    <Compile Include="BusinessLogic\BLProcesoPostulante.cs" />
     <Compile Include="BusinessLogic\BLRol.cs" />
     <Compile Include="BusinessLogic\BLUsuario.cs" />
     <Compile Include="Common\Constantes.cs" />
@@ -128,12 +130,6 @@
     <Compile Include="FrmNuevoPostulante.Designer.cs">
       <DependentUpon>FrmNuevoPostulante.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmPermiso.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmPermiso.Designer.cs">
-      <DependentUpon>FrmPermiso.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,8 +156,10 @@
     </Compile>
     <Compile Include="Model\AreaModel.cs" />
     <Compile Include="Model\MenuModel.cs" />
+    <Compile Include="Model\PostulanteDetalleModel.cs" />
     <Compile Include="Model\PostulanteModel.cs" />
     <Compile Include="Model\ProcesoModel.cs" />
+    <Compile Include="Model\ProcesoPostulanteModel.cs" />
     <Compile Include="Model\RolModel.cs" />
     <Compile Include="Model\RolPermisoModel.cs" />
     <Compile Include="Model\UsuarioModel.cs" />
@@ -192,9 +190,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmNuevoPostulante.resx">
       <DependentUpon>FrmNuevoPostulante.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmPermiso.resx">
-      <DependentUpon>FrmPermiso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
@@ -233,10 +228,15 @@
     <None Include="Files\CSV\Postulante.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Files\CSV\PostulanteDetalle.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Files\CSV\Proceso.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Files\CSV\ProcesoPostulante.csv" />
+    <None Include="Files\CSV\ProcesoPostulante.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Files\CSV\Rol.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

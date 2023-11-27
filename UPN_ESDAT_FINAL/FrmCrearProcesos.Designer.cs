@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCrearProcesos));
             this.gbDatosProceso = new System.Windows.Forms.GroupBox();
+            this.btnAsignarProceso = new System.Windows.Forms.Button();
             this.btnVerPdf = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
@@ -49,12 +50,15 @@
             this.txtDocumento = new System.Windows.Forms.TextBox();
             this.dgvProceso = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
+            this.lblProcesoFinalizado = new System.Windows.Forms.Label();
             this.gbDatosProceso.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProceso)).BeginInit();
             this.SuspendLayout();
             // 
             // gbDatosProceso
             // 
+            this.gbDatosProceso.Controls.Add(this.lblProcesoFinalizado);
+            this.gbDatosProceso.Controls.Add(this.btnAsignarProceso);
             this.gbDatosProceso.Controls.Add(this.btnVerPdf);
             this.gbDatosProceso.Controls.Add(this.btnEliminar);
             this.gbDatosProceso.Controls.Add(this.btnGuardar);
@@ -80,6 +84,20 @@
             this.gbDatosProceso.TabIndex = 1;
             this.gbDatosProceso.TabStop = false;
             this.gbDatosProceso.Text = "Datos";
+            // 
+            // btnAsignarProceso
+            // 
+            this.btnAsignarProceso.BackColor = System.Drawing.Color.Salmon;
+            this.btnAsignarProceso.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAsignarProceso.Location = new System.Drawing.Point(462, 185);
+            this.btnAsignarProceso.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.btnAsignarProceso.Name = "btnAsignarProceso";
+            this.btnAsignarProceso.Size = new System.Drawing.Size(333, 46);
+            this.btnAsignarProceso.TabIndex = 20;
+            this.btnAsignarProceso.Text = "Asignar postulante a este proceso";
+            this.btnAsignarProceso.UseVisualStyleBackColor = false;
+            this.btnAsignarProceso.Visible = false;
+            this.btnAsignarProceso.Click += new System.EventHandler(this.btnAsignarProceso_Click);
             // 
             // btnVerPdf
             // 
@@ -258,7 +276,6 @@
             // dgvProceso
             // 
             this.dgvProceso.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProceso.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgvProceso.Location = new System.Drawing.Point(0, 295);
             this.dgvProceso.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvProceso.Name = "dgvProceso";
@@ -279,6 +296,18 @@
             this.label7.Size = new System.Drawing.Size(830, 27);
             this.label7.TabIndex = 0;
             this.label7.Text = "PROCESO";
+            // 
+            // lblProcesoFinalizado
+            // 
+            this.lblProcesoFinalizado.AutoSize = true;
+            this.lblProcesoFinalizado.BackColor = System.Drawing.Color.LimeGreen;
+            this.lblProcesoFinalizado.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProcesoFinalizado.Location = new System.Drawing.Point(532, 20);
+            this.lblProcesoFinalizado.Name = "lblProcesoFinalizado";
+            this.lblProcesoFinalizado.Size = new System.Drawing.Size(263, 31);
+            this.lblProcesoFinalizado.TabIndex = 21;
+            this.lblProcesoFinalizado.Text = "Proceso Finalizado";
+            this.lblProcesoFinalizado.Visible = false;
             // 
             // FrmCrearProcesos
             // 
@@ -326,5 +355,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnVerPdf;
         private System.Windows.Forms.TextBox txtDocumento;
+        private System.Windows.Forms.Button btnAsignarProceso;
+        private System.Windows.Forms.Label lblProcesoFinalizado;
     }
 }

@@ -29,12 +29,16 @@ namespace UPN_ESDAT_FINAL
                     FrmNuevoPostulante frmNuevoPostulante = new FrmNuevoPostulante(true);
                     frmNuevoPostulante.Size = new System.Drawing.Size(676, 274);
                     frmNuevoPostulante.ShowDialog();
-                }                
+                }
+
+                return;
             }
 
             postulante = _blPostulante.BuscarPorDocumento(txtDocumento.Text);
 
             FrmAsignarProcesoPostulante frmAsignarProcesoPostulante = new FrmAsignarProcesoPostulante(postulante);
+            // Se asigna tamaño
+            frmAsignarProcesoPostulante.Size = new System.Drawing.Size(500, 460);
             frmAsignarProcesoPostulante.ShowDialog();
         }
 

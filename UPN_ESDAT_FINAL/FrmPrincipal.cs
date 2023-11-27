@@ -33,8 +33,6 @@ namespace UPN_ESDAT_FINAL
                 {
                     ToolStripMenuItem toolStrip = (ToolStripMenuItem)item;
 
-                    //toolStrip.Visible = false;
-
                     if (Constantes.Menu.AlwaysAccess.Contains(toolStrip.Text)) toolStrip.Visible = true;
 
                     foreach (var permiso in permisos)
@@ -102,46 +100,11 @@ namespace UPN_ESDAT_FINAL
             this.Hide();
         }
 
-        private void permisosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmPermiso frmPermiso = new FrmPermiso();
-            frmPermiso.MdiParent = this;
-            frmPermiso.Show();
-        }
-
         private void rolToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmRol frmRol = new FrmRol();
             frmRol.MdiParent = this;
             frmRol.Show();
-        }
-
-        private void buscarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmBuscarPostulante frmBuscarProceso = new FrmBuscarPostulante();
-            frmBuscarProceso.MdiParent = this;
-            frmBuscarProceso.Show();
-        }
-
-        private void nuevoPostulanteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmNuevoPostulante frmNuevoPostulante = new FrmNuevoPostulante();
-            frmNuevoPostulante.MdiParent = this;
-            frmNuevoPostulante.Show();
-        }
-
-        private void crearProcesoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmCrearProcesos frmCrearProcesos = new FrmCrearProcesos();
-            frmCrearProcesos.MdiParent = this;
-            frmCrearProcesos.Show();
-        }
-
-        private void verProcesosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmVerProcesos frmVerProcesos = new FrmVerProcesos();
-            frmVerProcesos.MdiParent = this;
-            frmVerProcesos.Show();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -151,5 +114,33 @@ namespace UPN_ESDAT_FINAL
             frmAcerca.Show();
         }
         #endregion
+
+        private void enlazarProcesoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmBuscarPostulante frmBuscarProceso = new FrmBuscarPostulante();
+            frmBuscarProceso.MdiParent = this;
+            frmBuscarProceso.Show();
+        }
+
+        private void nuevoPostulanteToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FrmNuevoPostulante frmNuevoPostulante = new FrmNuevoPostulante();
+            frmNuevoPostulante.MdiParent = this;
+            frmNuevoPostulante.Show();
+        }
+
+        private void nuevoProcesoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCrearProcesos frmCrearProcesos = new FrmCrearProcesos(new ProcesoModel(), new PostulanteModel());
+            frmCrearProcesos.MdiParent = this;
+            frmCrearProcesos.Show();
+        }
+
+        private void verProcesosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FrmVerProcesos frmVerProcesos = new FrmVerProcesos();
+            frmVerProcesos.MdiParent = this;
+            frmVerProcesos.Show();
+        }
     }
 }

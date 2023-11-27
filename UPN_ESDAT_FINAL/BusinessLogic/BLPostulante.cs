@@ -41,6 +41,7 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
                 update.FechaNacimiento = postulanteModel.FechaNacimiento;
                 update.Documentos = postulanteModel.Documentos;
                 update.Dni = postulanteModel.Dni;
+                update.IdProceso = postulanteModel.IdProceso;
             });
         }
 

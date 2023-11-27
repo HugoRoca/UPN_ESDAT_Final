@@ -11,9 +11,17 @@ namespace UPN_ESDAT_FINAL
     {
         BLArea _blArea = new BLArea();
         BLProceso _blProceso = new BLProceso();
+        BLPostulante _blPostulante = new BLPostulante();
+        BLProcesoPostulante _blProcesoPostulante = new BLProcesoPostulante();
+        BLPostulanteDetalle _blPostulanteDetalle = new BLPostulanteDetalle();
+
         Utils _utils = new Utils();
         Listas _listas = new Listas();
 
+        bool _desdeFrmAsignar = false;
+        bool _soloVer = false;
+        ProcesoModel _procesoModel = new ProcesoModel();
+        PostulanteModel _postulanteModel = new PostulanteModel();
         Common.Enum.AccionBoton accion = Common.Enum.AccionBoton.Default;
         List<AreaModel> areas = new List<AreaModel>();
         List<Valores> estados = new List<Valores>();
@@ -24,17 +32,52 @@ namespace UPN_ESDAT_FINAL
             { "DescripcionLarga", 400 }
         };
 
-        public FrmCrearProcesos()
+        public FrmCrearProcesos(ProcesoModel procesoModel, PostulanteModel postulanteModel, bool desdeFrmAsignar = false, bool soloVer = false)
         {
             InitializeComponent();
+            _procesoModel = procesoModel;
+            _postulanteModel = postulanteModel;
+            _desdeFrmAsignar = desdeFrmAsignar;
+            _soloVer = soloVer;
         }
 
         private void FrmCrearProcesos_Load(object sender, EventArgs e)
         {
-            CargarGrid();
             CargarCombo();
-
             TextboxAccion(false);
+
+            if (_desdeFrmAsignar && _postulanteModel.IdProceso == 0)
+            {
+                txtIdProceso.Text = _procesoModel.Id.ToString();
+                txtDescripcionCorta.Text = _procesoModel.DescripcionCorta;
+                txtDescripcionLarga.Text = _procesoModel.DescripcionLarga;
+                cbArea.SelectedIndex = _procesoModel.IdArea;
+                txtDocumento.Text = _procesoModel.Documentos;
+                cbEstado.SelectedText = _procesoModel.Estado;
+
+                if (!string.IsNullOrEmpty(txtDocumento.Text))
+                {
+                    txtDocumento.Text = _utils.ObtenerRutaArchivo(Constantes.Carpetas.Proceso, int.Parse(txtIdProceso.Text), Common.Enum.Extension.PDF);
+                    btnVerPdf.Visible = true;
+                    btnVerPdf.Enabled = true;
+                }
+
+                btnEliminar.Visible = false;
+                btnGuardar.Visible = false;
+                btnNuevo.Visible = false;
+
+                if (_soloVer)
+                {
+                    lblProcesoFinalizado.Visible = true;
+                    btnAsignarProceso.Text = "Cerrar";
+                }
+
+                btnAsignarProceso.Visible = true;
+
+                return;
+            }
+
+            CargarGrid();
 
             cbArea.SelectedIndex = 0;
             cbEstado.SelectedIndex = 0;
@@ -243,6 +286,41 @@ namespace UPN_ESDAT_FINAL
         {
             FrmVerDocumentoPDF frmVerDocumentoPDF = new FrmVerDocumentoPDF(txtDocumento.Text);
             frmVerDocumentoPDF.ShowDialog();
+        }
+
+        private void btnAsignarProceso_Click(object sender, EventArgs e)
+        {
+            if (_soloVer) this.Close();
+
+            bool message = _utils.MostrarMensaje("¿Esta seguro de asignar este proceso al postulante?", Common.Enum.TipoMensaje.YesNoCancel);
+
+            this.DialogResult = DialogResult.Cancel;
+
+            if (message)
+            {
+                _postulanteModel.IdProceso = _procesoModel.Id;
+                _blPostulante.Actualizar(_postulanteModel);
+
+                _blProcesoPostulante.Insertar(new ProcesoPostulanteModel { IdPostulante = _postulanteModel.Id, IdProceso = _procesoModel.Id });
+
+                _postulanteModel.IdProceso = _procesoModel.Id;
+                _blPostulante.Actualizar(_postulanteModel);
+
+                int idposDet = _blPostulanteDetalle.ContarRegistros();
+
+                _blPostulanteDetalle.Insertar(new PostulanteDetalleModel
+                {
+                    Id = _utils.GenerarId(idposDet),
+                    IdPostulante = _postulanteModel.Id,
+                    IdProceso = _procesoModel.Id,
+                    Estado = "EN PROCESO",
+                    Observaciones = $"Se vincula a proceso {_procesoModel.DescripcionCorta}"
+                });
+
+                this.DialogResult = DialogResult.OK;
+            }
+
+            this.Close();
         }
     }
 }

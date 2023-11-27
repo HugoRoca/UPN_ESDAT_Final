@@ -42,7 +42,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tvOpciones = new System.Windows.Forms.TreeView();
-            this.chklMenu = new System.Windows.Forms.CheckedListBox();
             this.gbDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -177,7 +176,7 @@
             this.label3.Location = new System.Drawing.Point(229, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(641, 24);
+            this.label3.Size = new System.Drawing.Size(300, 24);
             this.label3.TabIndex = 4;
             this.label3.Text = "ROL";
             // 
@@ -199,22 +198,12 @@
             this.tvOpciones.Name = "tvOpciones";
             this.tvOpciones.Size = new System.Drawing.Size(272, 194);
             this.tvOpciones.TabIndex = 0;
-            this.tvOpciones.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvOpciones_AfterCheck);
-            // 
-            // chklMenu
-            // 
-            this.chklMenu.FormattingEnabled = true;
-            this.chklMenu.Location = new System.Drawing.Point(556, 54);
-            this.chklMenu.Name = "chklMenu";
-            this.chklMenu.Size = new System.Drawing.Size(245, 228);
-            this.chklMenu.TabIndex = 6;
             // 
             // FrmRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(870, 391);
-            this.Controls.Add(this.chklMenu);
+            this.ClientSize = new System.Drawing.Size(529, 391);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnGuardar);
@@ -253,6 +242,5 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TreeView tvOpciones;
-        private System.Windows.Forms.CheckedListBox chklMenu;
     }
 }

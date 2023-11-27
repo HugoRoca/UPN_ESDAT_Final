@@ -21,7 +21,7 @@ namespace UPN_ESDAT_FINAL.Common
             return estados;
         }
 
-        public List<Valores> EstadosPostulante()
+        public List<Valores> EstadosPostulanteTodos()
         {
             List<Valores> estados = new List<Valores>();
 
@@ -29,6 +29,31 @@ namespace UPN_ESDAT_FINAL.Common
             estados.Add(new Valores { Descripcion = Constantes.EstadoPostulante.EnEvaluacionPsicotecnica, Id = 2 });
             estados.Add(new Valores { Descripcion = Constantes.EstadoPostulante.EnEntrevistaTecnica, Id = 3 });
             estados.Add(new Valores { Descripcion = Constantes.EstadoPostulante.EnEntrevistaPersonal, Id = 4 });
+            estados.Add(new Valores { Descripcion = Constantes.EstadoPostulante.Apto, Id = 5 });
+            estados.Add(new Valores { Descripcion = Constantes.EstadoPostulante.NoApto, Id = 6 });
+            estados.Add(new Valores { Descripcion = Constantes.EstadoPostulante.Contratado, Id = 7 });
+
+            return estados;
+        }
+
+        public List<Valores> EstadosPostulanteReclutador()
+        {
+            List<Valores> estados = new List<Valores>();
+
+            estados.Add(new Valores { Descripcion = Constantes.EstadoPostulante.EnProceso, Id = 1 });
+            estados.Add(new Valores { Descripcion = Constantes.EstadoPostulante.EnEvaluacionPsicotecnica, Id = 2 });
+            estados.Add(new Valores { Descripcion = Constantes.EstadoPostulante.EnEntrevistaTecnica, Id = 3 });
+            estados.Add(new Valores { Descripcion = Constantes.EstadoPostulante.EnEntrevistaPersonal, Id = 4 });
+            estados.Add(new Valores { Descripcion = Constantes.EstadoPostulante.Apto, Id = 5 });
+            estados.Add(new Valores { Descripcion = Constantes.EstadoPostulante.NoApto, Id = 6 });
+
+            return estados;
+        }
+
+        public List<Valores> EstadosPostulanteJefe()
+        {
+            List<Valores> estados = new List<Valores>();
+
             estados.Add(new Valores { Descripcion = Constantes.EstadoPostulante.Apto, Id = 5 });
             estados.Add(new Valores { Descripcion = Constantes.EstadoPostulante.NoApto, Id = 6 });
             estados.Add(new Valores { Descripcion = Constantes.EstadoPostulante.Contratado, Id = 7 });
