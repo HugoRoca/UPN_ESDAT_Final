@@ -122,15 +122,20 @@ namespace UPN_ESDAT_FINAL
 
         private void ProcesoActivo()
         {
-            panelNoTieneProceso.Visible = false;
-            panelProcesoContrado.Visible = false;
-            panelSiTieneProceso.Location = new System.Drawing.Point(14, 149);
+            //panelNoTieneProceso.Visible = false;
+            //panelProcesoContrado.Visible = false;
+            //panelSiTieneProceso.Location = new System.Drawing.Point(14, 149);
 
-            CargarEstadosPostulante();
+            //CargarEstadosPostulante();
 
-            CargarGriViewEstados();
+            //CargarGriViewEstados();
 
-            txtObservaciones.Focus();
+            //txtObservaciones.Focus();
+
+            this.Close();
+
+            FrmProcesoPostulante frmProcesoPostulante = new FrmProcesoPostulante(_postulante);
+            frmProcesoPostulante.ShowDialog();
         }
 
         private void CargarGriViewEstados()

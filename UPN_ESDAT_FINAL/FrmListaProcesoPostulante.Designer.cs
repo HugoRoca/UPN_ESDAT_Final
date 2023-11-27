@@ -32,13 +32,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnInhabilitarProceso = new System.Windows.Forms.Button();
+            this.btnPausarProceso = new System.Windows.Forms.Button();
+            this.btnFinalizarProceso = new System.Windows.Forms.Button();
             this.lblEstado = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtProceso = new System.Windows.Forms.TextBox();
             this.dgvPostulantes = new System.Windows.Forms.DataGridView();
-            this.btnFinalizarProceso = new System.Windows.Forms.Button();
-            this.btnPausarProceso = new System.Windows.Forms.Button();
-            this.btnInhabilitarProceso = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPostulantes)).BeginInit();
             this.SuspendLayout();
@@ -82,6 +82,45 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos proceso:";
             // 
+            // btnInhabilitarProceso
+            // 
+            this.btnInhabilitarProceso.BackColor = System.Drawing.Color.IndianRed;
+            this.btnInhabilitarProceso.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInhabilitarProceso.Location = new System.Drawing.Point(246, 76);
+            this.btnInhabilitarProceso.Name = "btnInhabilitarProceso";
+            this.btnInhabilitarProceso.Size = new System.Drawing.Size(94, 46);
+            this.btnInhabilitarProceso.TabIndex = 13;
+            this.btnInhabilitarProceso.Text = "Inhabilitar Proceso";
+            this.btnInhabilitarProceso.UseVisualStyleBackColor = false;
+            this.btnInhabilitarProceso.Visible = false;
+            this.btnInhabilitarProceso.Click += new System.EventHandler(this.btnInhabilitarProceso_Click);
+            // 
+            // btnPausarProceso
+            // 
+            this.btnPausarProceso.BackColor = System.Drawing.Color.LemonChiffon;
+            this.btnPausarProceso.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPausarProceso.Location = new System.Drawing.Point(346, 76);
+            this.btnPausarProceso.Name = "btnPausarProceso";
+            this.btnPausarProceso.Size = new System.Drawing.Size(94, 46);
+            this.btnPausarProceso.TabIndex = 12;
+            this.btnPausarProceso.Text = "Pausar Proceso";
+            this.btnPausarProceso.UseVisualStyleBackColor = false;
+            this.btnPausarProceso.Visible = false;
+            this.btnPausarProceso.Click += new System.EventHandler(this.btnPausarProceso_Click);
+            // 
+            // btnFinalizarProceso
+            // 
+            this.btnFinalizarProceso.BackColor = System.Drawing.Color.LightGreen;
+            this.btnFinalizarProceso.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFinalizarProceso.Location = new System.Drawing.Point(446, 76);
+            this.btnFinalizarProceso.Name = "btnFinalizarProceso";
+            this.btnFinalizarProceso.Size = new System.Drawing.Size(94, 46);
+            this.btnFinalizarProceso.TabIndex = 11;
+            this.btnFinalizarProceso.Text = "Finalizar proceso";
+            this.btnFinalizarProceso.UseVisualStyleBackColor = false;
+            this.btnFinalizarProceso.Visible = false;
+            this.btnFinalizarProceso.Click += new System.EventHandler(this.btnFinalizarProceso_Click);
+            // 
             // lblEstado
             // 
             this.lblEstado.AutoSize = true;
@@ -118,45 +157,7 @@
             this.dgvPostulantes.Name = "dgvPostulantes";
             this.dgvPostulantes.Size = new System.Drawing.Size(579, 229);
             this.dgvPostulantes.TabIndex = 9;
-            // 
-            // btnFinalizarProceso
-            // 
-            this.btnFinalizarProceso.BackColor = System.Drawing.Color.LightGreen;
-            this.btnFinalizarProceso.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFinalizarProceso.Location = new System.Drawing.Point(446, 76);
-            this.btnFinalizarProceso.Name = "btnFinalizarProceso";
-            this.btnFinalizarProceso.Size = new System.Drawing.Size(94, 46);
-            this.btnFinalizarProceso.TabIndex = 11;
-            this.btnFinalizarProceso.Text = "Finalizar proceso";
-            this.btnFinalizarProceso.UseVisualStyleBackColor = false;
-            this.btnFinalizarProceso.Visible = false;
-            this.btnFinalizarProceso.Click += new System.EventHandler(this.btnFinalizarProceso_Click);
-            // 
-            // btnPausarProceso
-            // 
-            this.btnPausarProceso.BackColor = System.Drawing.Color.LemonChiffon;
-            this.btnPausarProceso.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPausarProceso.Location = new System.Drawing.Point(346, 76);
-            this.btnPausarProceso.Name = "btnPausarProceso";
-            this.btnPausarProceso.Size = new System.Drawing.Size(94, 46);
-            this.btnPausarProceso.TabIndex = 12;
-            this.btnPausarProceso.Text = "Pausar Proceso";
-            this.btnPausarProceso.UseVisualStyleBackColor = false;
-            this.btnPausarProceso.Visible = false;
-            this.btnPausarProceso.Click += new System.EventHandler(this.btnPausarProceso_Click);
-            // 
-            // btnInhabilitarProceso
-            // 
-            this.btnInhabilitarProceso.BackColor = System.Drawing.Color.IndianRed;
-            this.btnInhabilitarProceso.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInhabilitarProceso.Location = new System.Drawing.Point(246, 76);
-            this.btnInhabilitarProceso.Name = "btnInhabilitarProceso";
-            this.btnInhabilitarProceso.Size = new System.Drawing.Size(94, 46);
-            this.btnInhabilitarProceso.TabIndex = 13;
-            this.btnInhabilitarProceso.Text = "Inhabilitar Proceso";
-            this.btnInhabilitarProceso.UseVisualStyleBackColor = false;
-            this.btnInhabilitarProceso.Visible = false;
-            this.btnInhabilitarProceso.Click += new System.EventHandler(this.btnInhabilitarProceso_Click);
+            this.dgvPostulantes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPostulantes_CellContentClick);
             // 
             // FrmListaProcesoPostulante
             // 

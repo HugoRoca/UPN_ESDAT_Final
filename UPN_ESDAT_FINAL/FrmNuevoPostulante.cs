@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using UPN_ESDAT_FINAL.BusinessLogic;
 using UPN_ESDAT_FINAL.Common;
 using UPN_ESDAT_FINAL.Model;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace UPN_ESDAT_FINAL
 {
@@ -16,12 +15,12 @@ namespace UPN_ESDAT_FINAL
 
         Common.Enum.AccionBoton accion = Common.Enum.AccionBoton.Default;
 
-        List<string> _ocultarColumnas = new List<string> { "Id", "Documentos", "IdProceso" };
+        List<string> _ocultarColumnas = new List<string> { "Id", "Documentos", "IdProceso", "Estado" };
         List<string> _ordenColumnas = new List<string>();
         Dictionary<string, int> _tamanioColumnas = new Dictionary<string, int> {
             { "Nombres", 150 },
             { "Apellidos", 150 },
-            { "Email", 300 }
+            { "Email", 200 }
         };
 
         bool _cerrarDespuesGuardar = false;
@@ -149,6 +148,7 @@ namespace UPN_ESDAT_FINAL
 
             if (_cerrarDespuesGuardar)
             {
+                this.DialogResult = DialogResult.OK;
                 this.Close();
                 return;
             }

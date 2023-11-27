@@ -297,7 +297,11 @@ namespace UPN_ESDAT_FINAL.Common
                 {
                     if (dataGridView.Columns.Contains(kvp.Key))
                     {
-                        dataGridView.Columns[kvp.Key].Width = kvp.Value;
+                        if (kvp.Value == 1000) dataGridView.Columns[kvp.Key].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        else
+                        {
+                            dataGridView.Columns[kvp.Key].Width = kvp.Value;
+                        }
                     }
                 }
             }

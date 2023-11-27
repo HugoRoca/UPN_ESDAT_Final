@@ -72,7 +72,6 @@ namespace UPN_ESDAT_FINAL.BusinessLogic
             if (!postulantes.Any()) return new PostulanteModel();
 
             return postulantes.FirstOrDefault(x => x.Id == id);
-
         }
     }
 }

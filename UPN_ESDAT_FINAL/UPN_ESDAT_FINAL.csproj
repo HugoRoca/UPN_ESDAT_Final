@@ -51,10 +51,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>A4EDE37FE57E9EBB1A273786DBC3CAABF34DC8E6</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>D31F6CBAD92E6597E909546F1BF385050F26D73E</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>UPN_ESDAT_FINAL_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -111,6 +112,12 @@
     <Compile Include="FrmCrearProcesos.Designer.cs">
       <DependentUpon>FrmCrearProcesos.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmListaPostulante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmListaPostulante.Designer.cs">
+      <DependentUpon>FrmListaPostulante.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmListaProcesoPostulante.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +141,12 @@
     </Compile>
     <Compile Include="FrmPrincipal.Designer.cs">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmProcesoPostulante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProcesoPostulante.Designer.cs">
+      <DependentUpon>FrmProcesoPostulante.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmRol.cs">
       <SubType>Form</SubType>
@@ -180,6 +193,9 @@
     <EmbeddedResource Include="FrmCrearProcesos.resx">
       <DependentUpon>FrmCrearProcesos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmListaPostulante.resx">
+      <DependentUpon>FrmListaPostulante.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmListaProcesoPostulante.resx">
       <DependentUpon>FrmListaProcesoPostulante.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmProcesoPostulante.resx">
+      <DependentUpon>FrmProcesoPostulante.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmRol.resx">
       <DependentUpon>FrmRol.cs</DependentUpon>
@@ -241,6 +260,15 @@
     <None Include="Files\CSV\Usuario.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Files\Postulante\P213ca0ae-6318-428a-b116-94b0a7fb3eed_Postulante.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Postulante\P28357c5c-1436-482c-9036-d5c165b535f2_Postulante.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Postulante\P37d56689-1ba3-4c9d-aafc-1585f3676f5b_Postulante.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Files\Postulante\P6f19d252-d66d-4075-a36c-2e182b832d39_Postulante.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -248,6 +276,42 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Files\Postulante\P8a49a125-bb6b-4114-b419-1931e92aa7a1_Postulante.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Postulante\P93c5f913-4fc4-471e-9812-028bb310c8ed_Postulante.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Postulante\P9c668553-086f-4564-a0ec-286ff1d3d8eb_Postulante.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Postulante\Pa832b28e-5dcb-4df5-aab4-cc73d62d8e18_Postulante.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Postulante\Pb1243ec7-8a54-4cf8-89d4-79d9ef5c65fc_Postulante.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Postulante\Pc987a451-8a56-4b7d-91f2-8bd93412c6f9_Postulante.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Postulante\Pd745e218-6b71-4422-988b-54f6e6738f46_Postulante.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Postulante\Pe634d329-4dcf-4e9e-8d22-aa76f3311e17_Postulante.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Postulante\Pea01728d-88f0-46de-bd50-cb4606ed74b4_Postulante.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Postulante\Pf472a3e8-2e13-4ff3-af1d-12c30c2a6522_Postulante.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Postulante\Pfb6064e2-e8a8-4ccf-93de-110c75a05fc4_Postulante.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Postulante\Pg361bc45-73d8-4ad2-bb94-2299e237c876_Postulante.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\Postulante\Ph2498f32-16d2-4429-843a-2c0ff0d60e16_Postulante.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Files\Proceso\P055d37a8-0df8-48e2-bfee-a6f748d809c3_Proceso.pdf">
