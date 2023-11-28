@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using UPN_ESDAT_FINAL.BusinessLogic;
 using UPN_ESDAT_FINAL.Common;
@@ -56,6 +57,19 @@ namespace UPN_ESDAT_FINAL
 
         private void BuscarPorDNI(string documento)
         {
+            if (string.IsNullOrEmpty(documento)) {
+                _utils.MostrarMensaje("Debe ingresar un valor en el campo documento!", Common.Enum.TipoMensaje.Informativo);
+                return;
+            }
+
+            bool esValido = Regex.IsMatch(documento, "^[0-9]+$");
+
+            if (!esValido)
+            {
+                _utils.MostrarMensaje("Debe ingresar solo números!", Common.Enum.TipoMensaje.Informativo);
+                return;
+            }
+
             PostulanteModel postulante = _blPostulante.BuscarPorDocumento(documento);
 
             if (postulante == null || string.IsNullOrEmpty(postulante.Dni))

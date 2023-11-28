@@ -9,29 +9,38 @@ namespace UPN_ESDAT_FINAL.Common
 {
     public class Utils
     {
+        // Método que genera un identificador único global (GUID) y devuelve su representación como cadena.
         public string GenerarId()
         {
+            // Crear un nuevo GUID que representa un identificador único global.
             Guid uniqueId = Guid.NewGuid();
+
+            // Convertir el GUID a su representación como cadena y devolverlo.
             return uniqueId.ToString();
         }
 
+        // Método que genera un formato de documento combinando un identificador y un nombre.
+        // El formato resultante sigue el patrón "P{id}_{nombre}".
         public string GenerarFormatoDocumento(string id, string nombre)
         {
-            // Combinar el formato y el nombre
+            // Combinar el formato y el nombre utilizando la interpolación de cadenas.
             string resultado = $"P{id}_{nombre}";
 
+            // Devolver el formato del documento resultante.
             return resultado;
         }
 
+        // Método que obtiene la ruta completa de un archivo en una carpeta específica.
+        // La ruta se construye combinando la carpeta, un identificador, una extensión y la ruta de destino base.
         public string ObtenerRutaArchivo(string carpeta, string id, Enum.Extension extension)
         {
-            // Combina la carpeta base con la ruta relativa al archivo
-            //string carpetaBase = AppDomain.CurrentDomain.BaseDirectory;
-            //string rutaDestino = carpetaBase + @"\Files\Proceso\";
-
+            // Obtener la ruta de destino base utilizando la ubicación de la aplicación.
             string rutaDestino = Path.Combine(Application.StartupPath, "Files", carpeta);
+
+            // Inicializar una cadena para la extensión del archivo.
             string ext = "";
-            // Se selecciona extension
+
+            // Seleccionar la extensión correspondiente según el tipo de extensión proporcionado.
             switch (extension)
             {
                 case Enum.Extension.PDF:
@@ -41,14 +50,25 @@ namespace UPN_ESDAT_FINAL.Common
                     ext = "docx";
                     break;
                 default:
+                    // Manejar cualquier otro caso de extensión.
                     break;
             }
 
+            // Combinar el formato del documento (incluido el identificador y la carpeta) con la extensión.
             carpeta = $"{this.GenerarFormatoDocumento(id, carpeta)}.{ext}";
 
+            // Combinar la carpeta y el nombre del archivo con la ruta de destino para obtener la ruta completa del archivo.
             return Path.Combine(rutaDestino, carpeta);
         }
 
+        /// <summary>
+        /// Método para copiar archivos de una ruta original a otra con un destino definido
+        /// </summary>
+        /// <param name="documento">Ruta original del archivo</param>
+        /// <param name="extension">Esta a base de Enum, tiene 2 opciones actualmente</param>
+        /// <param name="id">Id o guid que va tener de nombre del documento</param>
+        /// <param name="nombreCarpetaArchivo">Indica el nombre de la carpetala cual sera el destino</param>
+        /// <returns></returns>
         public string CopiarArchivo(string documento, Enum.Extension extension, string id = "", string nombreCarpetaArchivo = "")
         {
             // Combina la carpeta base con la ruta relativa al archivo

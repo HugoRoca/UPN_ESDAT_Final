@@ -110,6 +110,7 @@
             this.txtDNICE.Name = "txtDNICE";
             this.txtDNICE.Size = new System.Drawing.Size(142, 21);
             this.txtDNICE.TabIndex = 5;
+            this.txtDNICE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDNICE_KeyPress);
             // 
             // label9
             // 
@@ -240,6 +241,7 @@
             this.txtCelular.Name = "txtCelular";
             this.txtCelular.Size = new System.Drawing.Size(142, 21);
             this.txtCelular.TabIndex = 4;
+            this.txtCelular.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCelular_KeyPress);
             // 
             // label4
             // 

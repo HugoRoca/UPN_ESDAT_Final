@@ -71,6 +71,11 @@ namespace UPN_ESDAT_FINAL
         {
             List<Valores> estados = _listas.EstadosPostulanteTodos();
 
+            if (FrmPrincipal.RolUsuario == "RECLUTA")
+            {
+                estados = estados.Where(x => x.Descripcion != Constantes.EstadoPostulante.Contratado).ToList();
+            }
+
             cbEstado.DataSource = estados;
             cbEstado.DisplayMember = "Descripcion";
             cbEstado.ValueMember = "Id";

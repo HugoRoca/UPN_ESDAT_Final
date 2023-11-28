@@ -9,6 +9,8 @@ namespace UPN_ESDAT_FINAL
 {
     public partial class FrmPrincipal : Form
     {
+        public static string RolUsuario { get; set; }
+
         private readonly UsuarioModel _usuarioModel;
 
         public FrmPrincipal(UsuarioModel usuarioModel)
@@ -22,6 +24,8 @@ namespace UPN_ESDAT_FINAL
             BLRol bLRol = new BLRol();
 
             RolModel rolModel = bLRol.ObtenerRolDescripcion(this._usuarioModel.RolId);
+
+            RolUsuario = rolModel.Descripcion;
 
             tsslState.Text = $"HOLA {_usuarioModel.Nombres} {_usuarioModel.Apellidos} | ROL: {rolModel.Descripcion}";
 
