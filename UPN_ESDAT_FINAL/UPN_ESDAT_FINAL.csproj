@@ -63,6 +63,9 @@
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon_project.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -148,6 +151,12 @@
     <Compile Include="FrmProcesoPostulante.Designer.cs">
       <DependentUpon>FrmProcesoPostulante.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmDescargarCSV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDescargarCSV.Designer.cs">
+      <DependentUpon>FrmDescargarCSV.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +193,9 @@
     <Compile Include="FrmVerDocumentoPDF.Designer.cs">
       <DependentUpon>FrmVerDocumentoPDF.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FrmAcerca.resx">
+      <DependentUpon>FrmAcerca.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmAsignarProcesoPostulante.resx">
       <DependentUpon>FrmAsignarProcesoPostulante.cs</DependentUpon>
     </EmbeddedResource>
@@ -210,6 +222,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProcesoPostulante.resx">
       <DependentUpon>FrmProcesoPostulante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDescargarCSV.resx">
+      <DependentUpon>FrmDescargarCSV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmRol.resx">
       <DependentUpon>FrmRol.cs</DependentUpon>
@@ -355,7 +370,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="icon_project.ico" />
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>

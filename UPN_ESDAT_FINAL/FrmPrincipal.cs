@@ -142,5 +142,12 @@ namespace UPN_ESDAT_FINAL
             frmVerProcesos.MdiParent = this;
             frmVerProcesos.Show();
         }
+
+        private void descargarCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmDescargarCSV frmReportes = new FrmDescargarCSV();
+            frmReportes.MdiParent = this;
+            frmReportes.Show();
+        }
     }
 }

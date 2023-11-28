@@ -24,12 +24,14 @@ namespace UPN_ESDAT_FINAL
         Utils _utils = new Utils();
 
         PostulanteModel _postulanteModel = new PostulanteModel();
+        bool _soloVer = false;
         List<ProcesoPostulanteModel> listaProcesoPostulante = new List<ProcesoPostulanteModel>();
 
-        public FrmProcesoPostulante(PostulanteModel postulanteModel)
+        public FrmProcesoPostulante(PostulanteModel postulanteModel, bool soloVer = false)
         {
             InitializeComponent();
             _postulanteModel = postulanteModel;
+            _soloVer = soloVer;
         }
 
         private void FrmProcesoPostulante_Load(object sender, EventArgs e)
@@ -57,6 +59,12 @@ namespace UPN_ESDAT_FINAL
             txtEstado.Text = proceso.Estado;
             txtDocumento.Text = _utils.ObtenerRutaArchivo(Constantes.Carpetas.Proceso, proceso.Id, Common.Enum.Extension.PDF);            
             txtArea.Text = _blArea.BuscarPorId(proceso.IdArea)?.Descripcion ?? "";
+
+            if (_soloVer)
+            {
+                lblProcesoFinalizado.Visible = true;
+                gbestados.Enabled = false;
+            }
         }
 
         private void CargarEstadosPostulante()

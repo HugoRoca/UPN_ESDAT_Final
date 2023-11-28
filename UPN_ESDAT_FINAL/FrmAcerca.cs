@@ -16,5 +16,15 @@ namespace UPN_ESDAT_FINAL
         {
             InitializeComponent();
         }
+
+        private void FrmAcerca_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using UPN_ESDAT_FINAL.Common;
 using UPN_ESDAT_FINAL.Model;
@@ -21,7 +16,6 @@ namespace UPN_ESDAT_FINAL
 
         List<PostulanteModel> _postulantes;
         List<string> _ocultarColumnas = new List<string> { "Id", "Documentos", "IdProceso", "FechaNacimiento", "Email", "Celular" };
-        List<string> _ordenColumnas = new List<string> { "Ver Proceso", "Estado", "DescripcionCorta", "DescripcionLarga", "Area" };
         Dictionary<string, int> _tamanioColumnas = new Dictionary<string, int> {
             { "Nombres", 180 },
             { "Estado", 165},
@@ -47,12 +41,20 @@ namespace UPN_ESDAT_FINAL
         private void dgvPostulantes_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
             // Obtener el estado de la fila actual
-            string estado = dgvPostulantes.Rows[e.RowIndex].Cells["IdProceso"].Value.ToString();
+            string idProceso = dgvPostulantes.Rows[e.RowIndex].Cells["IdProceso"].Value.ToString();
+            string estado = dgvPostulantes.Rows[e.RowIndex].Cells["Estado"].Value.ToString();
 
             // Establecer el color de fondo de la fila según el estado
-            if (!string.IsNullOrEmpty(estado))
+            if (!string.IsNullOrEmpty(idProceso))
             {
-                dgvPostulantes.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LemonChiffon;
+                if (estado == Constantes.EstadoPostulante.Contratado)
+                {
+                    dgvPostulantes.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+                }
+                else
+                {
+                    dgvPostulantes.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LemonChiffon;
+                }
             }
         }
 
@@ -72,6 +74,13 @@ namespace UPN_ESDAT_FINAL
                     // Obtener los valores de las celdas en la fila seleccionada
                     // Mostrar los valores en TextBox
                     string documento = filaSeleccionada.Cells["Dni"].Value.ToString();
+                    string estado = filaSeleccionada.Cells["Estado"].Value.ToString();
+
+                    if (estado == Constantes.EstadoPostulante.Contratado)
+                    {
+                        _utils.MostrarMensaje("El postulante ya esta contratado!", Common.Enum.TipoMensaje.Informativo);
+                        return;
+                    }
 
                     this._ValorRetornado = documento;
                     this.DialogResult = DialogResult.OK;

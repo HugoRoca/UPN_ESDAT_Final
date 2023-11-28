@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProcesoPostulante));
             this.label7 = new System.Windows.Forms.Label();
             this.gbDatos = new System.Windows.Forms.GroupBox();
             this.txtDNICE = new System.Windows.Forms.TextBox();
@@ -60,16 +61,17 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtDocumento = new System.Windows.Forms.TextBox();
             this.dgvEstados = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtObservacion = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.cbEstado = new System.Windows.Forms.ComboBox();
+            this.gbestados = new System.Windows.Forms.GroupBox();
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.cbEstado = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtObservacion = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.lblProcesoFinalizado = new System.Windows.Forms.Label();
             this.gbDatos.SuspendLayout();
             this.gbDatosProceso.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEstados)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.gbestados.SuspendLayout();
             this.SuspendLayout();
             // 
             // label7
@@ -412,55 +414,20 @@
             this.dgvEstados.Size = new System.Drawing.Size(915, 231);
             this.dgvEstados.TabIndex = 5;
             // 
-            // groupBox1
+            // gbestados
             // 
-            this.groupBox1.Controls.Add(this.btnAgregar);
-            this.groupBox1.Controls.Add(this.cbEstado);
-            this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.txtObservacion);
-            this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.dgvEstados);
-            this.groupBox1.Location = new System.Drawing.Point(13, 263);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(921, 314);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Estados en proceso actual:";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(26, 31);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(78, 15);
-            this.label14.TabIndex = 6;
-            this.label14.Text = "Observación:";
-            // 
-            // txtObservacion
-            // 
-            this.txtObservacion.Location = new System.Drawing.Point(110, 28);
-            this.txtObservacion.Multiline = true;
-            this.txtObservacion.Name = "txtObservacion";
-            this.txtObservacion.Size = new System.Drawing.Size(302, 46);
-            this.txtObservacion.TabIndex = 0;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(423, 34);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(48, 15);
-            this.label15.TabIndex = 8;
-            this.label15.Text = "Estado:";
-            // 
-            // cbEstado
-            // 
-            this.cbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbEstado.FormattingEnabled = true;
-            this.cbEstado.Location = new System.Drawing.Point(479, 31);
-            this.cbEstado.Name = "cbEstado";
-            this.cbEstado.Size = new System.Drawing.Size(320, 23);
-            this.cbEstado.TabIndex = 9;
+            this.gbestados.Controls.Add(this.btnAgregar);
+            this.gbestados.Controls.Add(this.cbEstado);
+            this.gbestados.Controls.Add(this.label15);
+            this.gbestados.Controls.Add(this.txtObservacion);
+            this.gbestados.Controls.Add(this.label14);
+            this.gbestados.Controls.Add(this.dgvEstados);
+            this.gbestados.Location = new System.Drawing.Point(13, 263);
+            this.gbestados.Name = "gbestados";
+            this.gbestados.Size = new System.Drawing.Size(921, 314);
+            this.gbestados.TabIndex = 6;
+            this.gbestados.TabStop = false;
+            this.gbestados.Text = "Estados en proceso actual:";
             // 
             // btnAgregar
             // 
@@ -473,17 +440,66 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
+            // cbEstado
+            // 
+            this.cbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEstado.FormattingEnabled = true;
+            this.cbEstado.Location = new System.Drawing.Point(479, 31);
+            this.cbEstado.Name = "cbEstado";
+            this.cbEstado.Size = new System.Drawing.Size(320, 23);
+            this.cbEstado.TabIndex = 9;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(423, 34);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(48, 15);
+            this.label15.TabIndex = 8;
+            this.label15.Text = "Estado:";
+            // 
+            // txtObservacion
+            // 
+            this.txtObservacion.Location = new System.Drawing.Point(110, 28);
+            this.txtObservacion.Multiline = true;
+            this.txtObservacion.Name = "txtObservacion";
+            this.txtObservacion.Size = new System.Drawing.Size(302, 46);
+            this.txtObservacion.TabIndex = 0;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(26, 31);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(78, 15);
+            this.label14.TabIndex = 6;
+            this.label14.Text = "Observación:";
+            // 
+            // lblProcesoFinalizado
+            // 
+            this.lblProcesoFinalizado.AutoSize = true;
+            this.lblProcesoFinalizado.BackColor = System.Drawing.Color.LimeGreen;
+            this.lblProcesoFinalizado.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProcesoFinalizado.Location = new System.Drawing.Point(323, 240);
+            this.lblProcesoFinalizado.Name = "lblProcesoFinalizado";
+            this.lblProcesoFinalizado.Size = new System.Drawing.Size(263, 31);
+            this.lblProcesoFinalizado.TabIndex = 22;
+            this.lblProcesoFinalizado.Text = "Proceso Finalizado";
+            this.lblProcesoFinalizado.Visible = false;
+            // 
             // FrmProcesoPostulante
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 589);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.lblProcesoFinalizado);
+            this.Controls.Add(this.gbestados);
             this.Controls.Add(this.gbDatosProceso);
             this.Controls.Add(this.gbDatos);
             this.Controls.Add(this.label7);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.Name = "FrmProcesoPostulante";
@@ -495,9 +511,10 @@
             this.gbDatosProceso.ResumeLayout(false);
             this.gbDatosProceso.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEstados)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbestados.ResumeLayout(false);
+            this.gbestados.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -535,11 +552,12 @@
         private System.Windows.Forms.TextBox txtEstado;
         private System.Windows.Forms.TextBox txtArea;
         private System.Windows.Forms.DataGridView dgvEstados;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbestados;
         private System.Windows.Forms.TextBox txtObservacion;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox cbEstado;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Label lblProcesoFinalizado;
     }
 }

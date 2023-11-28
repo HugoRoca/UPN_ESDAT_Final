@@ -105,7 +105,6 @@ namespace UPN_ESDAT_FINAL
             }
         }
 
-
         private void PostulanteSinProceso()
         {
             List<ProcesoModel> procesos = _blProceso.ObtenerPorEstado(Constantes.EstadoProceso.Activo);
@@ -115,107 +114,25 @@ namespace UPN_ESDAT_FINAL
 
         private void ProcesoFinalizado()
         {
-            panelNoTieneProceso.Visible = false;
-            panelSiTieneProceso.Visible = false;
-            panelProcesoContrado.Location = new System.Drawing.Point(14, 149);
+            this.Close();
+            FrmProcesoPostulante frmProcesoPostulante = new FrmProcesoPostulante(_postulante, true);
+            frmProcesoPostulante.ShowDialog();
         }
 
         private void ProcesoActivo()
         {
-            //panelNoTieneProceso.Visible = false;
-            //panelProcesoContrado.Visible = false;
-            //panelSiTieneProceso.Location = new System.Drawing.Point(14, 149);
-
-            //CargarEstadosPostulante();
-
-            //CargarGriViewEstados();
-
-            //txtObservaciones.Focus();
-
             this.Close();
-
             FrmProcesoPostulante frmProcesoPostulante = new FrmProcesoPostulante(_postulante);
             frmProcesoPostulante.ShowDialog();
-        }
-
-        private void CargarGriViewEstados()
-        {
-            listaProcesoPostulante = _blProcesoPostulante.BuscarPorIdPostulanteYProceso(_postulante.Id, _postulante.IdProceso);
-
-            List<string> _ocultarColumnas = new List<string> { "Id", "IdProceso", "IdPostulante", "Nombres" };
-            List<string> _ordenColumnas = new List<string> { "Estado", "Observaciones" };
-            Dictionary<string, int> _tamanioColumnas = new Dictionary<string, int> {
-                { "Observaciones", 320 }
-            };
-
-            _utils.CargarDatosEnGridView(dgvEstadosPostulante, listaProcesoPostulante, _ocultarColumnas, true, _tamanioColumnas, _ordenColumnas, null);
-        }
-
-        private void CargarEstadosPostulante()
-        {
-            List<Valores> estados = _listas.EstadosPostulanteReclutador();
-
-            cbEstados.DataSource = estados;
-            cbEstados.DisplayMember = "Descripcion";
-            cbEstados.ValueMember = "Id";
         }
 
         private void btnVerProceso_Click(object sender, EventArgs e)
         {
             ProcesoModel procesoModel = _blProceso.BuscarPorId(_postulante.IdProceso);
 
-            FrmCrearProcesos frmCrearProcesos = new FrmCrearProcesos(procesoModel, _postulante, true);
+            FrmCrearProcesos frmCrearProcesos = new FrmCrearProcesos(procesoModel, _postulante, true, true);
             frmCrearProcesos.Size = new System.Drawing.Size(846, 332);
             frmCrearProcesos.ShowDialog();
-        }
-
-        private void btnGuardar_Click(object sender, EventArgs e)
-        {
-            ProcesoModel procesoModel = _blProceso.BuscarPorId(_postulante.IdProceso);
-
-            if (procesoModel.Estado != Constantes.EstadoProceso.Activo)
-            {
-                _utils.MostrarMensaje("Para registrar estados el proceso debe estar activo!", Common.Enum.TipoMensaje.Informativo);
-                return;
-            }
-
-            if (string.IsNullOrEmpty(txtObservaciones.Text))
-            {
-                _utils.MostrarMensaje("Debe completar el campo observaciones!", Common.Enum.TipoMensaje.Informativo);
-                return;
-            }
-
-            ProcesoPostulanteModel posDet = new ProcesoPostulanteModel();
-            posDet.Id = _utils.GenerarId();
-            posDet.IdPostulante = _postulante.Id;
-            posDet.IdProceso = _postulante.IdProceso;
-            posDet.Observaciones = txtObservaciones.Text;
-            posDet.Estado = cbEstados.Text;
-
-            ProcesoPostulanteModel postulante = listaProcesoPostulante.FirstOrDefault(x => x.Estado == posDet.Estado) ?? new ProcesoPostulanteModel();
-
-            if (!string.IsNullOrEmpty(postulante.Id))
-            {
-                if (_utils.MostrarMensaje("Solo debe existir un estado único por proceso, ¿Desea reemplazarlo?", Common.Enum.TipoMensaje.YesNoCancel))
-                {
-                    posDet.Id = postulante.Id;
-                    posDet.Observaciones = posDet.Observaciones;
-
-                    _blProcesoPostulante.ActualizarObservacion(posDet);
-                }
-            } else
-            {
-                _blProcesoPostulante.Insertar(posDet);
-
-                _postulante.Estado = posDet.Estado;
-
-                _blPostulante.Actualizar(_postulante);
-            }
-
-            txtObservaciones.Clear();
-            txtObservaciones.Focus();
-
-            CargarGriViewEstados();
         }
     }
 }

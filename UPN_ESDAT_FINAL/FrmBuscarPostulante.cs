@@ -64,7 +64,6 @@ namespace UPN_ESDAT_FINAL
 
             FrmAsignarProcesoPostulante frmAsignarProcesoPostulante = new FrmAsignarProcesoPostulante(postulante);
             // Se asigna tamaño
-            frmAsignarProcesoPostulante.Size = new System.Drawing.Size(500, 460);
             frmAsignarProcesoPostulante.ShowDialog();
         }
 

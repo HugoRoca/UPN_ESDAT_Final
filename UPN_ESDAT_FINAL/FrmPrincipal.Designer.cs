@@ -46,12 +46,14 @@
             this.tileVerticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tileHorizontalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsslState = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.descargarCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +70,7 @@
             this.nuevoProcesoToolStripMenuItem,
             this.verProcesosToolStripMenuItem1,
             this.windowsMenu,
+            this.reportesToolStripMenuItem,
             this.helpMenu});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
@@ -208,6 +211,16 @@
             this.closeAllToolStripMenuItem.Text = "C&errar todo";
             this.closeAllToolStripMenuItem.Click += new System.EventHandler(this.CloseAllToolStripMenuItem_Click);
             // 
+            // reportesToolStripMenuItem
+            // 
+            this.reportesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.descargarCSVToolStripMenuItem});
+            this.reportesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reportesToolStripMenuItem.Image")));
+            this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
+            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(105, 40);
+            this.reportesToolStripMenuItem.Text = "Reportes";
+            this.reportesToolStripMenuItem.Visible = false;
+            // 
             // helpMenu
             // 
             this.helpMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -249,6 +262,13 @@
             // 
             this.tsProgressBar.Name = "tsProgressBar";
             this.tsProgressBar.Size = new System.Drawing.Size(100, 16);
+            // 
+            // descargarCSVToolStripMenuItem
+            // 
+            this.descargarCSVToolStripMenuItem.Name = "descargarCSVToolStripMenuItem";
+            this.descargarCSVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.descargarCSVToolStripMenuItem.Text = "Descargar CSV";
+            this.descargarCSVToolStripMenuItem.Click += new System.EventHandler(this.descargarCSVToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
@@ -302,6 +322,8 @@
         private System.Windows.Forms.ToolStripMenuItem nuevoPostulanteToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem nuevoProcesoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verProcesosToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem descargarCSVToolStripMenuItem;
     }
 }
 

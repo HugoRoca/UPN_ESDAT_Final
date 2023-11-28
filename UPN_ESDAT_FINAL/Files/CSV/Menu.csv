@@ -4,3 +4,4 @@ Id|Descripcion|Formulario|Padre
 3|Nuevo Postulante|FrNuevoPostulante|0
 4|Nuevo Proceso|FrmCrearProceso|0
 5|Ver Procesos|FrmVerProceso|0
+6|Reportes|FrmReportes|0

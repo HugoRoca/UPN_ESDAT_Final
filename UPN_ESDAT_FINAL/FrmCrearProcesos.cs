@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using UPN_ESDAT_FINAL.BusinessLogic;
 using UPN_ESDAT_FINAL.Common;
@@ -52,7 +53,8 @@ namespace UPN_ESDAT_FINAL
                 txtDescripcionLarga.Text = _procesoModel.DescripcionLarga;
                 cbArea.SelectedIndex = _procesoModel.IdArea;
                 txtDocumento.Text = _procesoModel.Documentos;
-                cbEstado.SelectedText = _procesoModel.Estado;
+
+                cbEstado.SelectedIndex = estados.FirstOrDefault(x => x.Descripcion == _procesoModel.Estado).Id;
 
                 if (!string.IsNullOrEmpty(txtDocumento.Text))
                 {
@@ -290,7 +292,11 @@ namespace UPN_ESDAT_FINAL
 
         private void btnAsignarProceso_Click(object sender, EventArgs e)
         {
-            if (_soloVer) this.Close();
+            if (_soloVer)
+            {
+                this.Close();
+                return;
+            }
 
             bool message = _utils.MostrarMensaje("¿Esta seguro de asignar este proceso al postulante?", Common.Enum.TipoMensaje.YesNoCancel);
 
