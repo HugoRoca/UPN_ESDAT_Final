@@ -16,8 +16,6 @@ namespace UPN_ESDAT_FINAL.Repository
         {
             // Combina la carpeta base con la ruta relativa al archivo
             this.RutaArchivo = Path.Combine(Application.StartupPath, "Files", "CSV", nombreArchivo + ".csv");
-
-            //this.RutaArchivo = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "\Data\" + nombreArchivo + ".csv");
         }
 
         // Agregar un nuevo elemento
@@ -77,15 +75,11 @@ namespace UPN_ESDAT_FINAL.Repository
         public void Eliminar(Predicate<T> condicion)
         {
             var entidades = ObtenerTodos();
+
             var entidadesFiltradas = entidades.Where(e => !condicion(e)).ToList();
 
             // Ahora, reescribe el archivo con las entidades filtradas
             EscribirArchivo(entidadesFiltradas);
-        }
-
-        public int ContarRegistros()
-        {
-            return this.Contar();
         }
 
         // Buscar en el csv mediante una condicion
@@ -167,16 +161,6 @@ namespace UPN_ESDAT_FINAL.Repository
 
             // Devuelve la lista de entidades
             return entidades;
-        }
-
-        // Obtiene la cantidad de registros que existen en el archivo
-        private int Contar()
-        {
-            // Lee todas las líneas del archivo y omite la primera línea si contiene encabezados
-            var lineas = File.ReadAllLines(this.RutaArchivo).Skip(1);
-
-            // se cuenta el total de la lineas
-            return lineas.Count();
         }
 
         // Escribir la lista de entidades en el archivo

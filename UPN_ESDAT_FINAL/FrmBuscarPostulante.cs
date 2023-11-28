@@ -21,29 +21,36 @@ namespace UPN_ESDAT_FINAL
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (rbDni.Checked)
+            try
             {
-                BuscarPorDNI(txtDocumento.Text);
+                if (rbDni.Checked)
+                {
+                    BuscarPorDNI(txtDocumento.Text);
+                }
+                else if (rbNombre.Checked)
+                {
+                    List<PostulanteModel> lista = _blPostulante.ObtenerTodos();
+                    lista = lista.Where(item =>
+                        item.Nombres.ToLower().Contains(txtDocumento.Text.ToLower()) ||
+                        item.Apellidos.ToLower().Contains(txtDocumento.Text.ToLower())
+                    ).ToList();
+
+                    if (!lista.Any())
+                    {
+                        _utils.MostrarMensaje("No hay datos que coincidan con el texto de búsqueda.", Common.Enum.TipoMensaje.Informativo);
+                        return;
+                    }
+
+                    FrmListaPostulante frmListaPostulante = new FrmListaPostulante(lista);
+                    if (frmListaPostulante.ShowDialog() == DialogResult.OK)
+                    {
+                        BuscarPorDNI(frmListaPostulante._ValorRetornado);
+                    }
+                }
             }
-            else if (rbNombre.Checked)
+            catch (Exception ex)
             {
-                List<PostulanteModel> lista = _blPostulante.ObtenerTodos();
-                lista = lista.Where(item =>
-                    item.Nombres.ToLower().Contains(txtDocumento.Text.ToLower()) ||
-                    item.Apellidos.ToLower().Contains(txtDocumento.Text.ToLower())
-                ).ToList();
-
-                if (!lista.Any())
-                {
-                    _utils.MostrarMensaje("No hay datos que coincidan con el texto de búsqueda.", Common.Enum.TipoMensaje.Informativo);
-                    return;
-                }
-
-                FrmListaPostulante frmListaPostulante = new FrmListaPostulante(lista);
-                if (frmListaPostulante.ShowDialog() == DialogResult.OK)
-                {
-                    BuscarPorDNI(frmListaPostulante._ValorRetornado);
-                }
+                _utils.MostrarMensaje($"Ocurrió un error, {ex.Message}", Common.Enum.TipoMensaje.Error);
             }
         }
 

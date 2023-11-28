@@ -43,45 +43,52 @@ namespace UPN_ESDAT_FINAL
 
         private void FrmCrearProcesos_Load(object sender, EventArgs e)
         {
-            CargarCombo();
-            TextboxAccion(false);
-
-            if (_desdeFrmAsignar && string.IsNullOrEmpty(_postulanteModel.IdProceso))
+            try
             {
-                txtIdProceso.Text = _procesoModel.Id.ToString();
-                txtDescripcionCorta.Text = _procesoModel.DescripcionCorta;
-                txtDescripcionLarga.Text = _procesoModel.DescripcionLarga;
-                cbArea.SelectedIndex = _procesoModel.IdArea;
-                txtDocumento.Text = _procesoModel.Documentos;
+                CargarCombo();
+                TextboxAccion(false);
 
-                cbEstado.SelectedIndex = estados.FirstOrDefault(x => x.Descripcion == _procesoModel.Estado).Id;
-
-                if (!string.IsNullOrEmpty(txtDocumento.Text))
+                if (_desdeFrmAsignar && string.IsNullOrEmpty(_postulanteModel.IdProceso))
                 {
-                    txtDocumento.Text = _utils.ObtenerRutaArchivo(Constantes.Carpetas.Proceso, txtIdProceso.Text, Common.Enum.Extension.PDF);
-                    btnVerPdf.Visible = true;
-                    btnVerPdf.Enabled = true;
+                    txtIdProceso.Text = _procesoModel.Id.ToString();
+                    txtDescripcionCorta.Text = _procesoModel.DescripcionCorta;
+                    txtDescripcionLarga.Text = _procesoModel.DescripcionLarga;
+                    cbArea.SelectedIndex = _procesoModel.IdArea;
+                    txtDocumento.Text = _procesoModel.Documentos;
+
+                    cbEstado.SelectedIndex = estados.FirstOrDefault(x => x.Descripcion == _procesoModel.Estado).Id;
+
+                    if (!string.IsNullOrEmpty(txtDocumento.Text))
+                    {
+                        txtDocumento.Text = _utils.ObtenerRutaArchivo(Constantes.Carpetas.Proceso, txtIdProceso.Text, Common.Enum.Extension.PDF);
+                        btnVerPdf.Visible = true;
+                        btnVerPdf.Enabled = true;
+                    }
+
+                    btnEliminar.Visible = false;
+                    btnGuardar.Visible = false;
+                    btnNuevo.Visible = false;
+
+                    if (_soloVer)
+                    {
+                        lblProcesoFinalizado.Visible = true;
+                        btnAsignarProceso.Text = "Cerrar";
+                    }
+
+                    btnAsignarProceso.Visible = true;
+
+                    return;
                 }
 
-                btnEliminar.Visible = false;
-                btnGuardar.Visible = false;
-                btnNuevo.Visible = false;
+                CargarGrid();
 
-                if (_soloVer)
-                {
-                    lblProcesoFinalizado.Visible = true;
-                    btnAsignarProceso.Text = "Cerrar";
-                }
-
-                btnAsignarProceso.Visible = true;
-
-                return;
+                cbArea.SelectedIndex = 0;
+                cbEstado.SelectedIndex = 0;
             }
-
-            CargarGrid();
-
-            cbArea.SelectedIndex = 0;
-            cbEstado.SelectedIndex = 0;
+            catch (Exception ex)
+            {
+                _utils.MostrarMensaje($"Ocurrió un error, {ex.Message}", Common.Enum.TipoMensaje.Error);
+            }
         }
 
         private List<ProcesoModel> ModelDatos(List<ProcesoModel> procesos)
@@ -170,75 +177,89 @@ namespace UPN_ESDAT_FINAL
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (accion == Common.Enum.AccionBoton.EditarEliminar)
+            try
             {
-                TextboxAccion(true, false);
-                accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.Editar);
-                return;
-            }
-
-            if (!_utils.ValidarCamposGroupBox(gbDatosProceso))
-            {
-                _utils.MostrarMensaje("Debe de completar todos los campos!", Common.Enum.TipoMensaje.Error);
-                return;
-            }
-
-            ProcesoModel procesoModel = new ProcesoModel();
-            procesoModel.Id = txtIdProceso.Text;
-            procesoModel.DescripcionCorta = txtDescripcionCorta.Text;
-            procesoModel.DescripcionLarga = txtDescripcionLarga.Text;
-            procesoModel.IdArea = (int)cbArea.SelectedValue;
-            procesoModel.Estado = cbEstado.Text;
-
-            // Documento
-            procesoModel.Documentos = _utils.CopiarArchivo(txtDocumento.Text, Common.Enum.Extension.PDF, procesoModel.Id, Constantes.Carpetas.Proceso);
-
-            switch (accion)
-            {
-                case Common.Enum.AccionBoton.Nuevo:
-                    _blProceso.InsertarRegistro(procesoModel);
-                    break;
-                case Common.Enum.AccionBoton.Editar:
-                    _blProceso.ActualizarRegistro(procesoModel);
-                    break;
-                case Common.Enum.AccionBoton.EditarEliminar:
+                if (accion == Common.Enum.AccionBoton.EditarEliminar)
+                {
                     TextboxAccion(true, false);
                     accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.Editar);
                     return;
-                case Common.Enum.AccionBoton.Default:
-                    break;
-                default:
-                    break;
+                }
+
+                if (!_utils.ValidarCamposGroupBox(gbDatosProceso))
+                {
+                    _utils.MostrarMensaje("Debe de completar todos los campos!", Common.Enum.TipoMensaje.Error);
+                    return;
+                }
+
+                ProcesoModel procesoModel = new ProcesoModel();
+                procesoModel.Id = txtIdProceso.Text;
+                procesoModel.DescripcionCorta = txtDescripcionCorta.Text;
+                procesoModel.DescripcionLarga = txtDescripcionLarga.Text;
+                procesoModel.IdArea = (int)cbArea.SelectedValue;
+                procesoModel.Estado = cbEstado.Text;
+
+                // Documento
+                procesoModel.Documentos = _utils.CopiarArchivo(txtDocumento.Text, Common.Enum.Extension.PDF, procesoModel.Id, Constantes.Carpetas.Proceso);
+
+                switch (accion)
+                {
+                    case Common.Enum.AccionBoton.Nuevo:
+                        _blProceso.InsertarRegistro(procesoModel);
+                        break;
+                    case Common.Enum.AccionBoton.Editar:
+                        _blProceso.ActualizarRegistro(procesoModel);
+                        break;
+                    case Common.Enum.AccionBoton.EditarEliminar:
+                        TextboxAccion(true, false);
+                        accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.Editar);
+                        return;
+                    case Common.Enum.AccionBoton.Default:
+                        break;
+                    default:
+                        break;
+                }
+
+                _utils.MostrarMensaje("Datos registrados correctamente!", Common.Enum.TipoMensaje.Informativo);
+
+                CargarGrid();
+
+                accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.Default);
+
+                TextboxAccion(false);
             }
-
-            _utils.MostrarMensaje("Datos registrados correctamente!", Common.Enum.TipoMensaje.Informativo);
-
-            CargarGrid();
-
-            accion = _utils.Botones(btnNuevo, btnGuardar, btnEliminar, Common.Enum.AccionBoton.Default);
-
-            TextboxAccion(false);
+            catch (Exception ex)
+            {
+                _utils.MostrarMensaje($"Ocurrió un error, {ex.Message}", Common.Enum.TipoMensaje.Error);
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            // Verificar si hay un valor en el cuadro de texto txtIdProceso
-            if (!string.IsNullOrEmpty(txtIdProceso.Text))
+            try
             {
-                if (!_utils.MostrarMensaje("¿Está seguro que desea eliminar le registro?", Common.Enum.TipoMensaje.YesNoCancel)) return;
-                
-                // Obtener los valores de las celdas en la fila seleccionada
-                string Id = txtIdProceso.Text;
+                // Verificar si hay un valor en el cuadro de texto txtIdProceso
+                if (!string.IsNullOrEmpty(txtIdProceso.Text))
+                {
+                    if (!_utils.MostrarMensaje("¿Está seguro que desea eliminar le registro?", Common.Enum.TipoMensaje.YesNoCancel)) return;
 
-                _blProceso.EliminarRegistros(Id);
+                    // Obtener los valores de las celdas en la fila seleccionada
+                    string Id = txtIdProceso.Text;
 
-                CargarGrid();
+                    _blProceso.EliminarRegistros(Id);
 
-                _utils.MostrarMensaje("Registro eliminado correctamente!", Common.Enum.TipoMensaje.Informativo);
+                    CargarGrid();
+
+                    _utils.MostrarMensaje("Registro eliminado correctamente!", Common.Enum.TipoMensaje.Informativo);
+                }
+                else
+                {
+                    _utils.MostrarMensaje("Seleccione un valor de la lista!", Common.Enum.TipoMensaje.Informativo);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                _utils.MostrarMensaje("Seleccione un valor de la lista!", Common.Enum.TipoMensaje.Informativo);
+                _utils.MostrarMensaje($"Ocurrió un error, {ex.Message}", Common.Enum.TipoMensaje.Error);
             }
         }
 
@@ -271,16 +292,23 @@ namespace UPN_ESDAT_FINAL
 
         private void btnSubir_Click(object sender, EventArgs e)
         {
-            // Configurar el diálogo para buscar archivos PDF
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Archivos PDF|*.pdf";
-            openFileDialog.Title = "Seleccionar archivo PDF";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                // Mostrar la ruta seleccionada en el cuadro de texto
-                txtDocumento.Text = openFileDialog.FileName;
-                btnVerPdf.Visible = true;
+                // Configurar el diálogo para buscar archivos PDF
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Archivos PDF|*.pdf";
+                openFileDialog.Title = "Seleccionar archivo PDF";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Mostrar la ruta seleccionada en el cuadro de texto
+                    txtDocumento.Text = openFileDialog.FileName;
+                    btnVerPdf.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                _utils.MostrarMensaje($"Ocurrió un error, {ex.Message}", Common.Enum.TipoMensaje.Error);
             }
         }
 
@@ -292,41 +320,48 @@ namespace UPN_ESDAT_FINAL
 
         private void btnAsignarProceso_Click(object sender, EventArgs e)
         {
-            if (_soloVer)
+            try
             {
-                this.Close();
-                return;
-            }
-
-            bool message = _utils.MostrarMensaje("¿Esta seguro de asignar este proceso al postulante?", Common.Enum.TipoMensaje.YesNoCancel);
-
-            this.DialogResult = DialogResult.Cancel;
-
-            if (message)
-            {
-                _postulanteModel.IdProceso = _procesoModel.Id;
-                _blPostulante.Actualizar(_postulanteModel);
-
-                _postulanteModel.IdProceso = _procesoModel.Id;
-                _blPostulante.Actualizar(_postulanteModel);
-
-                _blProcesoPostulante.Insertar(new ProcesoPostulanteModel
+                if (_soloVer)
                 {
-                    Id = _utils.GenerarId(),
-                    IdPostulante = _postulanteModel.Id,
-                    IdProceso = _procesoModel.Id,
-                    Estado = Constantes.EstadoPostulante.EnProceso,
-                    Observaciones = $"Se vincula a proceso {_procesoModel.DescripcionCorta}"
-                });
+                    this.Close();
+                    return;
+                }
 
-                _postulanteModel.Estado = Constantes.EstadoPostulante.EnProceso;
+                bool message = _utils.MostrarMensaje("¿Esta seguro de asignar este proceso al postulante?", Common.Enum.TipoMensaje.YesNoCancel);
 
-                _blPostulante.Actualizar(_postulanteModel);
+                this.DialogResult = DialogResult.Cancel;
 
-                this.DialogResult = DialogResult.OK;
+                if (message)
+                {
+                    _postulanteModel.IdProceso = _procesoModel.Id;
+                    _blPostulante.Actualizar(_postulanteModel);
+
+                    _postulanteModel.IdProceso = _procesoModel.Id;
+                    _blPostulante.Actualizar(_postulanteModel);
+
+                    _blProcesoPostulante.Insertar(new ProcesoPostulanteModel
+                    {
+                        Id = _utils.GenerarId(),
+                        IdPostulante = _postulanteModel.Id,
+                        IdProceso = _procesoModel.Id,
+                        Estado = Constantes.EstadoPostulante.EnProceso,
+                        Observaciones = $"Se vincula a proceso {_procesoModel.DescripcionCorta}"
+                    });
+
+                    _postulanteModel.Estado = Constantes.EstadoPostulante.EnProceso;
+
+                    _blPostulante.Actualizar(_postulanteModel);
+
+                    this.DialogResult = DialogResult.OK;
+                }
+
+                this.Close();
             }
-
-            this.Close();
+            catch (Exception ex)
+            {
+                _utils.MostrarMensaje($"Ocurrió un error, {ex.Message}", Common.Enum.TipoMensaje.Error);
+            }
         }
     }
 }

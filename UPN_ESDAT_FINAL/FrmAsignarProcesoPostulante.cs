@@ -37,34 +37,41 @@ namespace UPN_ESDAT_FINAL
 
         private void FrmAsignarProcesoPostulante_Load(object sender, EventArgs e)
         {
-            lblPostulante.Text = $"{_postulante.Nombres} {_postulante.Apellidos}";
-            lblDocumento.Text = _postulante.Dni;
-            txtCV.Text = _utils.ObtenerRutaArchivo(Constantes.Carpetas.Postulante, _postulante.Id, Common.Enum.Extension.PDF);
-
-            if (string.IsNullOrEmpty(_postulante.IdProceso))
+            try
             {
-                PostulanteSinProceso();
-                return;
+                lblPostulante.Text = $"{_postulante.Nombres} {_postulante.Apellidos}";
+                lblDocumento.Text = _postulante.Dni;
+                txtCV.Text = _utils.ObtenerRutaArchivo(Constantes.Carpetas.Postulante, _postulante.Id, Common.Enum.Extension.PDF);
+
+                if (string.IsNullOrEmpty(_postulante.IdProceso))
+                {
+                    PostulanteSinProceso();
+                    return;
+                }
+
+                // Postulante cuando ya tiene asignado un proceso
+                ProcesoModel proceso = _blProceso.BuscarPorId(_postulante.IdProceso);
+
+                if (string.IsNullOrEmpty(proceso.Id))
+                {
+                    _utils.MostrarMensaje("Hubo un problema al encontrar el proceso asignado", Common.Enum.TipoMensaje.Advertencia);
+                    this.Close();
+                }
+
+                switch (proceso.Estado)
+                {
+                    case Constantes.EstadoProceso.Activo:
+                    case Constantes.EstadoProceso.EnPausa:
+                        ProcesoActivo();
+                        break;
+                    case Constantes.EstadoProceso.Finalizado:
+                        ProcesoFinalizado();
+                        break;
+                }
             }
-
-            // Postulante cuando ya tiene asignado un proceso
-            ProcesoModel proceso = _blProceso.BuscarPorId(_postulante.IdProceso);
-
-            if (string.IsNullOrEmpty(proceso.Id))
+            catch (Exception ex)
             {
-                _utils.MostrarMensaje("Hubo un problema al encontrar el proceso asignado", Common.Enum.TipoMensaje.Advertencia);
-                this.Close();
-            }
-
-            switch (proceso.Estado)
-            {
-                case Constantes.EstadoProceso.Activo:
-                case Constantes.EstadoProceso.EnPausa:
-                    ProcesoActivo();
-                    break;
-                case Constantes.EstadoProceso.Finalizado:
-                    ProcesoFinalizado();
-                    break;
+                _utils.MostrarMensaje($"Ocurrió un error, {ex.Message}", Common.Enum.TipoMensaje.Error);
             }
         }
 
