@@ -104,6 +104,15 @@ namespace UPN_ESDAT_FINAL.Common
             return nuevoNombre;
         }
 
+        /// <summary>
+        /// Configura el estado y el texto de los botones 'Nuevo', 'Guardar' y 'Eliminar' en una interfaz de usuario.
+        /// El comportamiento y el texto de los botones se ajustan según el valor de una enumeración específica que representa la acción actual o deseada.
+        /// </summary>
+        /// <param name="btnNuevo">Botón 'Nuevo' en la interfaz de usuario.</param>
+        /// <param name="btnGuardar">Botón 'Guardar' en la interfaz de usuario.</param>
+        /// <param name="btnEliminar">Botón 'Eliminar' en la interfaz de usuario.</param>
+        /// <param name="_enum">Enumeración de tipo Enum.AccionBoton que indica el estado o acción deseada.</param>
+        /// <returns>La enumeración de tipo Enum.AccionBoton que fue pasada como parámetro.</returns>
         public Enum.AccionBoton Botones(Button btnNuevo, Button btnGuardar, Button btnEliminar, Enum.AccionBoton _enum)
         {
             switch (_enum)
@@ -132,67 +141,98 @@ namespace UPN_ESDAT_FINAL.Common
             return _enum;
         }
 
-        public bool EsNuevo(Button button)
-        {
-            return button.Text == "Nuevo";
-        }
-
+        /// <summary>
+        /// Muestra un mensaje en una ventana emergente con un estilo y botones que varían según el tipo de mensaje.
+        /// </summary>
+        /// <param name="texto">El texto a mostrar en el mensaje.</param>
+        /// <param name="_enum">Enumeración de tipo Enum.TipoMensaje que indica el tipo de mensaje a mostrar.</param>
+        /// <returns>
+        /// Retorna 'true' en la mayoría de los casos.
+        /// Para el tipo de mensaje 'YesNoCancel', retorna 'true' si la respuesta es 'Yes' y 'false' en otros casos.
+        /// </returns>
         public bool MostrarMensaje(string texto, Enum.TipoMensaje _enum)
         {
             switch (_enum)
             {
                 case Enum.TipoMensaje.Informativo:
+                    // Muestra un mensaje informativo con un botón 'OK' y un icono de información.
                     MessageBox.Show(texto, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
+
                 case Enum.TipoMensaje.Advertencia:
+                    // Muestra un mensaje de advertencia con un botón 'OK' y un icono de advertencia.
                     MessageBox.Show(texto, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
+
                 case Enum.TipoMensaje.Error:
+                    // Muestra un mensaje de error con un botón 'OK' y un icono de error.
                     MessageBox.Show(texto, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
+
                 case Enum.TipoMensaje.YesNoCancel:
+                    // Muestra un mensaje con opciones 'Yes', 'No' y 'Cancel' y un icono de pregunta.
+                    // Retorna 'true' si se selecciona 'Yes' y 'false' en caso contrario.
                     DialogResult dialogResult = MessageBox.Show(texto, "Información", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                     return dialogResult == DialogResult.Yes;
+
                 default:
+                    // No hace nada si el tipo de mensaje no está definido.
                     break;
             }
 
             return true;
         }
 
+
+        /// <summary>
+        /// Valida los controles dentro de un GroupBox, asegurándose de que todos los TextBox no estén vacíos
+        /// y que, en caso de existir ComboBoxes, todos tengan un ítem seleccionado.
+        /// </summary>
+        /// <param name="groupBox">El GroupBox cuyos controles se van a validar.</param>
+        /// <returns>
+        /// Retorna 'true' si todos los TextBox no están vacíos y, en caso de existir ComboBoxes, todos tienen un ítem seleccionado.
+        /// Retorna 'false' en caso contrario.
+        /// </returns>
         public bool ValidarCamposGroupBox(GroupBox groupBox)
         {
-            // Verificar que todos los TextBox no estén vacíos
+            // Verificar que todos los TextBox no estén vacíos.
+            // Utiliza LINQ para iterar sobre todos los controles de tipo TextBox dentro del GroupBox,
+            // y verifica que todos tengan texto (no estén vacíos).
             bool todosTextBoxNoVacios = groupBox.Controls.OfType<TextBox>().All(textBox => !string.IsNullOrEmpty(textBox.Text));
 
-            // Verificar si existen combos
+            // Verificar si existen ComboBoxes dentro del GroupBox.
+            // Utiliza LINQ para comprobar si hay al menos un ComboBox en los controles del GroupBox.
             bool existenCombos = groupBox.Controls.OfType<ComboBox>().Any();
 
-            // Verificar que el ComboBox tenga un índice seleccionado (cualquier índice mayor o igual a 0)
+            // Inicializa la variable para verificar si el ComboBox tiene un ítem seleccionado.
+            // Por defecto, es 'true' para manejar el caso en que no existan ComboBoxes.
             bool comboBoxSeleccionado = true;
 
+            // Si existen ComboBoxes, verificar que todos tengan un índice seleccionado.
+            // El índice seleccionado debe ser mayor o igual a 0 para ser considerado válido.
             if (existenCombos)
             {
-                comboBoxSeleccionado = groupBox.Controls.OfType<ComboBox>().All(comboBox => comboBox.SelectedIndex > 0);
+                comboBoxSeleccionado = groupBox.Controls.OfType<ComboBox>().All(comboBox => comboBox.SelectedIndex >= 0);
             }
 
-            // Devolver true si todos los TextBox no están vacíos y el ComboBox tiene un índice seleccionado
+            // Devuelve 'true' si todos los TextBox no están vacíos y, en caso de existir ComboBoxes, todos tienen un índice seleccionado.
+            // De lo contrario, devuelve 'false'.
             return todosTextBoxNoVacios && comboBoxSeleccionado;
         }
 
+
         /// <summary>
-        /// Configura y carga datos en un DataGridView, incluyendo columnas dinámicas,
-        /// ocultar columnas, ajuste de tamaño de columnas, orden de columnas,
-        /// y botones dinámicos con funciones asociadas al hacer clic.
+        /// Carga una lista de datos en un DataGridView, configurando aspectos como columnas a ocultar, 
+        /// tamaños de columnas, orden de columnas, y botones personalizados.
         /// </summary>
-        /// <typeparam name="T">Tipo de elementos en la lista de datos</typeparam>
-        /// <param name="dataGridView">DataGridView a configurar y llenar</param>
-        /// <param name="listaModel">Lista de datos a cargar en el DataGridView</param>
-        /// <param name="columnasOcultar">Lista de nombres de columnas a ocultar</param>
-        /// <param name="ultimaColumnaFill">Indica si la última columna debe ocupar todo el espacio disponible</param>
-        /// <param name="tamanosColumnas">Diccionario con tamaños personalizados para columnas</param>
-        /// <param name="ordenColumnas">Lista de nombres de columnas en el orden deseado</param>
-        /// <param name="funcionesBotones">Diccionario que asocia funciones a nombres de columnas de botones</param
+        /// <typeparam name="T">El tipo de datos de la lista que se va a cargar en el DataGridView.</typeparam>
+        /// <param name="dataGridView">El DataGridView que se va a configurar y llenar.</param>
+        /// <param name="listaModel">La lista de datos que se va a cargar en el DataGridView.</param>
+        /// <param name="columnasOcultar">Lista opcional de nombres de columnas a ocultar.</param>
+        /// <param name="ultimaColumnaFill">Indica si la última columna debe ajustarse para ocupar el espacio restante.</param>
+        /// <param name="tamanosColumnas">Diccionario opcional con los tamaños personalizados para las columnas.</param>
+        /// <param name="ordenColumnas">Lista opcional que define el orden de las columnas.</param>
+        /// <param name="funcionesBotones">Diccionario opcional que define columnas adicionales de botones.</param>
         public void CargarDatosEnGridView<T>(
             DataGridView dataGridView, 
             List<T> listaModel, 
@@ -202,6 +242,8 @@ namespace UPN_ESDAT_FINAL.Common
             List<string> ordenColumnas = null,
             Dictionary<string, string> funcionesBotones = null)
         {
+            // Configuración inicial del DataGridView, como deshabilitar la selección múltiple,
+            // deshabilitar la adición y eliminación de filas por el usuario, y configurar el estilo visual.
             dataGridView.MultiSelect = false;
             dataGridView.AllowUserToAddRows = false;
             dataGridView.AllowUserToDeleteRows = false;
